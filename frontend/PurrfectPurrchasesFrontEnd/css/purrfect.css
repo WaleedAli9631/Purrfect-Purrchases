@@ -1,0 +1,44 @@
+#logo {
+    height:100px;
+}
+body {
+    background:linear-gradient(102.87deg, #FCEED5 6.43%, #FCEED5 78.33%, #FFE7BA 104.24%)
+}
+li a {
+    font-family:'SVN-Gilroy',sans-serif;
+    font-style:normal;
+    font-weight:700;
+    font-size:25px;
+    line-height:24px;
+    color:#003459;
+}
+.container-fluid {
+    margin-top:20px;
+    padding-left:50px;
+    padding-right:50px;
+}
+.row{
+    margin-bottom:20px;
+}
+h2 {
+    font-style: normal;
+    font-weight:700;
+    font-size: 16px;
+    line-height:24px;
+}
+h3 {
+    font-style: normal;
+    font-weight:500;
+    font-size: 12px;
+    line-height:18px;
+    color:#667479
+}
+h4 {
+    font-style:normal;
+    font-weight:700;
+    font-size:14px;
+    line-height:20px;
+}
+.hoverElement:hover { 
+    opacity: .7; 
+}
