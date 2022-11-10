@@ -8,7 +8,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-left" href="#"><img src="img/logo2.png" height="150" /></a>
+            <a class="navbar-left" href="#"><img src="assets/img/logo2.png" id="logo" /></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -52,150 +52,54 @@
           <button class="btn btn-secondary btn-lg px-4 mx-2" id="next-button">Next ></button>
         </div>
         
-<!-- Footer -->
-<footer class="page-footer font-small indigo">
+        <!-- Footer -->
+        <footer class="page-footer font-small indigo">
 
-  <!-- Footer Links -->
-  <div class="container text-center text-md-left">
+        <!-- Footer Links -->
+        <div class="container text-center text-md-left">
 
-    <!-- Grid row -->
-    <div class="row">
+          <!-- Grid row -->
+          <div class="row">
 
-      <!-- Grid column -->
-      <div class="col">
-        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Home</h5>
-      </div>
+          <!-- Grid column -->
+          <div class="col">
+            <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Home</h5>
+          </div>
 
-      <hr class="clearfix w-100 d-md-none">
+          <hr class="clearfix w-100 d-md-none">
 
-      <!-- Grid column -->
-      <div class="col">
-        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">About</h5>
-      </div>
+          <!-- Grid column -->
+          <div class="col">
+            <h5 class="font-weight-bold text-uppercase mt-3 mb-4">About</h5>
+          </div>
 
-      <hr class="clearfix w-100 d-md-none">
+          <hr class="clearfix w-100 d-md-none">
 
-      <!-- Grid column -->
-      <div class="col">
-        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
-      </div>
+        <!-- Grid column -->
+        <div class="col">
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
+        </div>
 
-      <hr class="clearfix w-100 d-md-none">
+        <hr class="clearfix w-100 d-md-none">
 
-      <!-- Grid column -->
-      <div class="col">
-        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
-      </div>
+        <!-- Grid column -->
+        <div class="col">
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
+        </div>
 
-    </div>
+         </div>
 
-  </div>
+        </div>
 
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2022 Copyright:
-    <a href="/">Purrfect Purchases</a>
-  </div>
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2022 Copyright:
+          <a href="/">Purrfect Purchases</a>
+        </div>
 
-</footer>
+        </footer>
 
         <div id="background-shape"></div>
-        <script>
-            //Function adds div of cat information to page. Iterated from array 
-            function addCode(catID, imgName, catName, catBreed, catGender, catAge, catCost) {
-              document.getElementById("catsquares").innerHTML +=
-              "<div class=\"col\">" +
-              "<div class=\"p-3 bg-light rounded-lg shadow\">" +
-              "<img src=\"" + imgName + "\" class=\"w-100 catElement\">" +
-              "<h2>" + catName + " - " + catBreed + "</h2>" +
-              "<h3>Gender: <b>" + catGender + "</b> • Age: <b>" + catAge + "</b></h3>" +
-              "<h4>$" + catCost + "</h4>" + 
-              "</div></div>";
-            }
-
-            function breedDropDown(theArray)  {
-              document.getElementById("bDropDown").innerHTML = "<a class=\"dropdown-item\" href=\"#\">All</a>";
-              let dropDownArray = new Set();
-              for (var i=0; i<=theArray.length-1; i++) {
-                dropDownArray.add(theArray[i][3]);
-              }
-              for (const item of dropDownArray.values()) {
-                document.getElementById("bDropDown").innerHTML +=
-                "<a class=\"dropdown-item\" href=\"#\">" + item + "</a>";
-              }
-            }
-
-            function pushCats(breedType, catStart) {
-              document.getElementById("catsquares").innerHTML = "";
-              elemTotal = 0;
-              while ((elemTotal < catsPerPage) && (catStart <= catinfo.length-1)) {
-                if ((catinfo[catStart][3] == breedType) || (breedType == "All")) {
-                  addCode(catinfo[catStart][0], catinfo[catStart][1], catinfo[catStart][2], catinfo[catStart][3], catinfo[catStart][4], catinfo[catStart][5], catinfo[catStart][6]);
-                  elemTotal++;
-                }
-                catStart++;
-              }
-
-              document.getElementById("directionButtons").innerHTML="";
-              if (startID > 0) {
-                document.getElementById("directionButtons").innerHTML += 
-                "<button class=\"btn btn-secondary btn-lg px-4 mx-2\" id=\"prev-button\">< Previous</button>";
-              }
-              if ((startID + catsPerPage < catinfo.length-1) && (elemTotal >= catsPerPage)) {
-                document.getElementById("directionButtons").innerHTML +=
-                "<button class=\"btn btn-secondary btn-lg px-4 mx-2\" id=\"next-button\">Next ></button>";      
-              }
-            }
-            
-            let catsPerPage = 14;
-            let startID = 0;
-            let catinfo = [
-              //Array is iterated through to show up on frontpage
-              //CatID, CatImage, CatName, CatBreed, CatGender, CatAge, CatCost
-              [1,"img/cat1.jpg", "Jodie", "Siamese", "Male",7, 700],
-              [2,"img/cat2.jpg", "Marty", "British Shorthair", "Female",3, 500],
-              [3,"img/cat3.jpg", "Tiffany", "Persian", "Male",2, 50],
-              [4,"img/cat4.jpg", "Crystal", "Ragdoll", "Male",4, 60],
-              [5,"img/cat5.jpg", "Robbie", "Sphynx", "Female",4, 80],
-              [6,"img/cat6.jpg", "Tammy", "Abyssian", "Female",7, 90],
-              [7,"img/cat7.jpg", "Debby", "Burmese Cat", "Female",3, 900],
-              [8,"img/cat8.jpg", "Mikey", "Birman", "Male",2, 400],
-              [9,"img/cat9.jpg", "Corey", "Tabby", "Male",12, 5000],
-              [10,"img/cat10.jpg", "Jeremy", "Siamese", "Male",7, 700],
-              [11,"img/cat11.jpg", "Marina", "British Shorthair", "Female",3, 500],
-              [12,"img/cat12.jpeg", "Doug", "Persian", "Male",2, 50],
-              [13,"img/cat13.jpg", "Chaz", "Ragdoll", "Male",4, 60],
-              [14,"img/cat14.jpg", "Mary", "Sphynx", "Female",4, 80],
-              [15,"img/cat15.jpg", "Chitzi", "Abyssian", "Female",7, 90],
-              [16,"img/cat16.png", "Cat", "Burmese Cat", "Female",3, 900],
-              [17,"img/cat17.jpg", "Meowth", "Birman", "Male",2, 400],
-              [18,"img/cat18.png", "Meowtwo", "Tabby", "Male",12, 300],
-              [19,"img/cat19.jpg", "Hobbes", "Tabby", "Male",4, 200]
-            ];
-
-            pushCats("All",startID);
-            breedDropDown(catinfo);
-
-            document.addEventListener('click', (e) => {
-              let elementClass = e.target.className;
-              let elementID = e.target.id;
-              if (elementClass == 'dropdown-item') {
-                breedType = e.target.innerHTML;
-                startID = 0;
-                pushCats(breedType,startID);
-              }
-              if (elementID == 'next-button') {
-                startID += catsPerPage;
-                pushCats("All",startID);
-              }
-              if (elementID == 'prev-button') {
-                startID -= catsPerPage;
-                if (startID < 0) startID = 0;
-                pushCats("All",startID);
-              }
-            });
-
-        </script>
-    
+        <script src="js/viewcats.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
