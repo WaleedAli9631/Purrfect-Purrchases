@@ -46,78 +46,96 @@
         </nav>
 
         <div class="container-fluid">
-            <div class="row">
-              <div class="col">
-                <div class="p-3 bg-light rounded-lg shadow">
-                    <img src="img/cat1.jpg" class="w-100 catElement" />
-                    <h2>M0102 - Poodle Tiny Sepia</h2>
-                    <h3>Gender: <b>Male</b> • Age: <b>6 months</b></h3>
-                    <h4>$4000</h4>
-                </div>
-              </div>
-              <div class="col">
-                <div class="p-3 bg-light rounded-lg shadow">
-                    <img src="img/cat2.jpg" class="w-100 catElement">
-                    <h2>M0102 - Poodle Tiny Sepia</h2>
-                    <h3>Gender: <b>Male</b> • Age: <b>6 months</b></h3>
-                    <h4>$4000</h4>
-                </div>
-              </div>
-              <div class="col">
-                <div class="p-3 bg-light rounded-lg shadow">
-                    <img src="img/cat3.jpg" class="w-100 catElement">
-                    <h2>M0102 - Poodle Tiny Sepia</h2>
-                    <h3>Gender: <b>Male</b> • Age: <b>6 months</b></h3>
-                    <h4>$4000</h4>
-                </div>
-              </div>
-              <div class="col">
-                <div class="p-3 bg-light rounded-lg shadow">
-                    <img src="img/cat4.jpg" class="w-100 catElement">
-                    <h2>M0102 - Poodle Tiny Sepia</h2>
-                    <h3>Gender: <b>Male</b> • Age: <b>6 months</b></h3>
-                    <h4>$4000</h4>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                  <div class="p-3 bg-light rounded-lg shadow">
-                      <img src="img/cat5.jpg" class="w-100 catElement">
-                      <h2>M0102 - Poodle Tiny Sepia</h2>
-                      <h3>Gender: <b>Male</b> • Age: <b>6 months</b></h3>
-                      <h4>$4000</h4>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="p-3 bg-light rounded-lg shadow">
-                      <img src="img/cat6.jpg" class="w-100 catElement">
-                      <h2>M0102 - Poodle Tiny Sepia</h2>
-                      <h3>Gender: <b>Male</b> • Age: <b>6 months</b></h3>
-                      <h4>$4000</h4>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="p-3 bg-light rounded-lg shadow">
-                      <img src="img/cat7.jpg" class="w-100 catElement">
-                      <h2>M0102 - Poodle Tiny Sepia</h2>
-                      <h3>Gender: <b>Male</b> • Age: <b>6 months</b></h3>
-                      <h4>$4000</h4>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="p-3 bg-light rounded-lg shadow">
-                      <img src="img/cat8.jpg" class="w-100 catElement">
-                      <h2>M0102 - Poodle Tiny Sepia</h2>
-                      <h3>Gender: <b>Male</b> • Age: <b>6 months</b></h3>
-                      <h4>$4000</h4>
-                  </div>
-                </div>
+            <div class="row" id="catsquares">
+              <!-- Cat Squares are filled in with JavaScript below -->
               </div>
           </div>
         
-        <div id="background-shape"></div>
+<!-- Footer -->
+<footer class="page-footer font-small indigo">
 
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col">
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Home</h5>
+      </div>
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col">
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">About</h5>
+      </div>
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col">
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
+      </div>
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col">
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2022 Copyright:
+    <a href="/">Purrfect Purchases</a>
+  </div>
+
+</footer>
+
+        <div id="background-shape"></div>
+        <script>
+            function addCode(catID, imgName, catName, catBreed, catGender, catAge, catCost) {
+              document.getElementById("catsquares").innerHTML +=
+              "<div class=\"col\">" +
+              "<div class=\"p-3 bg-light rounded-lg shadow\">" +
+              "<img src=\"" + imgName + "\" class=\"w-100 catElement\">" +
+              "<h2>" + catName + " - " + catBreed + "</h2>" +
+              "<h3>Gender: <b>" + catGender + "</b> • Age: <b>" + catAge + "</b></h3>" +
+              "<h4>$" + catCost + "</h4>" + 
+              "</div></div>";
+            }
+            
+            let catinfo = [
+              [1,"img/cat1.jpg", "Jodie", "Siamese", "Male",7, 700],
+              [2,"img/cat2.jpg", "Marty", "British Shorthair", "Female",3, 500],
+              [3,"img/cat3.jpg", "Tiffany", "Persian", "Male",2, 50],
+              [4,"img/cat4.jpg", "Crystal", "Ragdoll", "Male",4, 60],
+              [5,"img/cat5.jpg", "Robbie", "Sphynx", "Female",4, 80],
+              [6,"img/cat6.jpg", "Tammy", "Abyssian", "Female",7, 90],
+              [7,"img/cat7.jpg", "Debby", "Burmese Cat", "Female",3, 900],
+              [8,"img/cat8.jpg", "Mikey", "Birman", "Male",2, 400],
+              [9,"img/cat2.jpg", "Corey", "Tabby", "Male",12, 5000],
+              [10,"img/cat1.jpg", "Jodie", "Siamese", "Male",7, 700],
+              [11,"img/cat2.jpg", "Marty", "British Shorthair", "Female",3, 500],
+              [12,"img/cat3.jpg", "Tiffany", "Persian", "Male",2, 50],
+              [13,"img/cat4.jpg", "Crystal", "Ragdoll", "Male",4, 60],
+              [14,"img/cat5.jpg", "Robbie", "Sphynx", "Female",4, 80],
+              [15,"img/cat6.jpg", "Tammy", "Abyssian", "Female",7, 90],
+              [16,"img/cat7.jpg", "Debby", "Burmese Cat", "Female",3, 900],
+              [17,"img/cat8.jpg", "Mikey", "Birman", "Male",2, 400],
+              [18,"img/cat2.jpg", "Corey", "Tabby", "Male",12, 5000]
+            ];
+
+            for (var i=0; i<=catinfo.length; i++) {
+              addCode(catinfo[i][0], catinfo[i][1], catinfo[i][2], catinfo[i][3], catinfo[i][4], catinfo[i][5], catinfo[i][6]);
+            }
+            addCode();
+        </script>
     
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
