@@ -24,20 +24,20 @@ li a {
 h2 {
     font-style: normal;
     font-weight:700;
-    font-size: 16px;
+    font-size: 18px;
     line-height:24px;
 }
 h3 {
     font-style: normal;
     font-weight:500;
-    font-size: 12px;
+    font-size: 14px;
     line-height:18px;
     color:#667479
 }
 h4 {
     font-style:normal;
     font-weight:700;
-    font-size:14px;
+    font-size:16px;
     line-height:20px;
 }
 .catElement:hover { 
@@ -66,5 +66,13 @@ h4 {
     border-radius: 313px;
     transform: rotate(11.53deg);
     z-index:-1;
+}
+
+#prev-button {
+    background-color:#003459
+}
+
+#next-button {
+    background-color:#003459
 }
 
