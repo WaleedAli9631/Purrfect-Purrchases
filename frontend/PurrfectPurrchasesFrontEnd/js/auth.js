@@ -2,7 +2,7 @@ import { getAuth,
    createUserWithEmailAndPassword,
    signOut,
    signInWithEmailAndPassword,
-  onAuthStateChange} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+   onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
 
 const auth = getAuth();
 
@@ -67,6 +67,6 @@ signInForm.addEventListener('submit', (e)=>{
 
 // on auth changes
 
-onAuthStateChange(auth, (user)=>{
+onAuthStateChanged(auth, (user)=>{
   console.log('user status changed: ', user)
 })
