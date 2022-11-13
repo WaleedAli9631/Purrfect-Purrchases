@@ -4,7 +4,7 @@
       document.getElementById("catsquares").innerHTML +=
       "<div class=\"col\">" +
       "<div class=\"p-3 bg-light rounded-lg shadow\">" +
-      "<img src=\"" + imgName + "\" class=\"w-100 catElement\">" +
+      "<a href=\"checkout.html?id=" + catID + "\"><img src=\"" + imgName + "\" class=\"w-100 catElement\"></a>" +
       "<h2>" + catName + " - " + catBreed + "</h2>" +
       "<h3>Gender: <b>" + catGender + "</b> • Age: <b>" + catAge + "</b></h3>" +
       "<h4>$" + catCost + "</h4>" + 
