@@ -1,5 +1,17 @@
 
     //Function adds div of cat information to page. Iterated from array 
+    function getCatList(breeds, start) {
+      fetch('http://127.0.0.1:9090/allcats', {
+        method:'GET',
+        credentials: 'include'  
+      }).then((res) => {
+        return res.json();
+      }).then((responseBody) => {
+        console.log(responseBody);
+        pushCats(responseBody, breeds,start);
+      });
+    }
+
     function addCode(catID, imgName, catName, catBreed, catGender, catAge, catCost) {
       document.getElementById("catsquares").innerHTML +=
       "<div class=\"col\">" +
@@ -23,12 +35,12 @@
       }
     }
 
-    function pushCats(breedType, catStart) {
+    function pushCats(catinfo, breedType, catStart) {
       document.getElementById("catsquares").innerHTML = "";
       elemTotal = 0;
       while ((elemTotal < catsPerPage) && (catStart <= catinfo.length-1)) {
-        if ((catinfo[catStart][3] == breedType) || (breedType == "All")) {
-          addCode(catinfo[catStart][0], catinfo[catStart][1], catinfo[catStart][2], catinfo[catStart][3], catinfo[catStart][4], catinfo[catStart][5], catinfo[catStart][6]);
+        if ((catinfo[catStart].breed == breedType) || (breedType == "All")) {
+          addCode(catinfo[catStart].id, catinfo[catStart].imageFile, catinfo[catStart].name, catinfo[catStart].breed, catinfo[catStart].gender, catinfo[catStart].age, catinfo[catStart].costs);
           elemTotal++;
         }
         catStart++;
@@ -47,33 +59,9 @@
     
     let catsPerPage = 14;
     let startID = 0;
-    let catinfo = [
-      //Array is iterated through to show up on frontpage
-      //CatID, CatImage, CatName, CatBreed, CatGender, CatAge, CatCost
-      [1,"assets/img/cat1.jpg", "Jodie", "Siamese", "Male",7, "yellow", 700],
-      [2,"assets/img/cat2.jpg", "Marty", "British Shorthair", "Female",3, "yellow", 500],
-      [3,"assets/img/cat3.jpg", "Tiffany", "Persian", "Male",2, "yellow", 50],
-      [4,"assets/img/cat4.jpg", "Crystal", "Ragdoll", "Male",4, "yellow",60],
-      [5,"assets/img/cat5.jpg", "Robbie", "Sphynx", "Female",4, "yellow",80],
-      [6,"assets/img/cat6.jpg", "Tammy", "Abyssian", "Female",7, "yellow",90],
-      [7,"assets/img/cat7.jpg", "Debby", "Burmese Cat", "Female",3, "yellow",900],
-      [8,"assets/img/cat8.jpg", "Mikey", "Birman", "Male",2, "yellow",400],
-      [9,"assets/img/cat9.jpg", "Corey", "Tabby", "Male",12, "yellow",5000],
-      [10,"assets/img/cat10.jpg", "Jeremy", "Siamese", "Male",7, "yellow",700],
-      [11,"assets/img/cat11.jpg", "Marina", "British Shorthair", "Female",3, "yellow",500],
-      [12,"assets/img/cat12.jpeg", "Doug", "Persian", "Male",2, "yellow",50],
-      [13,"assets/img/cat13.jpg", "Chaz", "Ragdoll", "Male",4, "yellow",60],
-      [14,"assets/img/cat14.jpg", "Mary", "Sphynx", "Female",4, "yellow",80],
-      [15,"assets/img/cat15.jpg", "Chitzi", "Abyssian", "Female",7, "yellow",90],
-      [16,"assets/img/cat16.png", "Cat", "Burmese Cat", "Female",3, "yellow",900],
-      [17,"assets/img/cat17.jpg", "Meowth", "Birman", "Male",2, "yellow",400],
-      [18,"assets/img/cat18.png", "Meowtwo", "Tabby", "Male",12, "yellow",300],
-      [19,"assets/img/cat19.jpg", "Hobbes", "Tabby", "Male",4, "yellow",200],
-      [20,"assets/img/cat20.jpg", "Dopey", "Tabby", "Male",7, "yellow",150]
-    ];
+    getCatList("All",startID);
 
-    pushCats("All",startID);
-    breedDropDown(catinfo);
+    //breedDropDown(catinfo);
 
     document.addEventListener('click', (e) => {
       let elementClass = e.target.className;
@@ -81,16 +69,18 @@
       if (elementClass == 'dropdown-item') {
         breedType = e.target.innerHTML;
         startID = 0;
-        pushCats(breedType,startID);
+        //pushCats(breedType,startID);
+        getCatList(breedType, startID);
       }
       if (elementID == 'next-button') {
         startID += catsPerPage;
-        pushCats("All",startID);
+        //pushCats("All",startID);
+        getCatList("All", startID);
       }
       if (elementID == 'prev-button') {
         startID -= catsPerPage;
         if (startID < 0) startID = 0;
-        pushCats("All",startID);
+        getCatList("All", startID);
       }
     });
 
