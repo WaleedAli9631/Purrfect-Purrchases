@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@materializecss/materialize": "^1.1.0",
-    "firebase": "^9.13.0"
+    "firebase": "^9.13.0",
+    "jquery": "^3.6.1"
   }
 }

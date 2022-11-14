@@ -4,12 +4,12 @@ import { getAuth,
    signInWithEmailAndPassword,
    onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
 
-const auth = getAuth();
+   const auth = getAuth();
 
 // signup
 const signUpForm = document.querySelector('#signup-form')
 signUpForm.addEventListener('submit', (e)=>{
-  e.preventDefault();
+  // e.preventDefault();
 
   //get user info
   const email = signUpForm['signup-email'].value;
@@ -20,7 +20,9 @@ signUpForm.addEventListener('submit', (e)=>{
     // Signed in 
     const user = userCredential.user;
     const modal = document.querySelector("#modal-signup");
-    M.Modal.getInstance(modal).close();
+    // const bootModal = bootstrap.Modal.getInstance(modal);
+    // bootModal.hide();
+    $('#modal-signup').modal('hide');
     signUpForm.reset();
   })
   .catch((error) => {
@@ -55,7 +57,7 @@ signInForm.addEventListener('submit', (e)=>{
     // Signed in 
     const user = userCredential.user;
     const modal = document.querySelector("#modal-login");
-    M.Modal.getInstance(modal).close();
+    $('#modal-login').modal('hide');
     signInForm.reset();
   })
   .catch((error) => {
@@ -69,4 +71,14 @@ signInForm.addEventListener('submit', (e)=>{
 
 onAuthStateChanged(auth, (user)=>{
   console.log('user status changed: ', user)
+  if(user == null){
+    $('#signUpLink').show();
+    $('#loginLink').show();
+    $('#logout').hide();
+
+  }else{
+    $('#signUpLink').hide();
+    $('#loginLink').hide();
+    $('#logout').show();
+  }
 })
