@@ -4,7 +4,7 @@
       document.getElementById("catsquares").innerHTML +=
       "<div class=\"col\">" +
       "<div class=\"p-3 bg-light rounded-lg shadow\">" +
-      "<img src=\"" + imgName + "\" class=\"w-100 catElement\">" +
+      "<a href=\"checkout.html?id=" + catID + "\"><img src=\"" + imgName + "\" class=\"w-100 catElement\"></a>" +
       "<h2>" + catName + " - " + catBreed + "</h2>" +
       "<h3>Gender: <b>" + catGender + "</b> • Age: <b>" + catAge + "</b></h3>" +
       "<h4>$" + catCost + "</h4>" + 
@@ -50,26 +50,26 @@
     let catinfo = [
       //Array is iterated through to show up on frontpage
       //CatID, CatImage, CatName, CatBreed, CatGender, CatAge, CatCost
-      [1,"assets/img/cat1.jpg", "Jodie", "Siamese", "Male",7, 700],
-      [2,"assets/img/cat2.jpg", "Marty", "British Shorthair", "Female",3, 500],
-      [3,"assets/img/cat3.jpg", "Tiffany", "Persian", "Male",2, 50],
-      [4,"assets/img/cat4.jpg", "Crystal", "Ragdoll", "Male",4, 60],
-      [5,"assets/img/cat5.jpg", "Robbie", "Sphynx", "Female",4, 80],
-      [6,"assets/img/cat6.jpg", "Tammy", "Abyssian", "Female",7, 90],
-      [7,"assets/img/cat7.jpg", "Debby", "Burmese Cat", "Female",3, 900],
-      [8,"assets/img/cat8.jpg", "Mikey", "Birman", "Male",2, 400],
-      [9,"assets/img/cat9.jpg", "Corey", "Tabby", "Male",12, 5000],
-      [10,"assets/img/cat10.jpg", "Jeremy", "Siamese", "Male",7, 700],
-      [11,"assets/img/cat11.jpg", "Marina", "British Shorthair", "Female",3, 500],
-      [12,"assets/img/cat12.jpeg", "Doug", "Persian", "Male",2, 50],
-      [13,"assets/img/cat13.jpg", "Chaz", "Ragdoll", "Male",4, 60],
-      [14,"assets/img/cat14.jpg", "Mary", "Sphynx", "Female",4, 80],
-      [15,"assets/img/cat15.jpg", "Chitzi", "Abyssian", "Female",7, 90],
-      [16,"assets/img/cat16.png", "Cat", "Burmese Cat", "Female",3, 900],
-      [17,"assets/img/cat17.jpg", "Meowth", "Birman", "Male",2, 400],
-      [18,"assets/img/cat18.png", "Meowtwo", "Tabby", "Male",12, 300],
-      [19,"assets/img/cat19.jpg", "Hobbes", "Tabby", "Male",4, 200],
-      [20,"assets/img/cat20.jpg", "Dopey", "Tabby", "Male",7, 150]
+      [1,"assets/img/cat1.jpg", "Jodie", "Siamese", "Male",7, "yellow", 700],
+      [2,"assets/img/cat2.jpg", "Marty", "British Shorthair", "Female",3, "yellow", 500],
+      [3,"assets/img/cat3.jpg", "Tiffany", "Persian", "Male",2, "yellow", 50],
+      [4,"assets/img/cat4.jpg", "Crystal", "Ragdoll", "Male",4, "yellow",60],
+      [5,"assets/img/cat5.jpg", "Robbie", "Sphynx", "Female",4, "yellow",80],
+      [6,"assets/img/cat6.jpg", "Tammy", "Abyssian", "Female",7, "yellow",90],
+      [7,"assets/img/cat7.jpg", "Debby", "Burmese Cat", "Female",3, "yellow",900],
+      [8,"assets/img/cat8.jpg", "Mikey", "Birman", "Male",2, "yellow",400],
+      [9,"assets/img/cat9.jpg", "Corey", "Tabby", "Male",12, "yellow",5000],
+      [10,"assets/img/cat10.jpg", "Jeremy", "Siamese", "Male",7, "yellow",700],
+      [11,"assets/img/cat11.jpg", "Marina", "British Shorthair", "Female",3, "yellow",500],
+      [12,"assets/img/cat12.jpeg", "Doug", "Persian", "Male",2, "yellow",50],
+      [13,"assets/img/cat13.jpg", "Chaz", "Ragdoll", "Male",4, "yellow",60],
+      [14,"assets/img/cat14.jpg", "Mary", "Sphynx", "Female",4, "yellow",80],
+      [15,"assets/img/cat15.jpg", "Chitzi", "Abyssian", "Female",7, "yellow",90],
+      [16,"assets/img/cat16.png", "Cat", "Burmese Cat", "Female",3, "yellow",900],
+      [17,"assets/img/cat17.jpg", "Meowth", "Birman", "Male",2, "yellow",400],
+      [18,"assets/img/cat18.png", "Meowtwo", "Tabby", "Male",12, "yellow",300],
+      [19,"assets/img/cat19.jpg", "Hobbes", "Tabby", "Male",4, "yellow",200],
+      [20,"assets/img/cat20.jpg", "Dopey", "Tabby", "Male",7, "yellow",150]
     ];
 
     pushCats("All",startID);

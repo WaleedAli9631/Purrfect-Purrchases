@@ -12,4 +12,7 @@ Feature: View Cats
       When User reviews all cats on page
       Then User finds no cats have been sold
 
+    Scenario: Check that all cats are unique
+      When
+
 
