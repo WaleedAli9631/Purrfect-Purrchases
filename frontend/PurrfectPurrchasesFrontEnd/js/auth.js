@@ -71,4 +71,14 @@ signInForm.addEventListener('submit', (e)=>{
 
 onAuthStateChanged(auth, (user)=>{
   console.log('user status changed: ', user)
+  if(user == null){
+    $('#signUpLink').show();
+    $('#loginLink').show();
+    $('#logout').hide();
+
+  }else{
+    $('#signUpLink').hide();
+    $('#loginLink').hide();
+    $('#logout').show();
+  }
 })

@@ -24,10 +24,10 @@
                         <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item px-3">
-                      <a class="nav-link" data-toggle="modal" data-target="#modal-login" href="#">Login</a>
+                      <a class="nav-link" data-toggle="modal" data-target="#modal-login" href="#" id="loginLink">Login</a>
                     </li>
                     <li class="nav-item px-3">
-                      <a class="nav-link" data-toggle="modal" data-target="#modal-signup" href="#">Sign Up</a>
+                      <a class="nav-link" data-toggle="modal" data-target="#modal-signup" href="#" id="signUpLink">Sign Up</a>
                     </li>
                     <li class="nav-item dropdown px-3">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -78,15 +78,21 @@
               </div>
               <div class="modal-body">
                 <form id="signup-form">
-                <div class="input-field">
-                  <input type="email" id="signup-email" required />
-                  <label for="signup-email">Email address</label>
-                </div>
-                <div class="input-field">
-                  <input type="password" id="signup-password" required />
-                  <label for="signup-password">Choose password</label>
-                </div class>
-                <button class="btn-secondary btn-lg px-4 mx-2" id="signup-submit" data-mdb-dismiss="modal">Sign up</button>
+                  <div class="form-group">
+                  <div class="input-field">
+                    <input type="email" id="signup-email" required />
+                    <label for="signup-email">Email address</label>
+                  </div>
+                  <div class="input-field">
+                    <input type="password" id="signup-password" required />
+                    <label for="signup-password">Choose password</label>
+                  </div class>
+                  <div class="input-field">
+                    <input type="password" id="signup-password-confirm" required />
+                    <label for="signup-password-confirm">Confirm password</label>
+                  </div class>
+                  <button class="btn-secondary btn-lg px-4 mx-2" id="signup-submit" data-mdb-dismiss="modal">Sign up</button>
+                  </div>                
                 </form>
               </div>
             </div>
