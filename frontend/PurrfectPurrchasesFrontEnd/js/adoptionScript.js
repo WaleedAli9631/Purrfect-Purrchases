@@ -42,14 +42,12 @@ Array.from(removeButtons).forEach( (e) => e.addEventListener ("click", function(
     }else {
         /**This removes the cat image from the cart */
         let idOfCatToBeRemoved = e.parentElement.id;
-        console.log(e.parentElement);
         e.parentElement.remove();
         /**This updates the sum of the price of the cats in the cart */
         cartTotal -= Number(cats.find(obj => obj.id === idOfCatToBeRemoved).price);
         document.getElementById("cart-total").innerText = "Cart Total: $" + cartTotal;
         /**This removes the cat from the cat array of objects */
         cats = cats.filter(obj => obj.id !== idOfCatToBeRemoved);
-        console.log(removeButtons);
     }
 }));
 
