@@ -1,6 +1,8 @@
 package com.revature.project2.service;
 
 import com.revature.project2.dao.CatDAO;
+import com.revature.project2.dto.AllCatInformation;
+import com.revature.project2.dto.CatInformation;
 import com.revature.project2.model.Cat;
 
 import java.sql.SQLException;
@@ -11,8 +13,20 @@ public class CatService {
     public Cat getCat(int id) throws SQLException {
         return catDAO.findCatByID(id);
     }
-    public List<Cat> getCatList() {
-        return catDAO.findAllCats();
+
+    public void deleteCat(int id) throws SQLException {
+        catDAO.deleteCatById(id);
+    }
+
+    public Cat addCat(CatInformation catinfo) {
+        return catDAO.insertCat(catinfo);
+    }
+
+    public Cat editCat(CatInformation catinfo) {
+        return catDAO.changeCat(catinfo);
+    }
+    public List<Cat> getCatList(AllCatInformation queryinfo) {
+        return catDAO.findAllCats(queryinfo);
     }
 
 }
