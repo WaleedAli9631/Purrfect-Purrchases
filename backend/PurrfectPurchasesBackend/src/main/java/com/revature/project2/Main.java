@@ -1,5 +1,6 @@
 package com.revature.project2;
 
+import com.revature.project2.controller.AccountController;
 import com.revature.project2.controller.AuthenticationController;
 import io.javalin.Javalin;
 
@@ -17,8 +18,9 @@ public class Main {
         });
 
         AuthenticationController authController = new AuthenticationController();
+        AccountController accountController= new AccountController();
         authController.mapEndpoints(app);
-
+        accountController.mapEndpoints(app);
         app.start(9090);        //Why doesn't port 8080 work?
 
 

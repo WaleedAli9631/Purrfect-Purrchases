@@ -3,10 +3,7 @@ package com.revature.project2.dao;
 import com.revature.project2.model.Account;
 import org.eclipse.jetty.server.Authentication;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class AccountDAO {
     public Account findAccountByUID(String uid) throws SQLException {
@@ -40,6 +37,19 @@ public class AccountDAO {
                                  String state) throws SQLException {
         try(Connection connection = ConnectionUtility.getConnection()){
             String sql = "insert into accounts (uid, f_name, l_name, street_address, city, state) values (?,?,?,?,?,?)";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1,uid);
+            preparedStatement.setString(2,fname);
+            preparedStatement.setString(3,lname);
+            preparedStatement.setString(4,streetAddress);
+            preparedStatement.setString(5,city);
+            preparedStatement.setString(6,state);
+
+            preparedStatement.execute();
+
+            return new Account(uid,fname,lname,streetAddress,city,state);
         }
     }
 }
