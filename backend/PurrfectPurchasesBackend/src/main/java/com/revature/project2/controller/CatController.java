@@ -5,6 +5,7 @@ import com.revature.project2.dto.CatInformation;
 import com.revature.project2.model.Cat;
 import com.revature.project2.service.CatService;
 import io.javalin.Javalin;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -34,9 +35,18 @@ public class CatController {
             ctx.json(cat);
         });
 
-        app.post("/allcats", (ctx) -> {
-            AllCatInformation info = ctx.bodyAsClass(AllCatInformation.class);
-            List<Cat> cat = catService.getCatList(info);
+        app.get("/allcats/{catinfo}", (ctx) -> {
+            String jsonString = ctx.pathParam("catinfo");
+            System.out.println(jsonString);
+            JSONObject obj = new JSONObject(jsonString);
+            String breed = obj.getString("breed");
+            int age = obj.getInt("age");
+            String gender = obj.getString("gender");
+            System.out.println(breed);
+            List<Cat> cat = catService.getCatList(breed, age, gender);
+
+            //AllCatInformation info = ctx.bodyAsClass(AllCatInformation.class);
+            //List<Cat> cat = catService.getCatList(info);
 
             ctx.json(cat);
         });

@@ -69,11 +69,7 @@ h4 {
     z-index:-1;
 }
 
-#prev-button {
-    background-color:#003459
-}
-
-#next-button {
-    background-color:#003459
+#prev-button, #next-button, #filterCatButton, #addCatButton {
+    background-color:#272458
 }
 
