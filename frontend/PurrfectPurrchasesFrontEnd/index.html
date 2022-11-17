@@ -1,62 +1,136 @@
 <!doctype html />
 <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+      <title>Purrfect Purchases</title>
+      <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link href="css/purrfect.css" rel="stylesheet" />
+      <link rel="icon" type="image/jpg" href="assets/img/favicon.jpg"/>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-left" href="#"><img src="assets/img/logo2.png" id="logo" /></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Purrfect Purchases</title>
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link href="css/purrfect.css" rel="stylesheet" />
-  <link rel="icon" type="image/jpg" href="img/favicon.jpg" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-</head>
+            <div class="collapse navbar-collapse px-3" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active px-3">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item px-3" id="loginLi">
+                      <a class="nav-link" data-toggle="modal" data-target="#modal-login" href="#" id="loginLink">Login</a>
+                    </li>
+                    <li class="nav-item px-3" id="signUpLi">
+                      <a class="nav-link" data-toggle="modal" data-target="#modal-signup" href="#" id="signUpLink">Sign Up</a>
+                    </li>
+                    <li class="nav-item px-3">
+                      <a class="nav-link" href="#">My Orders</a>
+                    </li>
+                    <li class="nav-item px-3" id="accountLi">
+                      <a class="nav-link" data-toggle="modal" data-target="#modal-account" href="#">Account</a>
+                    </li>
+                    <li class="nav-item px-3" id="logoutLi">
+                      <a href="#" class="nav-link" id="logout">Logout</a>
+                    </li>
+                    <li class="nav-item px-3">
+                      <a class="nav-link" href="adoption-checkout.html">Cart</a>
+                    </li>
+                    <li class="nav-item px-3">
+                      <a class="nav-link" data-toggle="modal" id="adminPageLink" href="#">Admin</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-left" href="#"><img src="assets/img/logo2.png" id="logo" /></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse px-3" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active px-3">
-          <a class="nav-link" href="#">Home</a>
-        </li>
-        <li class="nav-item px-3" id="loginLi">
-          <a class="nav-link" data-toggle="modal" data-target="#modal-login" href="#" id="loginLink">Login</a>
-        </li>
-        <li class="nav-item px-3" id="signUpLi">
-          <a class="nav-link" data-toggle="modal" data-target="#modal-signup" href="#" id="signUpLink">Sign Up</a>
-        </li>
-        <li class="nav-item dropdown px-3">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Breeds
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="bDropDown">
-            <!-- Breed dropdown is filled in with JavaScript below -->
+        <div id = "content">
+          <div class="container-fluid m-1 p-1">
+            <div class="row p-2">
+              <div class="col-2 text-left p-2">
+                <div class="text-left">
+                   <h1 class=""text-left">Filter</h1>
+                   <select id="breedSelect" class="form-control m-1">
+                     <option selected>Breed</option>
+                     <option>ALL</option>
+                     <option>Abyssian</option>
+                     <option>Aegean</option>
+                     <option>American Bobtail</option>
+                     <option>American Curl</option>
+                     <option>Asian</option>
+                     <option>Balinese</option>
+                     <option>Bambino</option>
+                     <option>Bengal</option>
+                     <option>Birman</option>
+                     <option>Bombay</option>
+                     <option>Burmese</option>
+                     <option>Chartreux</option>
+                     <option>Himalayan</option>
+                     <option>Mekong Bobtail</option>
+                     <option>Persian</option>
+                     <option>Ragdoll</option>
+                     <option>Savannah</option>
+                     <option>Siamese</option>
+                     <option>Snowshoe</option>
+                     <option>Somali</option>
+                     <option>Sphynx</option>
+                     <option>Tabby</option>
+                   </select>
+                   <select id="ageSelect" class="form-control m-1">
+                    <option selected>Age</option>
+                    <option>ALL</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                    <option>19</option>
+                    <option>20</option>
+                  </select>
+                  <select id="genderSelect" class="form-control m-1">
+                    <option selected>Gender</option>
+                    <option>ALL</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+                  <button class="btn-secondary btn-lg px-4 mx-2" id="filterCatButton">Submit</button>
+                </div>
+              </div>
+              <div class = "col-10">
+                <div class="container-fluid">
+                  <div class="row" id="catsquares">
+                    <!-- Cat Squares are filled in with JavaScript below -->
+                  </div>
+                </div>
+                <div class="px-5 text-right" id="directionButtons">
+                  <button class="btn btn-secondary btn-lg px-4 mx-2" id="prev-button">< Previous</button>
+                  <button class="btn btn-secondary btn-lg px-4 mx-2" id="next-button">Next ></button>
+                </div>
+              </div>
+            </div>
           </div>
-        </li>
-        <li class="nav-item px-3">
-          <a class="nav-link" href="#">My Orders</a>
-        </li>
-        <li class="nav-item px-3" id="accountLi">
-          <a class="nav-link" data-toggle="modal" data-target="#modal-account" href="#">Account</a>
-        </li>
-        <li class="nav-item px-3" id="logoutLi">
-          <a href="#" class="nav-link" id="logout">Logout</a>
-        </li>
-        <li class="nav-item px-3">
-          <a class="nav-link" href="#">Cart</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+        </div>
+        
+ 
+        <div id="background-shape"></div>
 
   <div class="container-fluid">
     <div class="row" id="catsquares">
@@ -166,16 +240,116 @@
     </div>
   </div>
 
-  <script src="js/viewcats.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js"
-    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js"
-    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-    crossorigin="anonymous"></script>
-  <script type="module" src="js/init.js"></script>
-  <script type="module" src="js/auth.js"></script>
-  <script src="js/index.js"></script>
-</body>
+        <!-- EDIT CATS MODAL -->
+        <div class="modal fade" id="modal-editcats" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+             <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Edit Cat</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form id="editcat-form">
+                    <div class="input-field">
+                      <input type="number" id="editcat-id" required />
+                      <label for="editcat-id">Cat ID</label>
+                    </div>
+                    <div class="input-field">
+                      <input type="text" id="editcat-name" required />
+                      <label for="editcat-name">Cat Name</label>
+                    </div>
+                    <div class="input-field">
+                      <input type="text" id="editcat-breed" required />
+                      <label for="editcat-breed">Breed</label>
+                    </div>
+                    <div class="input-field">
+                      <input type="number" id="editcat-age" required />
+                      <label for="editcat-age">Age</label>
+                    </div>
+                    <div class="input-field">
+                      <input type="text" id="editcat-gender" required />
+                      <label for="editcat-gender">Gender</label>
+                    </div>
+                    <div class="input-field">
+                      <input type="text" id="editcat-color" required />
+                      <label for="editcat-color">Color</label>
+                    </div>
+                    <div class="input-field">
+                      <input type="number" id="editcat-costs" required />
+                      <label for="editcat-costs">Cost</label>
+                    </div>
+                    <div class="input-field">
+                      <input type="text" id="editcat-image" required />
+                      <label for="editcat-age">Image URL</label>
+                    </div>
+                    <button class="btn-secondary btn-lg px-4 mx-2" data-dismiss="modal" id="editCatButton">Edit Cat</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>    
+
+        <!-- ADD CATS MODAL -->
+        <div class="modal fade" id="modal-addcats" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+             <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add Cat</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form id="addcat-form">
+                    <div class="input-field">
+                      <input type="text" id="addcat-name" required />
+                      <label for="addcat-name">Cat Name</label>
+                    </div>
+                    <div class="input-field">
+                      <input type="text" id="addcat-breed" required />
+                      <label for="addcat-breed">Breed</label>
+                    </div>
+                    <div class="input-field">
+                      <input type="number" id="addcat-age" required />
+                      <label for="addcat-age">Age</label>
+                    </div>
+                    <div class="input-field">
+                      <input type="text" id="addcat-gender" required />
+                      <label for="addcat-gender">Gender</label>
+                    </div>
+                    <div class="input-field">
+                      <input type="text" id="addcat-color" required />
+                      <label for="addcat-color">Color</label>
+                    </div>
+                    <div class="input-field">
+                      <input type="number" id="addcat-costs" required />
+                      <label for="addcat-costs">Cost</label>
+                    </div>
+                    <div class="input-field">
+                      <input type="text" id="addcat-image" required />
+                      <label for="addcat-age">Image URL</label>
+                    </div>
+                    <button class="btn-secondary btn-lg px-4 mx-2" id="addCatButton">Add Cat</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>        
+
+        <script src="js/editdropcats.js"></script>
+        <script src="js/adminPage.js"></script>
+        <script src="js/viewcats.js"></script>
+        <script src="js/addcat.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <script type="module" src="js/init.js"></script>
+        <script type="module" src="js/auth.js"></script>
+        <script src="js/index.js"></script>
+      </body>
 
 </html>

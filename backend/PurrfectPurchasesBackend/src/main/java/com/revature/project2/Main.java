@@ -1,7 +1,11 @@
 package com.revature.project2;
 
+
 import com.revature.project2.controller.AccountController;
-import com.revature.project2.controller.AuthenticationController;
+import com.revature.project2.controller.AdoptionOrderController;
+import com.revature.project2.controller.CatController;
+
+
 import io.javalin.Javalin;
 
 public class Main {
@@ -10,17 +14,23 @@ public class Main {
             config.plugins.enableCors((cors)->{
                 cors.add(it -> {
                     it.defaultScheme = "http";
-                    it.allowHost("localhost:5500");
+                    it.allowHost("localhost:5501");
+                    it.allowHost("127.0.0.1:5501");
                     it.allowHost("127.0.0.1:5500");
                     it.allowCredentials = true;
                 });
             });
         });
 
-        AuthenticationController authController = new AuthenticationController();
         AccountController accountController= new AccountController();
-        authController.mapEndpoints(app);
         accountController.mapEndpoints(app);
+
+        CatController authController = new CatController();
+        authController.mapEndpoints(app);
+
+        AdoptionOrderController adoptionOrderController = new AdoptionOrderController();
+        adoptionOrderController.mapEndpoints(app);
+
         app.start(9090);        //Why doesn't port 8080 work?
 
 
