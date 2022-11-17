@@ -1,7 +1,7 @@
 Feature: View Cats
 
   Background: User is on Homepage
-    Given User is on "Homepage" page
+    Given User is on home page
 
   Scenario Outline: Filter Cats
     When User selects <breed> for breed dropdown
@@ -14,6 +14,6 @@ Feature: View Cats
       | breed       | gender   | age   |
       | "Breed"     | "Gender" | "Age" |
       | "ALL"       | "ALL"    | "ALL" |
-      | "Abyssian"  | "Male"   | "1"   |
-      | "Himalayan" | "Female" | "20"  |
-      | "Tabby"     | "Male"   | "15"  |
+      | "Abyssian"  | "ALL"   | "ALL"   |
+      | "ALL" | "Female" | "ALL"  |
+      | "ALL"     | "ALL"   | "2"  |

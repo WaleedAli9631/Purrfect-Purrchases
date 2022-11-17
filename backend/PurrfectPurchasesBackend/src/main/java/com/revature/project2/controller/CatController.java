@@ -37,17 +37,12 @@ public class CatController {
 
         app.get("/allcats/{catinfo}", (ctx) -> {
             String jsonString = ctx.pathParam("catinfo");
-            System.out.println(jsonString);
             JSONObject obj = new JSONObject(jsonString);
             String breed = obj.getString("breed");
             int age = obj.getInt("age");
             String gender = obj.getString("gender");
             System.out.println(breed);
             List<Cat> cat = catService.getCatList(breed, age, gender);
-
-            //AllCatInformation info = ctx.bodyAsClass(AllCatInformation.class);
-            //List<Cat> cat = catService.getCatList(info);
-
             ctx.json(cat);
         });
     }
