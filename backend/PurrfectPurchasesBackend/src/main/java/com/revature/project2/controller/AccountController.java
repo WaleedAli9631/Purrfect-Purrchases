@@ -5,6 +5,7 @@ import com.revature.project2.model.Account;
 import com.revature.project2.service.AccountService;
 import io.javalin.Javalin;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public class AccountController {
