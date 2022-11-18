@@ -19,13 +19,16 @@
     function addCode(catID, imgName, catName, catBreed, catGender, catAge, catCost) {
       document.getElementById("catsquares").innerHTML +=
       "<div class=\"col\">" +
+      "<div id=\"" + catID + "\" class=\"col\">" +
       "<div class=\"p-3 bg-light rounded-lg shadow\">" +
       "<a href=\"checkout.html?id=" + catID + "\"><img src=\"" + imgName + "\" class=\"w-100 catElement\"></a>" +
-      "<h2>" + catName + " - <span class=\"BreedDeclaration\">" + catBreed + "</span></h2>" +
+      "<h2 class=\"cat-name\">" + catName + " - <span class=\"BreedDeclaration\">" + catBreed + "</span></h2>" +
       "<h3>Gender: <b class=\"GenderDeclaration>\">" + catGender + "</b> • Age: <b class=\"AgeDeclaration\">" + catAge + "</b></h3>" +
       "<h4>$" + catCost + "</h4>" + 
+      "<button id=\"button " + catID + "\" class=\"cart-button\">Add to Cart</button>" +
       "</div></div>";
     }
+
 
     function pushCats(catinfo, catStart) {
       document.getElementById("catsquares").innerHTML = "";
