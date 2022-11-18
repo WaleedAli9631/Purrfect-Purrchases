@@ -1,5 +1,7 @@
 package com.revature.runners;
-import com.revature.pages.*;
+
+import com.revature.pages.Admin;
+import com.revature.pages.Home;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;

@@ -78,7 +78,7 @@ public class Home {
     public WebElement PreviousButton;
 
     @FindBy(id="next-button")
-    public WebElement NextButton;
+    public List<WebElement> NextButton;
 
     //Edit Cat Form Modal
     @FindBy(id="editcat-id")
