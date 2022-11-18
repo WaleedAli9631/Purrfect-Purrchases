@@ -1,7 +1,7 @@
 
     //Function adds div of cat information to page. Iterated from array 
     function getCatTable() {
-      fetch('http://127.0.0.1:9090/allcats', {
+      fetch('http://127.0.0.1:9090/allcats/' + JSON.stringify({"breed":"ALL","age":0,"gender":"ALL"}), {
         method:'GET',
         credentials: 'include'  
       }).then((res) => {

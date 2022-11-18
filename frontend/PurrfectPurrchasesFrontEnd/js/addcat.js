@@ -6,9 +6,9 @@ const cAge = document.getElementById('addcat-age');
 const cImg = document.getElementById('addcat-image');
 const cCosts = document.getElementById('addcat-costs');
 
-const addCatButton = document.getElementById('addCatButton');
+const addCatButton2 = document.getElementById('addCatButton2');
 
-addCatButton.addEventListener('click', () => {
+addCatButton2.addEventListener('click', () => {
     fetch('http://127.0.0.1:9090/cat', {
       method:'POST',
       body: `{"catID":"-1","catName":"${cName.value}","catBreed":"${cBreed.value}","catGender":"${cGender.value}","catColor":"${cColor.value}","catAge":"${cAge.value}","catImgName":"${cImg.value}","catCosts":"${cCosts.value}"}`,

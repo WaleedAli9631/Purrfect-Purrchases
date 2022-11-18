@@ -3,15 +3,17 @@
     //Breeds and Gender = "ALL" if we want all
     //Age = "0" if we want all
     function getCatList(breeds, age, gender, start) {
-      fetch('http://127.0.0.1:9090/allcats', {
-        method:'POST',
-        body: `{"breed":"${breeds}","age":"${age}","gender":"${gender}"}`,
+      fetch('http://127.0.0.1:9090/allcats/'+ JSON.stringify({"breed":breeds,"age":age,"gender":gender}), {
+        method:'GET',
         credentials: 'include'  
-      }).then((res) => {
-        return res.json();
-      }).then((responseBody) => {
+      }).then((res) => res.json())
+      .then((responseBody) => {
         pushCats(responseBody, start);
-      });
+        if (responseBody.length == 0) alert("No cats found with these parameters!");
+      })
+      .catch((error) => {
+        alert("A servor error was committed");
+      })
     }
 
     function addCode(catID, imgName, catName, catBreed, catGender, catAge, catCost) {
@@ -20,9 +22,8 @@
       "<div id=\"" + catID + "\" class=\"col\">" +
       "<div class=\"p-3 bg-light rounded-lg shadow\">" +
       "<a href=\"checkout.html?id=" + catID + "\"><img src=\"" + imgName + "\" class=\"w-100 catElement\"></a>" +
-      "<h2>" + catName + " - " + catBreed + "</h2>" +
-      "<h2 class=\"cat-name\">" + catName + " - " + catBreed + "</h2>" +
-      "<h3>Gender: <b>" + catGender + "</b> • Age: <b>" + catAge + "</b></h3>" +
+      "<h2 class=\"cat-name\">" + catName + " - <span class=\"BreedDeclaration\">" + catBreed + "</span></h2>" +
+      "<h3>Gender: <b class=\"GenderDeclaration>\">" + catGender + "</b> • Age: <b class=\"AgeDeclaration\">" + catAge + "</b></h3>" +
       "<h4>$" + catCost + "</h4>" + 
       "<button id=\"button " + catID + "\" class=\"cart-button\">Add to Cart</button>" +
       "</div></div>";
