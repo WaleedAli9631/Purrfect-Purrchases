@@ -10,6 +10,7 @@ Feature: Adoption Negative
 
   Scenario: No cat in cart
     When there is no cat in the cart on the Adoption page
+    Then the cart total should be $0
     When the user clicks on the PURCHASE NOW button
     Then user should get an alert that there is no cat in their cart
 
