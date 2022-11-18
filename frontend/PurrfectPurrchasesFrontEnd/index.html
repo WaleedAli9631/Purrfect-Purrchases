@@ -23,23 +23,23 @@
                     <li class="nav-item active px-3">
                         <a class="nav-link" id="homeLink" href="/">Home</a>
                     </li>
-                    <li class="nav-item px-3">
+                    <li class="nav-item px-3" id="loginLi">
                       <a class="nav-link" data-toggle="modal" data-target="#modal-login" href="#" id="loginLink">Login</a>
                     </li>
-                    <li class="nav-item px-3">
+                    <li class="nav-item px-3" id="signUpLi">
                       <a class="nav-link" data-toggle="modal" data-target="#modal-signup" href="#" id="signUpLink">Sign Up</a>
                     </li>
                     <li class="nav-item px-3">
                       <a class="nav-link" href="#">My Orders</a>
                     </li>
-                    <li class="nav-item px-3">
+                    <li class="nav-item px-3" id="accountLi">
                       <a class="nav-link" data-toggle="modal" data-target="#modal-account" href="#">Account</a>
                     </li>
-                    <li class="nav-item px-3">
+                    <li class="nav-item px-3" id="logoutLi">
                       <a href="#" class="nav-link" id="logout">Logout</a>
                     </li>
                     <li class="nav-item px-3">
-                      <a class="nav-link" href="#">Cart</a>
+                      <a class="nav-link" href="adoption-checkout.html">Cart</a>
                     </li>
                     <li class="nav-item px-3">
                       <a class="nav-link" data-toggle="modal" id="adminPageLink" href="#">Admin</a>
@@ -132,76 +132,113 @@
  
         <div id="background-shape"></div>
 
-        <!-- SIGN UP MODAL -->
-        <div class="modal fade" id="modal-signup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form id="signup-form">
-                  <div class="form-group">
-                  <div class="input-field">
-                    <input type="email" id="signup-email" required />
-                    <label for="signup-email">Email address</label>
-                  </div>
-                  <div class="input-field">
-                    <input type="password" id="signup-password" required />
-                    <label for="signup-password">Choose password</label>
-                  </div class>
-                  <div class="input-field">
-                    <input type="password" id="signup-password-confirm" required />
-                    <label for="signup-password-confirm">Confirm password</label>
-                  </div class>
-                  <button class="btn-secondary btn-lg px-4 mx-2" id="signup-submit" data-mdb-dismiss="modal">Sign up</button>
-                  </div>                
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div class="container-fluid">
+    <div class="row" id="catsquares">
+      <!-- Cat Squares are filled in with JavaScript below -->
+    </div>
+  </div>
+  <div class="px-5 text-right" id="directionButtons">
+    <button class="btn btn-secondary btn-lg px-4 mx-2" id="prev-button">
+      < Previous</button>
+        <button class="btn btn-secondary btn-lg px-4 mx-2" id="next-button">Next ></button>
+  </div>
 
-        <!-- LOGIN MODAL -->
-        <div class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form id="login-form">
-                  <div class="input-field">
-                    <input type="email" id="login-email" required />
-                    <label for="login-email">Email address</label>
-                </div>
-                <div class="input-field">
-                    <input type="password" id="login-password" required />
-                    <label for="login-password">Your password</label>
-                </div>
-                <button class="btn-secondary btn-lg px-4 mx-2">Sign up</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <!-- ACCOUNT MODAL -->
-        <div class="modal fade" id="modal-account" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                
-              </div>
-            </div>
-          </div>
+  <div id="background-shape"></div>
+
+  <!-- SIGN UP MODAL -->
+  <div class="modal fade" id="modal-signup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="modal-body">
+          <form id="signup-form" class="form-floating">
+
+              <div class="form-floating  mb-3">
+                <label for="signup-email">Email address</label>
+                <input type="email" class="form-control" placeholder="name@example.com" id="signup-email" required />
+              </div>
+              <div class="form-floating  mb-3">
+                <label for="signup-password">Choose password</label>
+                <input type="password" class="form-control" placeholder="Password" id="signup-password" required />
+              </div>
+              <div class="form-floating mb-3">
+                <label for="signup-password-confirm">Confirm password</label>
+                <input type="password" class="form-control" placeholder="Password" id="signup-password-confirm" required />
+              </div>
+              <div class="form-floating mb-3">
+                <label for="signup-fname">First Name</label>
+                <input type="fname" class="form-control" placeholder="First Name" id="signup-fname" required />
+              </div>
+              <div class="form-floating mb-3">
+                <label for="signup-lname">Last Name</label>
+                <input type="lname" class="form-control" placeholder="Last Name" id="signup-lname" required />
+              </div>
+              <div class="form-floating mb-3">
+                <label for="signup-address">Street Address</label>
+                <input type="address" class="form-control" placeholder="Address" id="signup-address" required />
+              </div>
+              <div class="form-floating mb-3">
+                <label for="signup-city">City</label>
+                <input type="city" class="form-control" placeholder="City" id="signup-city" required />
+              </div>
+              <div class="form-floating mb-3">
+                <label for="signup-state">State</label>
+                <input type="state" class="form-control" placeholder="State" id="signup-state" required />
+              </div>
+              <button class="btn-secondary btn-lg px-4 mx-2" id="signup-submit" data-mdb-dismiss="modal">Sign
+                up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="login-form">
+            <div class="input-field">
+              <input type="email" id="login-email" required />
+              <label for="login-email">Email address</label>
+            </div>
+            <div class="input-field">
+              <input type="password" id="login-password" required />
+              <label for="login-password">Your password</label>
+            </div>
+            <button class="btn-secondary btn-lg px-4 mx-2">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCOUNT MODAL -->
+  <div class="modal fade" id="modal-account" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+
+        </div>
+      </div>
+    </div>
+  </div>
 
         <!-- EDIT CATS MODAL -->
         <div class="modal fade" id="modal-editcats" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
