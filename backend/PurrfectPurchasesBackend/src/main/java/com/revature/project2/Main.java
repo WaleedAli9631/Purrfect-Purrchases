@@ -1,10 +1,10 @@
 package com.revature.project2;
 
 
+import com.revature.project2.controller.AccountController;
 import com.revature.project2.controller.AdoptionOrderController;
 import com.revature.project2.controller.CatController;
 
-import com.revature.project2.controller.CatController;
 
 import io.javalin.Javalin;
 
@@ -21,6 +21,9 @@ public class Main {
                 });
             });
         });
+
+        AccountController accountController= new AccountController();
+        accountController.mapEndpoints(app);
 
         CatController authController = new CatController();
         authController.mapEndpoints(app);
