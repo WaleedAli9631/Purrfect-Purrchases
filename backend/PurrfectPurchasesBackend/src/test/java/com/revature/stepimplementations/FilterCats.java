@@ -30,31 +30,35 @@ public class FilterCats {
         Thread.sleep(500);
     }
     @Then("User should only see cats with {string},{string}, and {string}")
-    public void user_should_only_see_cats_with_and(String string, String string2, String string3) {
+    public void user_should_only_see_cats_with_and(String string, String string2, String string3) throws InterruptedException {
         boolean isPresent = true;
-        if (!string.equals("ALL") && !string.equals("Breed")) {
-            for (WebElement elem : Runner.homePage.BreedList) {
-                System.out.println(elem.getText());
-                System.out.println(string);
-                System.out.println("------------");
-                if (!elem.getText().equals(string)) isPresent = false;
+        while (Runner.homePage.NextButton.size() > 0) {
+            if (!string.equals("ALL") && !string.equals("Breed")) {
+                for (WebElement elem : Runner.homePage.BreedList) {
+                    System.out.println(elem.getText());
+                    System.out.println(string);
+                    System.out.println("------------");
+                    if (!elem.getText().equals(string)) isPresent = false;
+                }
             }
-        }
-        if (!string2.equals("ALL") && !string.equals("Gender")) {
-            for (WebElement elem : Runner.homePage.GenderList) {
-                System.out.println(elem.getText());
-                System.out.println(string2);
-                System.out.println("------------");
-                if (!elem.getText().equals(string2)) isPresent = false;
+            if (!string2.equals("ALL") && !string2.equals("Gender")) {
+                for (WebElement elem : Runner.homePage.GenderList) {
+                    System.out.println(elem.getText());
+                    System.out.println(string);
+                    System.out.println("------------");
+                    if (!elem.getText().equals(string2)) isPresent = false;
+                }
             }
-        }
-        if (!string3.equals("ALL") && !string.equals("Age")) {
-            for (WebElement elem : Runner.homePage.AgeList) {
-                System.out.println(elem.getText());
-                System.out.println(string3);
-                System.out.println("------------");
-                if (!elem.getText().equals(string3)) isPresent = false;
+            if (!string3.equals("ALL") && !string3.equals("Age")) {
+                for (WebElement elem : Runner.homePage.AgeList) {
+                    System.out.println(elem.getText());
+                    System.out.println(string);
+                    System.out.println("------------");
+                    if (!elem.getText().equals(string3)) isPresent = false;
+                }
             }
+            if (Runner.homePage.NextButton.size() > 0) Runner.homePage.NextButton.get(0).click();
+            Thread.sleep(500);
         }
         Assert.assertEquals(isPresent, true, "Error: Unexpected cat appears in list!");
     }
