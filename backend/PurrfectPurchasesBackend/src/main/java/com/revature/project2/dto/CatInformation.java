@@ -9,8 +9,21 @@ public class CatInformation {
     private int catCosts;
     private String catImgName;
     private String catColor;
+    private String purchasedBy;
 
     public CatInformation() {
+    }
+
+    public CatInformation(int catID, String catName, String catBreed, String catGender, int catAge, int catCosts, String catImgName, String catColor, String purchasedBy) {
+        this.catID = catID;
+        this.catName = catName;
+        this.catBreed = catBreed;
+        this.catGender = catGender;
+        this.catAge = catAge;
+        this.catCosts = catCosts;
+        this.catImgName = catImgName;
+        this.catColor = catColor;
+        this.purchasedBy = purchasedBy;
     }
 
     public CatInformation(int catID, String catName, String catBreed, String catGender, int catAge, int catCosts, String catImgName, String catColor) {
@@ -88,6 +101,14 @@ public class CatInformation {
         this.catColor = catColor;
     }
 
+    public String getPurchasedBy() {
+        return purchasedBy;
+    }
+
+    public void setPurchasedBy(String purchasedBy) {
+        this.purchasedBy = purchasedBy;
+    }
+
     @Override
     public String toString() {
         return "CatInformation{" +
@@ -95,10 +116,11 @@ public class CatInformation {
                 ", catName='" + catName + '\'' +
                 ", catBreed='" + catBreed + '\'' +
                 ", catGender='" + catGender + '\'' +
-                ", catAge='" + catAge + '\'' +
-                ", catCosts='" + catCosts + '\'' +
+                ", catAge=" + catAge +
+                ", catCosts=" + catCosts +
                 ", catImgName='" + catImgName + '\'' +
                 ", catColor='" + catColor + '\'' +
+                ", purchasedBy='" + purchasedBy + '\'' +
                 '}';
     }
 }

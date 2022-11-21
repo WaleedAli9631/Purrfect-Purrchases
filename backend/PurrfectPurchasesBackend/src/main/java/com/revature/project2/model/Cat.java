@@ -9,6 +9,7 @@ public class Cat {
     private int age;
     private String imageFile;
     private int costs;
+    private String purchasedBy;
 
     public int getCosts() {
         return costs;
@@ -27,6 +28,18 @@ public class Cat {
     }
 
     public Cat() {
+    }
+
+    public Cat(int id, String name, String breed, String gender, String color, int age, String imageFile, int costs, String purchasedBy) {
+        this.id = id;
+        this.name = name;
+        this.breed = breed;
+        this.gender = gender;
+        this.color = color;
+        this.age = age;
+        this.imageFile = imageFile;
+        this.costs = costs;
+        this.purchasedBy = purchasedBy;
     }
 
     public Cat(int id, String name, String breed, String gender, String color, int age, String imageFile, int costs) {
@@ -88,6 +101,14 @@ public class Cat {
         this.age = age;
     }
 
+    public String getPurchasedBy() {
+        return purchasedBy;
+    }
+
+    public void setPurchasedBy(String purchasedBy) {
+        this.purchasedBy = purchasedBy;
+    }
+
     @Override
     public String toString() {
         return "Cat{" +
@@ -97,8 +118,9 @@ public class Cat {
                 ", gender='" + gender + '\'' +
                 ", color='" + color + '\'' +
                 ", age=" + age +
-                ", imageFile=" + imageFile +
+                ", imageFile='" + imageFile + '\'' +
                 ", costs=" + costs +
+                ", purchasedBy='" + purchasedBy + '\'' +
                 '}';
     }
 }
