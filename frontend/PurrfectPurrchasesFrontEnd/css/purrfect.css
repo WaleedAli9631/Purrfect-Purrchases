@@ -47,6 +47,8 @@ h4 {
 
 .catElement {
     min-width:250px;
+    width:100%
+    height:auto;
 }
 
 .col {
@@ -69,7 +71,7 @@ h4 {
     z-index:-1;
 }
 
-#prev-button, #next-button, #filterCatButton, #addCatButton {
+#prev-button, #next-button, #filterCatButton, #addCatButton #searchCatButton {
     background-color:#272458
 }
 
