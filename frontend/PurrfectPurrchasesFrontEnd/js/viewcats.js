@@ -21,7 +21,7 @@
       "<div class=\"col\">" +
       "<div id=\"" + catID + "\" class=\"col\">" +
       "<div class=\"p-3 bg-light rounded-lg shadow\">" +
-      "<a href=\"checkout.html?id=" + catID + "\"><img src=\"" + imgName + "\" class=\"w-100 catElement\"></a>" +
+      "<img src=\"" + imgName + "\" class=\"w-100 catElement\" onerror=\"this.onerror=null; this.src='assets/img/404.jpg'\">" +
       "<h2 class=\"cat-name\">" + catName + " - <span class=\"BreedDeclaration\">" + catBreed + "</span></h2>" +
       "<h3>Gender: <b class=\"GenderDeclaration>\">" + catGender + "</b> • Age: <b class=\"AgeDeclaration\">" + catAge + "</b></h3>" +
       "<h4>$" + catCost + "</h4>" + 

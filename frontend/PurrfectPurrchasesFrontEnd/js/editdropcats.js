@@ -3,11 +3,9 @@ function killCat(id) {
     fetch(`http://127.0.0.1:9090/cat/${id}`, {
         method:'DELETE',
         credentials: 'include'  
-    }).then((res) => {
-        return res.json();
-    }).then((responseBody) => {
-        getCatTable();
-    });
+    }).then(() => {
+        getCatTable();        
+    })
 }
 
 const eID = document.getElementById('editcat-id');
@@ -19,7 +17,8 @@ const eAge = document.getElementById('editcat-age');
 const eImg = document.getElementById('editcat-image');
 const eCosts = document.getElementById('editcat-costs');
 
-editCatButton.addEventListener('click', () => {
+editCatButton.addEventListener('click', (e) => {
+    e.preventDefault();  
     fetch('http://127.0.0.1:9090/cat', {
       method:'PUT',
       body: `{"catID":"${eID.value}","catName":"${eName.value}","catBreed":"${eBreed.value}","catGender":"${eGender.value}","catColor":"${eColor.value}","catAge":"${eAge.value}","catImgName":"${eImg.value}","catCosts":"${eCosts.value}"}`,
@@ -28,6 +27,7 @@ editCatButton.addEventListener('click', () => {
       return res.json();
     }).then((responseBody) => {
         getCatTable();
+        $('#modal-editcats').modal('hide');
     });
 
 });
@@ -48,10 +48,10 @@ function putCatsinModal(rs) {
     document.getElementById('editcat-id').setAttribute('value',rs.id);
     document.getElementById('editcat-id').disabled = true; //User cannot change the ID
     document.getElementById('editcat-name').setAttribute('value',rs.name);
-    document.getElementById('editcat-breed').setAttribute('value',rs.breed);
+    document.getElementById('editcat-breed').value = rs.breed;
     document.getElementById('editcat-color').setAttribute('value',rs.color);
-    document.getElementById('editcat-age').setAttribute('value',rs.age);
-    document.getElementById('editcat-gender').setAttribute('value',rs.gender);
+    document.getElementById('editcat-age').value = rs.age;
+    document.getElementById('editcat-gender').value = rs.gender;
     document.getElementById('editcat-costs').setAttribute('value',rs.costs);
     document.getElementById('editcat-image').setAttribute('value',rs.imageFile);
 }

@@ -19,7 +19,6 @@ public class Runner extends AbstractTestNGCucumberTests {
     public static Home homePage;
     public static WebDriverWait wait;
     public static Admin adminPage;
-
     public static String webURL = "http://127.0.0.1:5501";
 
     @BeforeMethod
