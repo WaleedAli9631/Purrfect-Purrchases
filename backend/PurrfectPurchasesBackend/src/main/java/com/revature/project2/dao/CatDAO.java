@@ -47,18 +47,18 @@ public class CatDAO {
             throw new RuntimeException(e);
         }
     }
-    public List<Cat> findAllCats(AllCatInformation queryinfo) {
+    public List<Cat> findAllCats(String breed, int age, String gender) {
         try (Connection connection = ConnectionUtility.getConnection()){
-            if (queryinfo.getBreed().equals("ALL")) queryinfo.setBreed("%");
-            if (queryinfo.getGender().equals("ALL")) queryinfo.setGender("%");
-            String sql = "select * from cats where cat_breed like ? and cat_gender like ?";
-            if (queryinfo.getAge() != 0) {
-                sql = "select * from cats where cat_breed like ? and cat_gender like ? and cat_age=?";
+            if (breed.equals("ALL")) breed = "%";
+            if (gender.equals("ALL")) gender = "%";
+            String sql = "select * from cats where cat_breed like ? and cat_gender like ? order by cat_id";
+            if (age != 0) {
+                sql = "select * from cats where cat_breed like ? and cat_gender like ? and cat_age=? order by cat_id";
             }
             PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1,queryinfo.getBreed());
-            pstmt.setString(2,queryinfo.getGender());
-            if (queryinfo.getAge() != 0) { pstmt.setInt(3,queryinfo.getAge()); }
+            pstmt.setString(1,breed);
+            pstmt.setString(2,gender);
+            if (age != 0) { pstmt.setInt(3,age); }
             //
             ResultSet rs = pstmt.executeQuery();
             List<Cat> catList = new ArrayList<Cat>();
