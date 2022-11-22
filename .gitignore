@@ -9,3 +9,4 @@ node_modules
 libraries/
 backend/PurrfectPurchasesBackend/PurrfectPurchasesBackend.iml
 backend/PurrfectPurchasesBackend/PurrfectPurchasesBackend.iml
+backend/PurrfectPurchasesBackend/target/classes/com/revature/project2/dao/CatDAO.class

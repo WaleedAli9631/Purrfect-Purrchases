@@ -38,6 +38,7 @@ public class CatDAO {
                 cat.setImageFile(rs.getString("cat_imageFile"));
                 cat.setGender(rs.getString("cat_gender"));
                 cat.setCosts(rs.getInt("cat_costs"));
+                cat.setPurchasedBy(rs.getString("cat_purchased"));
 
                 return cat;
             } else {
