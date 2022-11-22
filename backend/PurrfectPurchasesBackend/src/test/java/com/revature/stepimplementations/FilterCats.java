@@ -11,6 +11,7 @@ public class FilterCats {
     @Given("User is on home page")
     public void user_is_on_home_page() throws InterruptedException {
         Runner.driver.get(Runner.webURL);
+        Thread.sleep(500);
     }
     @When("User selects {string} for breed dropdown")
     public void user_selects_for_breed_dropdown(String string) {

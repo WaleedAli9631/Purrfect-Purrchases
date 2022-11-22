@@ -28,6 +28,7 @@ public class Runner extends AbstractTestNGCucumberTests {
         wait = new WebDriverWait(Runner.driver,Duration.ofSeconds(2));
         homePage = new Home(driver);
         adminPage = new Admin(driver);
+        driver.manage().window().maximize();
 
     }
 

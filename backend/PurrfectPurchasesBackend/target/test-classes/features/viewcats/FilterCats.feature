@@ -1,7 +1,7 @@
 Feature: View Cats
 
   Background: User is on Homepage
-    Given User is on "Homepage" page
+    Given User is on home page
 
   Scenario Outline: Filter Cats
     When User selects <breed> for breed dropdown

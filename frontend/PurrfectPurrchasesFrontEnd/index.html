@@ -238,15 +238,15 @@
                 <div class="modal-body">
                   <form id="editcat-form">
                     <div class="input-field">
-                      <input type="number" id="editcat-id" required />
+                      <input type="number" id="editcat-id" class="catField" required />
                       <label for="editcat-id">Cat ID</label>
                     </div>
                     <div class="input-field">
-                      <input type="text" id="editcat-name" required />
+                      <input type="text" id="editcat-name" class="catField" required />
                       <label for="editcat-name">Cat Name</label>
                     </div>
                     <div class="input-field">
-                      <select id="editcat-breed">
+                      <select id="editcat-breed" class="catField">
                         <option>Abyssian</option>
                         <option>Aegean</option>
                         <option>American Bobtail</option>
@@ -273,7 +273,7 @@
                       <label for="editcat-breed">Breed</label>
                     </div>
                     <div class="input-field">
-                      <select id="editcat-age" class="form-control m-1">
+                      <select id="editcat-age" class="catField">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -298,22 +298,22 @@
                       <label for="editcat-age">Age</label>
                     </div>
                     <div class="input-field">
-                      <select id="editcat-gender">
+                      <select id="editcat-gender" class="catField">
                         <option>Male</option>
                         <option>Female</option>
                       </select>
                       <label for="editcat-gender">Gender</label>
                     </div>
                     <div class="input-field">
-                      <input type="text" id="editcat-color" required />
+                      <input type="text" id="editcat-color" class="catField" required />
                       <label for="editcat-color">Color</label>
                     </div>
                     <div class="input-field">
-                      <input type="number" id="editcat-costs" required />
+                      <input type="number" id="editcat-costs" class="catField" required />
                       <label for="editcat-costs">Cost</label>
                     </div>
                     <div class="input-field">
-                      <input type="text" id="editcat-image" required />
+                      <input type="text" id="editcat-image" class="catField" required />
                       <label for="editcat-age">Image URL</label>
                     </div>
                     <button class="btn-secondary btn-lg px-4 mx-2" data-dismiss="modal" id="editCatButton">Edit Cat</button>
@@ -359,11 +359,11 @@
                 <div class="modal-body">
                   <form id="addcat-form">
                     <div class="input-field">
-                      <input type="text" id="addcat-name" required />
+                      <input type="text" id="addcat-name" class="catField" pattern="[A-Za-z].{2,50}" title="Name between 3-50 characters" required />
                       <label for="addcat-name">Cat Name</label>
                     </div>
                     <div class="input-field">
-                      <select id="addcat-breed">
+                      <select id="addcat-breed" class="catField">
                         <option>Abyssian</option>
                         <option>Aegean</option>
                         <option>American Bobtail</option>
@@ -390,7 +390,7 @@
                       <label for="addcat-breed">Breed</label>
                     </div>
                     <div class="input-field">
-                      <select id="addcat-age" class="form-control m-1">
+                      <select id="addcat-age" class="catField">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -415,7 +415,7 @@
                       <label for="addcat-age">Age</label>
                     </div>
                     <div class="input-field">
-                      <select id="addcat-gender" class="form-control m-1">
+                      <select id="addcat-gender" class="catField">
                         <option selected>Gender</option>
                         <option>ALL</option>
                         <option>Male</option>
@@ -424,15 +424,15 @@
                       <label for="addcat-gender">Gender</label>
                     </div>
                     <div class="input-field">
-                      <input type="text" id="addcat-color" required />
+                      <input type="text" id="addcat-color" class="catField" pattern="[A-Za-z].{3,20}" title="Color between 3-50 characters" required />
                       <label for="addcat-color">Color</label>
                     </div>
                     <div class="input-field">
-                      <input type="number" id="addcat-costs" required />
+                      <input type="number" id="addcat-costs" class="catField" required />
                       <label for="addcat-costs">Cost</label>
                     </div>
                     <div class="input-field">
-                      <input type="text" id="addcat-image" required />
+                      <input type="text" id="addcat-image" class="catField" pattern=".{3,50}" title="URL between 3-50 characters" required />
                       <label for="addcat-age">Image URL</label>
                     </div>
                     <button class="btn-secondary btn-lg px-4 mx-2" id="addCatButton2">Add Cat</button>
@@ -447,8 +447,6 @@
         <script src="js/viewcats.js"></script>
         <script src="js/addcat.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         <script type="module" src="js/init.js"></script>

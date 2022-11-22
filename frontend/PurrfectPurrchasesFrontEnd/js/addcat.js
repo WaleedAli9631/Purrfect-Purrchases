@@ -9,15 +9,18 @@ const cCosts = document.getElementById('addcat-costs');
 const addCatButton2 = document.getElementById('addCatButton2');
 
 addCatButton2.addEventListener('click', (e) => {
-  e.preventDefault();  
-  fetch('http://127.0.0.1:9090/cat', {
-      method:'POST',
-      body: `{"catID":"-1","catName":"${cName.value}","catBreed":"${cBreed.value}","catGender":"${cGender.value}","catColor":"${cColor.value}","catAge":"${cAge.value}","catImgName":"${cImg.value}","catCosts":"${cCosts.value}"}`,
-      credentials: 'include'  
-    }).then((res) => {
-      return res.json();
-    }).then((responseBody) => {
-      getCatTable();
-      $('#modal-addcats').modal('hide');
-    });
+  if (cName.checkValidity() && cAge.checkValidity() && cCosts.checkValidity() && cImg.checkValidity() && cColor.checkValidity()) {
+    e.preventDefault();
+    fetch('http://127.0.0.1:9090/cat', {
+        method:'POST',
+        body: `{"catID":"-1","catName":"${cName.value}","catBreed":"${cBreed.value}","catGender":"${cGender.value}","catColor":"${cColor.value}","catAge":"${cAge.value}","catImgName":"${cImg.value}","catCosts":"${cCosts.value}"}`,
+        credentials: 'include'  
+      }).then((res) => {
+        return res.json();
+      }).then((responseBody) => {
+       getCatTable();
+        $('#modal-addcats').modal('hide');
+        alert ("Cat has been added!");
+      });
+  }
 });
