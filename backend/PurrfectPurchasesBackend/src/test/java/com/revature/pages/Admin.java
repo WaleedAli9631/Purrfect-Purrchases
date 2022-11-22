@@ -116,4 +116,7 @@ public class Admin {
     @FindBy(id="searchCatButton2")
     public WebElement searchCatButtonSubmit;
 
+    @FindBy(xpath="//tr[last()]/td")
+    public List<WebElement> lastRowTd;
+
 }

@@ -108,4 +108,16 @@ public class Home {
     @FindBy(id="editCatButton")
     public WebElement EditCatSubmitButton;
 
+    @FindBy(xpath="(//h2[@class='cat-name'])[last()]")
+    public WebElement lastCatName;
+
+    @FindBy(xpath="(//b[@class='BreedDeclaration'])[last()]")
+    public WebElement lastCatBreed;
+
+    @FindBy(xpath="(//b[@class='GenderDeclaration'])[last()]")
+    public WebElement lastCatGender;
+
+    @FindBy(xpath="(//b[@class='AgeDeclaration'])[last()]")
+    public WebElement lastCatAge;
+
 }
