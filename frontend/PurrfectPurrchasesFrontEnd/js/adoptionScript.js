@@ -33,16 +33,21 @@ function getCatsFromDatabase(){
                 return res.json();
             }).then((cat) => {
                 //this updates total cost of cats and displays it
-                cartTotal += Number(cat.costs);
-                cats.push(cat);
-                document.getElementById("cart-total").innerText = "Cart Total: $" + cartTotal;
-                showImages(cat);
-                //window.sessionStorage.setItem(`cat${sessionCart[i].cat_id}`,JSON.stringify(cat));
-            })
-        //cats.push(JSON.parse(window.sessionStorage.getItem(`cat${sessionCart[i].cat_id}`)));
-        
+                if(cat.purchasedBy == null) {
+                    cartTotal += Number(cat.costs);
+                    cats.push(cat);
+                    document.getElementById("cart-total").innerText = "Cart Total: $" + cartTotal;
+                    showImages(cat);
+                }
+                else {
+                    deleteOldCatInfoFromStorage(cat.id);
+                    alert(`Sorry, but it appears ${cat.name} was adopted already. They have been deleted from your cart.`);
+                }
+            }).catch((error) => { 
+                deleteOldCatInfoFromStorage(sessionCart[i].cat_id);
+                alert(`Sorry, one ofyour cats has been deleted and is no longer available. Navigate back to Home to select more cats`);
+            });   
     }
-    //display total cost of cats. It somehow runs before the code above it
 }
 getCatsFromDatabase();
 
@@ -70,8 +75,6 @@ document.addEventListener("click", (e) =>{
             e.target.parentElement.remove();
             deleteOldCatInfoFromStorage(idOfCatToBeRemoved);
             /**This updates the sum of the price of the cats in the cart */
-            console.log(cats);
-            console.log(cartTotal);
             cartTotal -= Number(cats.find(obj => obj.id === idOfCatToBeRemoved).costs);
             document.getElementById("cart-total").innerText = "Cart Total: $" + cartTotal;
             /**This removes the cat from the cat array of objects */
@@ -162,8 +165,7 @@ signUpForm.addEventListener('submit', (e)=>{
         getAndDisplayShippingInfo();
   }
 
-})
-    
+})   
 
 /** This is for signing in */
 const signInForm = document.querySelector('#login-form')
@@ -188,6 +190,7 @@ signInForm.addEventListener('submit', (e)=>{
         window.sessionStorage.setItem("user_id",currentUser);
         updateSessionAndLocalCartAfterLogin();
         getCatsFromDatabase();
+        //checkIfCatsHaveBeenPurchased();
         getAndDisplayShippingInfo();
     })
     .catch((error) => {
@@ -211,7 +214,7 @@ function updateSessionAndLocalCartAfterLogin(){
       }
       else if(sessionCart.length === 0){ //user did not add any cats before logging in
         //so we should add previous cats back into their current cart
-        sessionCart = cart.filter(obj => obj.user_id === currentUser);
+        sessionCart = cart.filter(obj => obj.user_id == currentUser);
         window.sessionStorage.setItem("cart",JSON.stringify(sessionCart));
       }
 }
