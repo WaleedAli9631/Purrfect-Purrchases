@@ -182,10 +182,7 @@ signInForm.addEventListener('submit', (e)=>{
         const user = userCredential.user;
         signInForm.reset();
         alert("You have just signed in");
-        if (currentUser != "null") {
-            deleteAllCatsFromCart();
-            //document.getElementById("shipping-info").remove();
-        }
+        deleteAllCatsFromCart();
         currentUser = user["uid"];
         window.sessionStorage.setItem("user_id",currentUser);
         updateSessionAndLocalCartAfterLogin();
