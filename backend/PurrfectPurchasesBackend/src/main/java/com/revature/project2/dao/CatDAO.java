@@ -83,6 +83,40 @@ public class CatDAO {
     public Cat changeCat(CatInformation catinfo) {
         try (Connection connection = ConnectionUtility.getConnection()){
             String sql = "update cats set cat_name=?,cat_age=?,cat_breed=?,cat_color=?,cat_imageFile=?,cat_gender=?,cat_costs=? WHERE cat_id=?";
+            if (catinfo.getPurchasedBy() != null) {
+                sql = "update cats set cat_name=?,cat_age=?,cat_breed=?,cat_color=?,cat_imageFile=?,cat_gender=?,cat_costs=?,cat_purchased=? WHERE cat_id=?";
+            }
+            PreparedStatement ps = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1,catinfo.getCatName());
+            ps.setInt(2,catinfo.getCatAge());
+            ps.setString(3,catinfo.getCatBreed());
+            ps.setString(4,catinfo.getCatColor());
+            ps.setString(5,catinfo.getCatImgName());
+            ps.setString(6,catinfo.getCatGender());
+            ps.setInt(7,catinfo.getCatCosts());
+            if (catinfo.getPurchasedBy() != null) {
+                ps.setString(8,catinfo.getPurchasedBy());
+                ps.setInt(9,catinfo.getCatID());
+            }
+            else {
+                ps.setInt(8,catinfo.getCatID());
+            }
+            ps.execute();
+            if(catinfo.getPurchasedBy() != null) {
+                return new Cat(catinfo.getCatID(), catinfo.getCatName(),catinfo.getCatBreed(),catinfo.getCatGender(),catinfo.getCatColor(),catinfo.getCatAge(),catinfo.getCatImgName(),catinfo.getCatCosts(),catinfo.getPurchasedBy());
+            }
+            else {
+                return new Cat(catinfo.getCatID(), catinfo.getCatName(),catinfo.getCatBreed(),catinfo.getCatGender(),catinfo.getCatColor(),catinfo.getCatAge(),catinfo.getCatImgName(),catinfo.getCatCosts());
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Cat changeCatPurchasedBy(CatInformation catinfo) {
+        try (Connection connection = ConnectionUtility.getConnection()){
+            String sql = "update cats set cat_name=?,cat_age=?,cat_breed=?,cat_color=?,cat_imageFile=?,cat_gender=?,cat_costs=?,cat_purchased=? WHERE cat_id=?";
             PreparedStatement ps = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             ps.setString(1,catinfo.getCatName());
             ps.setInt(2,catinfo.getCatAge());
@@ -92,9 +126,10 @@ public class CatDAO {
             ps.setString(6,catinfo.getCatGender());
             ps.setInt(7,catinfo.getCatCosts());
             ps.setInt(8,catinfo.getCatID());
+            ps.setString(9,catinfo.getPurchasedBy());
             ps.execute();
 
-            return new Cat(catinfo.getCatID(), catinfo.getCatName(),catinfo.getCatBreed(),catinfo.getCatGender(),catinfo.getCatColor(),catinfo.getCatAge(),catinfo.getCatImgName(),catinfo.getCatCosts());
+            return new Cat(catinfo.getCatID(), catinfo.getCatName(),catinfo.getCatBreed(),catinfo.getCatGender(),catinfo.getCatColor(),catinfo.getCatAge(),catinfo.getCatImgName(),catinfo.getCatCosts(),catinfo.getPurchasedBy());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

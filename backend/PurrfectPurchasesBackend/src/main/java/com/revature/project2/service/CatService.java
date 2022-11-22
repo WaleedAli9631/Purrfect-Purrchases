@@ -25,6 +25,7 @@ public class CatService {
     public Cat editCat(CatInformation catinfo) {
         return catDAO.changeCat(catinfo);
     }
+    public Cat catPurchasedBy(CatInformation catinfo) {return catDAO.changeCatPurchasedBy(catinfo);}
     public List<Cat> getCatList(String breed, int age, String gender) {
         return catDAO.findAllCats(breed, age, gender);
     }

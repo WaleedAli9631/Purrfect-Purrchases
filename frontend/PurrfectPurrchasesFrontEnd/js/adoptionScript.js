@@ -320,6 +320,17 @@ function getCatNames() {
     }  
 }
 
+function updateCatPurchasedBy(cat){
+    fetch(`${baseUrl}/cat`, {
+        method: "PUT",
+        body: `{"catID":"${Number(cat.id)}","catName":"${cat.name}","catBreed":"${cat.breed}","catGender":"${cat.gender}",
+        "catColor":"${cat.color}","catAge":"${Number(cat.age)}","catImgName":"${cat.imageFile}","catCosts":"${Number(cat.costs)}",
+        "purchasedBy":"${currentUser}"}`,
+        credentials: "include"
+    });
+}
+
+
 /* This is used for sending alert to user when they try to purchase cats on their cart */
 const completeButton = document.getElementById("Complete");
 completeButton.addEventListener("click", function( e ){ //e => event
@@ -331,6 +342,7 @@ completeButton.addEventListener("click", function( e ){ //e => event
                     catNames.push(cats[0].name);
                     let catid = cats[0].id;
                     createOrder(cats[0]);
+                    updateCatPurchasedBy(cats[0]);
                     deleteOldCatInfoFromStorage(catid);
                     /**This updates the sum of the price of the cats in the cart */
                     cartTotal -= Number(cats.find(obj => obj.id == catid).costs);
@@ -342,6 +354,7 @@ completeButton.addEventListener("click", function( e ){ //e => event
                         catNames.push(cats[0].name);
                         let catid = cats[0].id;  
                         createOrder(cats[0]);
+                        updateCatPurchasedBy(cats[0]);
                         deleteOldCatInfoFromStorage(catid);
                         /**This updates the sum of the price of the cats in the cart */
                         cartTotal -= Number(cats.find(obj => obj.id == catid).costs);
