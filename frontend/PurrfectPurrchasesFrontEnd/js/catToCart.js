@@ -8,12 +8,16 @@ const auth = getAuth();
 
 let cart = [];
 let sessionCart = [];
-if (window.localStorage.getItem("cart") !== null) {
-cart = JSON.parse(window.localStorage.getItem("cart"));
+
+function makeSureCartArraysUpToDate(){
+  if (window.localStorage.getItem("cart") !== null) {
+    cart = JSON.parse(window.localStorage.getItem("cart"));
+    }
+  if (window.sessionStorage.getItem("cart") !== null) {
+  sessionCart = JSON.parse(window.sessionStorage.getItem("cart"));
+  }
 }
-if (window.sessionStorage.getItem("cart") !== null) {
-sessionCart = JSON.parse(window.sessionStorage.getItem("cart"));
-}
+makeSureCartArraysUpToDate();
 
 let currentUserId = window.sessionStorage.getItem("user_id");
 //this runs every time someone logs in or logs out
@@ -23,12 +27,7 @@ if (user !== null) {
   currentUserId = window.sessionStorage.getItem("user_id");
   //this will get triggered if the user adds items to there cart before logging in
   if (sessionCart.length > 0) {
-    //throw out users old cart. They wouldn't be adding new ones if they wanted the old ones
-    cart = cart.filter(obj => obj.user_id !== user["uid"]);
-    for (let i = 0; i < sessionCart.length; i++) {
-      cart.push({user_id:user["uid"], cat_id:sessionCart[i].cat_id});
-      sessionCart[i].user_id = user["uid"];
-    }
+    nullToLoggedIn(user["uid"]);
     //commit the changes to storage once new user has logged in
     window.localStorage.setItem("cart",JSON.stringify(cart));
     window.sessionStorage.setItem("cart",JSON.stringify(sessionCart));
@@ -48,6 +47,14 @@ else{
 }
 });
 
+function nullToLoggedIn(id){
+  //throw out users old cart. They wouldn't be adding new ones if they wanted the old ones
+    cart = cart.filter(obj => obj.user_id !== id);
+    for (let i = 0; i < sessionCart.length; i++) {
+      cart.push({user_id:id, cat_id:sessionCart[i].cat_id});
+      sessionCart[i].user_id = id;
+    }
+}
 
 function addCatToCart(u_id, c_id, catName){
 if(sessionCart.length < 2) {
