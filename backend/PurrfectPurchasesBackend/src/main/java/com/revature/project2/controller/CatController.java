@@ -42,7 +42,6 @@ public class CatController {
             String breed = obj.getString("breed");
             int age = obj.getInt("age");
             String gender = obj.getString("gender");
-            System.out.println(breed);
             List<Cat> cat = catService.getCatList(breed, age, gender);
 
             //AllCatInformation info = ctx.bodyAsClass(AllCatInformation.class);

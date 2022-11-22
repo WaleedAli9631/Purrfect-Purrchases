@@ -51,9 +51,9 @@ public class CatDAO {
         try (Connection connection = ConnectionUtility.getConnection()){
             if (breed.equals("ALL")) breed = "%";
             if (gender.equals("ALL")) gender = "%";
-            String sql = "select * from cats where cat_breed like ? and cat_gender like ? order by cat_id";
+            String sql = "select * from cats where cat_breed like ? and cat_gender like ? and cat_purchased IS NULL order by cat_id";
             if (age != 0) {
-                sql = "select * from cats where cat_breed like ? and cat_gender like ? and cat_age=? order by cat_id";
+                sql = "select * from cats where cat_breed like ? and cat_gender like ? and cat_age=? and cat_purchased IS NULL order by cat_id";
             }
             PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1,breed);
