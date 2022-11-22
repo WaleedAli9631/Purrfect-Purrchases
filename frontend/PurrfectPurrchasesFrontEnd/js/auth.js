@@ -3,16 +3,17 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   signInWithEmailAndPassword,
-  onAuthStateChanged
+  onAuthStateChanged,
+  getIdToken
 } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
 
 const auth = getAuth();
 
 // signup
 const signUpForm = document.querySelector('#signup-form')
-signUpForm.addEventListener('submit', (e) => {
-  // e.preventDefault();
-
+var firstSignUp = false;
+signUpForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
   //get user info
   const email = signUpForm['signup-email'].value;
   const password = signUpForm['signup-password'].value;
@@ -33,21 +34,23 @@ signUpForm.addEventListener('submit', (e) => {
     createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
       // Signed in 
 
-      const user = userCredential.user;
-      const infoArray = [user.uid, fname, lname, address, city, state];
-
+      user = userCredential.user;
+      firstSignUp = true;
+    }).catch(function (error) {
+      // Handle error
+    }).then(async () => {
+      const token = await getIdToken(getAuth().currentUser, true);
+      const infoArray = [getAuth().currentUser.uid, fname, lname, address, city, state, token];
       fetch('http://127.0.0.1:9090/accounts/' + encodeURIComponent(JSON.stringify(infoArray)), {
         method: 'POST',
         credentials: 'include'
       })
       $('#modal-signup').modal('hide');
       signUpForm.reset();
-    })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // make an alert
-      });
+    }).catch((error) => {
+      console.log(error.message)
+    });    
+
   }
 
 })
@@ -95,7 +98,6 @@ onAuthStateChanged(auth, (user) => {
     $('#loginLi').show();
     $('#logoutLi').hide();
     $('#accountLi').hide();
-
   } else {
     $('#signUpLi').hide();
     $('#loginLi').hide();
