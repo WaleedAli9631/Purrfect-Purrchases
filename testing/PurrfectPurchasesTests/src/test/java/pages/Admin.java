@@ -22,18 +22,6 @@ public class Admin {
 
     @FindBy(id="editcat-breed")
     public WebElement EditCatBreedInput;
-    public Select getEditBreedOptions() {
-        return new Select(EditCatBreedInput);
-    }
-    public void setEditBreedOption(String value) {
-        getEditBreedOptions().selectByVisibleText(value);
-    }
-    public String getEditBreedOption() {
-        return getEditBreedOptions().getFirstSelectedOption().getText();
-    }
-
-
-
 
     @FindBy(id="editcat-age")
     public WebElement EditCatAgeInput;

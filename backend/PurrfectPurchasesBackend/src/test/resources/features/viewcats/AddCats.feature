@@ -1,4 +1,4 @@
-Feature: Search Cats
+Feature: Add Cats
 
   Background: User is on Admin Page
     Given User is on home page

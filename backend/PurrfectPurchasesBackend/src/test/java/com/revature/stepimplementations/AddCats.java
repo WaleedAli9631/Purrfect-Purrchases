@@ -81,14 +81,10 @@ public class AddCats {
             if (Runner.homePage.NextButton.size() > 0) Runner.homePage.NextButton.get(0).click();
             Thread.sleep(300);
         }
-        System.out.println(string);
-        System.out.println(Runner.homePage.lastCatName);
-        System.out.println(string2);
-        System.out.println(Runner.homePage.lastCatBreed);
-        System.out.println(int1);
-        System.out.println(Runner.homePage.lastCatAge);
-        System.out.println(string3);
-        System.out.println(Runner.homePage.lastCatGender);
+        Assert.assertEquals(Runner.homePage.lastCatName.getText().contains(string),true, "Name isn't in last cat square");
+        Assert.assertEquals(Runner.homePage.lastCatBreed.getText().equals(string2), true, "Breed isn't in the last cat square");
+        Assert.assertEquals(Runner.homePage.lastCatAge.getText().equals(String.valueOf(int1)), true, "Age isn't in the last cat square");
+        Assert.assertEquals(Runner.homePage.lastCatGender.getText().equals(string3), true, "Gender isn't in the last cat square");
     }
 
 }
