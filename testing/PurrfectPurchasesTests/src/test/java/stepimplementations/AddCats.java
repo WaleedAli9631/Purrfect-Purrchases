@@ -1,14 +1,11 @@
-package com.revature.stepimplementations;
+package stepimplementations;
 
-import com.revature.runners.Runner;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import runners.Runner;
 
-import java.sql.SQLOutput;
-
-import static com.revature.runners.Runner.driver;
+import static runners.Runner.driver;
 
 public class AddCats {
     @When("User clicks Add Cat button")
