@@ -1,11 +1,11 @@
-package com.revature.stepimplementations;
+package stepimplementations;
 
-import com.revature.runners.Runner;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import runners.Runner;
 
 public class FilterCats {
     @Given("User is on home page")

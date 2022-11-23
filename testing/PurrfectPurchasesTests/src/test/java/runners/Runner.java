@@ -1,7 +1,6 @@
-package com.revature.runners;
+package runners;
 
-import com.revature.pages.Admin;
-import com.revature.pages.Home;
+
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -10,10 +9,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pages.Admin;
+import pages.Home;
 
 import java.time.Duration;
 
-@CucumberOptions(features="classpath:features/viewcats/CatScratchFever", glue="com.revature.stepimplementations")
+@CucumberOptions(features="classpath:features", glue="com.revature.stepimplementations")
 public class Runner extends AbstractTestNGCucumberTests {
     public static WebDriver driver;
     public static Home homePage;

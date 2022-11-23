@@ -31,4 +31,4 @@ Feature: Add Cats
       | "Cat Stevens" | "Abyssian" | 11 | "Female" | "" | 50 | "assets/img/cat12.jpg" |
       | "Catherine Zeta Jones" | "Abyssian" | 5 | "Female" | "Thisismorethanfiftycharacterstotestthatthecolorcannotbemorethanfifty" | 50 | "assets/img/cat3.jpg" |
       | "Catherine O'Hara" | "Abyssian" | 5 | "Female" | "b" | 50 | "assets/img/cat3.jpg" |
-      | "12" | "Abyssian" | 5 | "Female" | "15" | 50 | "assets/img/cat3.jpg" |
+      | "Catty Wampus" | "Abyssian" | 5 | "Female" | "15" | 50 | "assets/img/cat3.jpg" |
