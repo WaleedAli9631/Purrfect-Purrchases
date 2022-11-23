@@ -1,12 +1,5 @@
-
-backend/PurrfectPurchasesBackend/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec
-backend/PurrfectPurchasesBackend/.idea/sonarlint/issuestore/index.pb
-testing/PurrfectPurchasesTests/.idea/sonarlint/issuestore/index.pb
-testing/PurrfectPurchasesTests/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec
-frontend/package-lock.json
-node_modules
-.idea/
-libraries/
-backend/PurrfectPurchasesBackend/PurrfectPurchasesBackend.iml
-backend/PurrfectPurchasesBackend/PurrfectPurchasesBackend.iml
-backend/PurrfectPurchasesBackend/target/classes/com/revature/project2/dao/CatDAO.class
+.*
+!.gitignore
+target
+*.iml
+**/.*

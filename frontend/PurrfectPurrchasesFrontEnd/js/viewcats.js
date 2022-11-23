@@ -23,7 +23,7 @@
       "<div class=\"p-3 bg-light rounded-lg shadow\">" +
       "<img src=\"" + imgName + "\" class=\"w-100 catElement\" onerror=\"this.onerror=null; this.src='assets/img/404.jpg'\">" +
       "<h2 class=\"cat-name\">" + catName + " - <span class=\"BreedDeclaration\">" + catBreed + "</span></h2>" +
-      "<h3>Gender: <b class=\"GenderDeclaration>\">" + catGender + "</b> • Age: <b class=\"AgeDeclaration\">" + catAge + "</b></h3>" +
+      "<h3>Gender: <b class=\"GenderDeclaration\">" + catGender + "</b> • Age: <b class=\"AgeDeclaration\">" + catAge + "</b></h3>" +
       "<h4>$" + catCost + "</h4>" + 
       "<button id=\"button " + catID + "\" class=\"cart-button\">Add to Cart</button>" +
       "</div></div>";

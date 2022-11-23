@@ -18,7 +18,7 @@ addCatButton2.addEventListener('click', (e) => {
       }).then((res) => {
         return res.json();
       }).then((responseBody) => {
-       getCatTable();
+        getCatTable();
         $('#modal-addcats').modal('hide');
         alert ("Cat has been added!");
       });

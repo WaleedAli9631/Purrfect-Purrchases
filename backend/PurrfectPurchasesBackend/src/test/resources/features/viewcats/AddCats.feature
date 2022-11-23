@@ -1,4 +1,4 @@
-Feature: Search Cats
+Feature: Add Cats
 
   Background: User is on Admin Page
     Given User is on home page
@@ -16,6 +16,9 @@ Feature: Search Cats
     When User clicks Add Cat submit button
     Then User should see alert confirmation
     Then User should see cat with <catname>,<breed>,<age>,<gender>,<color>,<cost>,and <imageUrl> in table
+    When User logs out
+    When User is on home page
+    Then User should see cat with <catname>,<breed>,<age>,<gender>,<color>,<cost>,and <imageUrl> in homepage
 
     Examples:
       | catname | breed | age | gender | color | cost | imageUrl |

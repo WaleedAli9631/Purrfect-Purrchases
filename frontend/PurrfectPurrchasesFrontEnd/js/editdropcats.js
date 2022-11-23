@@ -28,6 +28,7 @@ editCatButton.addEventListener('click', (e) => {
     }).then((responseBody) => {
         getCatTable();
         $('#modal-editcats').modal('hide');
+        alert ("Cat has been edited!");
     });
 
 });
@@ -45,9 +46,10 @@ function getCat(id) {
 }
 
 function putCatsinModal(rs) {
+    console.log(rs);
     document.getElementById('editcat-id').setAttribute('value',rs.id);
     document.getElementById('editcat-id').disabled = true; //User cannot change the ID
-    document.getElementById('editcat-name').setAttribute('value',rs.name);
+    document.getElementById('editcat-name').value = rs.name;//setAttribute('value',rs.name);
     document.getElementById('editcat-breed').value = rs.breed;
     document.getElementById('editcat-color').setAttribute('value',rs.color);
     document.getElementById('editcat-age').value = rs.age;
