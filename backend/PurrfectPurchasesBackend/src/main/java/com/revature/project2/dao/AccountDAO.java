@@ -13,7 +13,6 @@ public class AccountDAO {
             preparedStatement.setString(1, uid);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-
             if (resultSet.next()) {
                 Account account = new Account();
                 account.setUid(resultSet.getString("uid"));
@@ -51,5 +50,32 @@ public class AccountDAO {
 
             return new Account(uid,fname,lname,streetAddress,city,state);
         }
+
+    }
+
+    public Account updateAccount(String uid,
+                                 String fname,
+                                 String lname,
+                                 String streetAddress,
+                                 String city,
+                                 String state) throws SQLException {
+        try(Connection connection = ConnectionUtility.getConnection()){
+
+            String sql = "update accounts set f_name=?, l_name=?, street_address=?, city=?, state=? where uid=?";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+
+            preparedStatement.setString(1,fname);
+            preparedStatement.setString(2,lname);
+            preparedStatement.setString(3,streetAddress);
+            preparedStatement.setString(4,city);
+            preparedStatement.setString(5,state);
+            preparedStatement.setString(6,uid);
+
+            preparedStatement.execute();
+
+            return new Account(uid,fname,lname,streetAddress,city,state);
+        }
+
     }
 }
