@@ -28,7 +28,8 @@
 							"})\r",
 							"\r",
 							"pm.test(\"Response body check\", function() {\r",
-							"    pm.expect(response.message).to.equl(\"The cat's age was not included!\");\r",
+							"    let response = pm.response.text();\r",
+							"    pm.expect(response).to.equal(\"The cat's age was not included!\");\r",
 							"})"
 						],
 						"type": "text/javascript"
@@ -86,25 +87,187 @@
 		},
 		{
 			"name": "Get All Cats - Age Is -1",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let fart={\"age\":\"-1\",\"breed\":\"ALL\",\"gender\":\"ALL\"}\r",
+							"pm.environment.set(\"query\",JSON.stringify(fart));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function() {\r",
+							"    pm.response.to.have.status(400);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response body check\", function() {\r",
+							"    let response = pm.response.text();\r",
+							"    pm.expect(response).to.equal(\"The Cat Age is less than zero OR more than 20\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{query}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:9090/allcats/{{query}}",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9090",
+					"path": [
+						"allcats",
+						"{{query}}"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Get All Cats - Age Is 0",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let fart={\"age\":\"0\",\"breed\":\"ALL\",\"gender\":\"ALL\"}\r",
+							"pm.environment.set(\"query\",JSON.stringify(fart));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response isn't undefined\", function() {\r",
+							"    let response = pm.response.text();\r",
+							"   pm.expect(response).not.eq(undefined);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{query}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:9090/allcats/{{query}}",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9090",
+					"path": [
+						"allcats",
+						"{{query}}"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Get All Cats - Age Is 20",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let fart={\"age\":\"20\",\"breed\":\"ALL\",\"gender\":\"ALL\"}\r",
+							"pm.environment.set(\"query\",JSON.stringify(fart));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response isn't undefined\", function() {\r",
+							"    let response = pm.response.text();\r",
+							"   pm.expect(response).not.eq(undefined);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{query}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:9090/allcats/{{query}}",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9090",
+					"path": [
+						"allcats",
+						"{{query}}"
+					]
+				}
 			},
 			"response": []
 		},
@@ -120,11 +283,39 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function() {\r",
+							"    pm.response.to.have.status(400);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response body check\", function() {\r",
+							"    let response = pm.response.text();\r",
+							"    pm.expect(response).to.equal(\"The Cat Age is less than zero OR more than 20\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{query}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "127.0.0.1:9090/allcats/{{query}}",
 					"host": [
@@ -144,17 +335,125 @@
 		},
 		{
 			"name": "Get All Cats - No Breed",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let fart={\"age\":\"0\",\"gender\":\"ALL\"}\r",
+							"pm.environment.set(\"query\",JSON.stringify(fart));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function() {\r",
+							"    pm.response.to.have.status(400);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response body check\", function() {\r",
+							"    let response = pm.response.text();\r",
+							"    pm.expect(response).to.equal(\"The cat's breed was not included!\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{query}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:9090/allcats/{{query}}",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9090",
+					"path": [
+						"allcats",
+						"{{query}}"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Get All Cats - No Gender",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let fart={\"age\":\"0\",\"breed\":\"ALL\"}\r",
+							"pm.environment.set(\"query\",JSON.stringify(fart));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function() {\r",
+							"    pm.response.to.have.status(400);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response body check\", function() {\r",
+							"    let response = pm.response.text();\r",
+							"    pm.expect(response).to.equal(\"The cat's gender was not included!\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{query}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:9090/allcats/{{query}}",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9090",
+					"path": [
+						"allcats",
+						"{{query}}"
+					]
+				}
 			},
 			"response": []
 		},
@@ -188,9 +487,21 @@
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{query}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "127.0.0.1:9090/allcats/{{query}}",
 					"host": [
@@ -210,17 +521,105 @@
 		},
 		{
 			"name": "Get One Cat - ID is -1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function() {\r",
+							"    pm.response.to.have.status(400);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response body check\", function() {\r",
+							"    let response = pm.response.text();\r",
+							"    pm.expect(response).to.equal(\"The Cat ID is less than one\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{query}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:9090/cat/-1",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9090",
+					"path": [
+						"cat",
+						"-1"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Get One Cat - ID is text",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function() {\r",
+							"    pm.response.to.have.status(400);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response body check\", function() {\r",
+							"    let response = pm.response.text();\r",
+							"    pm.expect(response).to.equal(\"The Cat ID was not an integer!\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{query}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:9090/cat/not_a_number",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9090",
+					"path": [
+						"cat",
+						"not_a_number"
+					]
+				}
 			},
 			"response": []
 		},
@@ -244,9 +643,21 @@
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{query}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "127.0.0.1:9090/cat/1.5",
 					"host": [
@@ -266,9 +677,53 @@
 		},
 		{
 			"name": "Get One Cat - ID Doesn't Exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function() {\r",
+							"    pm.response.to.have.status(400);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response body check\", function() {\r",
+							"    let response = pm.response.text();\r",
+							"    pm.expect(response).to.equal(\"Cat ID does not exist!\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{query}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:9090/cat/9999",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9090",
+					"path": [
+						"cat",
+						"9999"
+					]
+				}
 			},
 			"response": []
 		}
