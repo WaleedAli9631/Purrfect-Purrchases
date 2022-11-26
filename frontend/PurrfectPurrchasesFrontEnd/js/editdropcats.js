@@ -30,7 +30,6 @@ editCatButton.addEventListener('click', (e) => {
         $('#modal-editcats').modal('hide');
         alert ("Cat has been edited!");
     });
-
 });
 
 function getCat(id) {

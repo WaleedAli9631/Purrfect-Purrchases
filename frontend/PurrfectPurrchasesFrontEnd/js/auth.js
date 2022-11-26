@@ -81,7 +81,13 @@ signInForm.addEventListener('submit', (e) => {
     const user = userCredential.user;
     const modal = document.querySelector("#modal-login");
     $('#modal-login').modal('hide');
+    if (window.sessionStorage.getItem("user_id") == "55xPney8EhbEMAfhAVTRhhY4XCo1") {
+      $('#adminMenu').show();
+    }
     signInForm.reset();
+
+
+      
   })
     .catch((error) => {
       const errorCode = error.code;
@@ -98,11 +104,14 @@ onAuthStateChanged(auth, (user) => {
     $('#loginLi').show();
     $('#logoutLi').hide();
     $('#accountLi').hide();
+    $('#adminMenu').hide();
   } else {
     $('#signUpLi').hide();
     $('#loginLi').hide();
     $('#logoutLi').show();
     $('#accountLi').show();
-
+    if (window.sessionStorage.getItem("user_id") == "55xPney8EhbEMAfhAVTRhhY4XCo1") {
+      $('#adminMenu').show();
+    }
   }
 })
