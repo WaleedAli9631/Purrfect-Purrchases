@@ -21,3 +21,37 @@ Purrfect Purrchases is a site for cat lovers who are trying to find their feline
 - Selenium
 - Cucumber
 - TestNG
+
+##Authentication
+---
+`GET /cat`
+
+Allows user to get cat information. When the user submits a cat id successfully, the server will send a JSON object with cat information.
+
+### Request
+Headers
+| Key | Value | Description |
+| :-- | :---- | :---------- |
+| id | integer | The database id of the respective cat |
+
+### Response
+Response Body
+```json
+{
+    "id":id,
+    "name": name,
+    "breed": breed,
+    "gender": gender,
+    "color": color,
+    "age": age,
+    "imageFile": imageFile,
+    "costs": cost,
+    "purchasedBy", purchasedBy
+}
+```
+
+Status Codes
+| Status Code | Description |
+| :---------- | :---------- |
+| 200 Okay | Cat information was found |
+| 400 

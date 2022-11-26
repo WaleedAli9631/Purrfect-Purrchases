@@ -76,12 +76,16 @@ signInForm.addEventListener('submit', async (e) => {
   const password = signInForm['login-password'].value;
 
   //sign in the user
+
   try{
     await signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
       const modal = document.querySelector("#modal-login");
       $('#modal-login').modal('hide');
+      if (window.sessionStorage.getItem("user_id") == "55xPney8EhbEMAfhAVTRhhY4XCo1") {
+        $('#adminMenu').show();
+      }
       signInForm.reset();
     })
       .catch((error) => {
@@ -101,11 +105,14 @@ onAuthStateChanged(auth, (user) => {
     $('#loginLi').show();
     $('#logoutLi').hide();
     $('#accountLi').hide();
+    $('#adminMenu').hide();
   } else {
     $('#signUpLi').hide();
     $('#loginLi').hide();
     $('#logoutLi').show();
     $('#accountLi').show();
-
+    if (window.sessionStorage.getItem("user_id") == "55xPney8EhbEMAfhAVTRhhY4XCo1") {
+      $('#adminMenu').show();
+    }
   }
 })

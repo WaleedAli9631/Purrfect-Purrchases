@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.revature.project2.model.Account;
 import com.revature.project2.service.AccountService;
 import io.javalin.Javalin;
+import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -25,7 +26,6 @@ public class AccountController {
             } catch (FirebaseAuthException e) {
                 context.status(400);
             }
-
         }));
 
         app.get("/accounts/{uidtoken}", context -> {

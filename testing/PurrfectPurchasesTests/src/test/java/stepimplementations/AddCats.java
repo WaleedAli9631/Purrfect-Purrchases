@@ -11,7 +11,7 @@ public class AddCats {
     @When("User clicks Add Cat button")
     public void user_clicks_add_cat_button() throws InterruptedException {
         Runner.adminPage.OpenAddCatModalButton.click();
-        Thread.sleep(500);
+        //Thread.sleep(500);
     }
     @When("User inputs {string} into Name field")
     public void user_inputs_into_name_field(String string) throws InterruptedException {
@@ -46,15 +46,15 @@ public class AddCats {
     @When("User clicks Add Cat submit button")
     public void user_clicks_add_cat_submit_button() throws InterruptedException {
         Runner.adminPage.AddCatSubmitButton.click();
-        Thread.sleep(500);
+        //Thread.sleep(500);
     }
     @Then("User should see alert confirmation")
     public void user_should_see_alert_confirmation() throws InterruptedException {
         String conf = "Cat has been added!";
-        Thread.sleep(500);
+        //Thread.sleep(500);
         boolean isPresent = driver.switchTo().alert().getText().equals(conf);
         if (isPresent) driver.switchTo().alert().accept();
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
         Assert.assertEquals(isPresent, true, "Error: Cat not confirmed to be added!");
     }
     @Then("User should see cat with {string},{string},{int},{string},{string},{int},and {string} in table")
@@ -76,7 +76,7 @@ public class AddCats {
     public void user_should_see_cat_with_and_in_homepage(String string, String string2, Integer int1, String string3, String string4, Integer int2, String string5) throws InterruptedException {
         while (Runner.homePage.NextButton.size() > 0) {
             if (Runner.homePage.NextButton.size() > 0) Runner.homePage.NextButton.get(0).click();
-            Thread.sleep(300);
+            //Thread.sleep(300);
         }
         Assert.assertEquals(Runner.homePage.lastCatName.getText().contains(string),true, "Name isn't in last cat square");
         Assert.assertEquals(Runner.homePage.lastCatBreed.getText().equals(string2), true, "Breed isn't in the last cat square");

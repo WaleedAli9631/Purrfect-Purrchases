@@ -45,7 +45,7 @@ function getCatsFromDatabase(){
                 }
             }).catch((error) => { 
                 deleteOldCatInfoFromStorage(sessionCart[i].cat_id);
-                alert(`Sorry, one ofyour cats has been deleted and is no longer available. Navigate back to Home to select more cats`);
+                alert(`Sorry, one of your cats has been deleted and is no longer available. Navigate back to Home to select more cats`);
             });   
     }
 }

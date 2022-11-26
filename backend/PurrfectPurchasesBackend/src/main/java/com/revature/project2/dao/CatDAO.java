@@ -25,7 +25,6 @@ public class CatDAO {
             String sql = "select * from cats where cat_id = ?";
             PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setInt(1,id);
-
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {

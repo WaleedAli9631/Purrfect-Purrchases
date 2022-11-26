@@ -10,16 +10,27 @@ public class Account {
     private String city;
     private String state;
 
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public Account() {
     }
 
-    public Account(String uid, String fname, String lname, String streetAddress, String city, String state) {
+    public Account(String uid, String fname, String lname, String streetAddress, String city, String state, String role) {
         this.uid = uid;
         this.fname = fname;
         this.lname = lname;
         this.streetAddress = streetAddress;
         this.city = city;
         this.state = state;
+        this.role = role;
     }
 
     public String getUid() {

@@ -14,12 +14,12 @@ public class SearchCats {
     @Given("User clicks on Admin link")
     public void user_clicks_on_admin_link() throws InterruptedException {
         Runner.homePage.AdminLink.click();
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
     }
     @When("User clicks Search Cat button")
     public void user_clicks_search_cat_button() throws InterruptedException {
         Runner.adminPage.searchCatButton.click();
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
     }
 
     @When("User inputs {int} into search field")
@@ -30,7 +30,7 @@ public class SearchCats {
     @When("User clicks Search button")
     public void user_clicks_search_button() throws InterruptedException {
         Runner.adminPage.searchCatButtonSubmit.click();
-        Thread.sleep(300);
+        //Thread.sleep(300);
     }
 
     @Then("User should see {int} information in table or be alerted")
