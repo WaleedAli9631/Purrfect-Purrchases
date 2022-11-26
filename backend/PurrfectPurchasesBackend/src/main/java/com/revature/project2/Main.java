@@ -18,14 +18,14 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        /*FileInputStream serviceAccount =
+        FileInputStream serviceAccount =
                 new FileInputStream("C:/Users/PcName/Downloads/purrfect-purrchases-firebase-adminsdk-sryyb-780fda786b.json");
 
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                 .build();
 
-        FirebaseApp.initializeApp(options);*/
+        FirebaseApp.initializeApp(options);
 
         
         Javalin app = Javalin.create((config)-> {

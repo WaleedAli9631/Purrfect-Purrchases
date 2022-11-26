@@ -2,8 +2,10 @@ package com.revature.project2.controller;
 
 import com.revature.project2.dto.AllCatInformation;
 import com.revature.project2.dto.CatInformation;
+import com.revature.project2.model.Account;
 import com.revature.project2.model.Cat;
 import com.revature.project2.service.CatService;
+import com.revature.project2.service.AccountService;
 import io.javalin.Javalin;
 import org.json.JSONObject;
 
@@ -12,6 +14,8 @@ import java.util.List;
 public class CatController {
     private CatService catService = new CatService();
     private CatValidation catValidation = new CatValidation();
+
+    private AccountService accountService = new AccountService();
 
     public void mapEndpoints(Javalin app) {
         app.get("/cat/{catid}", (ctx) -> {
@@ -34,14 +38,26 @@ public class CatController {
         });
         app.post("/cat", (ctx) -> {
             CatInformation info = ctx.bodyAsClass(CatInformation.class);
-            Cat cat = catService.addCat(info);
-            ctx.json(cat);
+            Account account = accountService.getAccountByUID(info.getUserID());
+            if (account.getRole().equals("admin")) {
+                Cat cat = catService.addCat(info);
+                ctx.json(cat);
+            } else {
+                ctx.result("The user does not have permission to add cats!");
+                ctx.status(401);
+            }
         });
 
         app.put("/cat/", (ctx)-> {
             CatInformation info = ctx.bodyAsClass(CatInformation.class);
-            Cat cat = catService.editCat(info);
-            ctx.json(cat);
+            Account account = accountService.getAccountByUID(info.getUserID());
+            if (account.getRole().equals("admin")) {
+                Cat cat = catService.editCat(info);
+                ctx.json(cat);
+            } else {
+                ctx.result("The user does not have permission to edit cats!");
+                ctx.status(401);
+            }
         });
 
         app.get("/allcats/{catinfo}", (ctx) -> {
