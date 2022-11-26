@@ -260,33 +260,42 @@ onAuthStateChanged(auth, (user)=>{
 /** THIS SECTION CONTAINS CODE FOR COMPLETING ORDERS  */
 /*********************************************************************************************************************************** */
 function getAndDisplayShippingInfo(){
-    fetch(`${baseUrl}/accounts/${currentUser}`,{
-        method: "GET",
-        credentials: "include"
-    }).then((res) => {
-        return res.json();
-    }).then((userInfo) => {
-        let checkoutDiv = document.getElementById("Checkout");
-        let shippingInfoDiv = document.createElement("div");
-        shippingInfoDiv.setAttribute("id", "shipping-info");
-        let h3 = document.createElement("h3");
-        h3.textContent = "Shipping Information";
-        let p1 = document.createElement("p");
-        p1.innerHTML = `Address: ${userInfo.streetAddress}`;
-        let p2 = document.createElement("p");
-        p2.innerHTML = `City: ${userInfo.city}`;
-        let p3 = document.createElement("p");
-        p3.innerHTML = `State: ${userInfo.state}`;
-        let complete = document.getElementById("Complete");
-        document.getElementById("Complete").remove();
-        shippingInfoDiv.appendChild(h3);
-        shippingInfoDiv.appendChild(document.createElement("hr"));
-        shippingInfoDiv.appendChild(p1);
-        shippingInfoDiv.appendChild(p2);
-        shippingInfoDiv.appendChild(p3);
-        checkoutDiv.appendChild(shippingInfoDiv);
-        checkoutDiv.appendChild(complete);
-    });
+    onAuthStateChanged(auth, (user)=>{
+        if(user){
+            getIdToken(user, true).then((token)=>{
+                const infoArray = [user.uid, token];
+
+                fetch("http://127.0.0.1:9090/accounts/" + encodeURI(JSON.stringify(infoArray)),{
+                    method: "GET",
+                    credentials: "include"
+                }).then((res) => {
+                    return res.json();
+                }).then((userInfo) => {
+                    let checkoutDiv = document.getElementById("Checkout");
+                    let shippingInfoDiv = document.createElement("div");
+                    shippingInfoDiv.setAttribute("id", "shipping-info");
+                    let h3 = document.createElement("h3");
+                    h3.textContent = "Shipping Information";
+                    let p1 = document.createElement("p");
+                    p1.innerHTML = `Address: ${userInfo.streetAddress}`;
+                    let p2 = document.createElement("p");
+                    p2.innerHTML = `City: ${userInfo.city}`;
+                    let p3 = document.createElement("p");
+                    p3.innerHTML = `State: ${userInfo.state}`;
+                    let complete = document.getElementById("Complete");
+                    document.getElementById("Complete").remove();
+                    shippingInfoDiv.appendChild(h3);
+                    shippingInfoDiv.appendChild(document.createElement("hr"));
+                    shippingInfoDiv.appendChild(p1);
+                    shippingInfoDiv.appendChild(p2);
+                    shippingInfoDiv.appendChild(p3);
+                    checkoutDiv.appendChild(shippingInfoDiv);
+                    checkoutDiv.appendChild(complete);
+                });
+            })
+        }
+    })
+    
 }
 if (currentUser != "null") {
     getAndDisplayShippingInfo();
