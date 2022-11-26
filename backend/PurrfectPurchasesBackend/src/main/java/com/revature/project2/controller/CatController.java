@@ -1,5 +1,9 @@
 package com.revature.project2.controller;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseToken;
+import com.google.gson.Gson;
 import com.revature.project2.dto.AllCatInformation;
 import com.revature.project2.dto.CatInformation;
 import com.revature.project2.model.Cat;
@@ -49,5 +53,17 @@ public class CatController {
 
             ctx.json(cat);
         });
+        app.get("/usercats/{userinfo}", (ctx) -> {
+            String[] accountInfo = new Gson().fromJson(ctx.pathParam("userinfo"), String[].class);
+            try {
+                FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(accountInfo[1]);
+                List<Cat> cat = catService.getUserAdoptedCats(accountInfo[0]);
+                ctx.json(cat);
+            } catch (FirebaseAuthException e) {
+                ctx.status(400);
+            }
+
+        });
     }
+
 }
