@@ -1,7 +1,9 @@
     //Function adds div of cat information to page. Iterated from array 
 function killCat(id) {
-    fetch(`http://127.0.0.1:9090/cat/${id}`, {
+    cUser = window.sessionStorage.getItem("user_id");
+    fetch(`http://127.0.0.1:9090/cat/`, {
         method:'DELETE',
+        body: `{"userID":"${cUser}", "catID":"${id}"}`,
         credentials: 'include'  
     }).then(() => {
         getCatTable();        

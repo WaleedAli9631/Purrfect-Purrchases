@@ -32,10 +32,17 @@ public class CatController {
             }
         });
 
-        app.delete("/cat/{catid}",(ctx) -> {
-            String theID = ctx.pathParam("catid");
-            catService.deleteCat(Integer.parseInt(theID));
+        app.delete("/cat/",(ctx) -> {
+            CatInformation info = ctx.bodyAsClass(CatInformation.class);
+            Account account = accountService.getAccountByUID(info.getUserID());
+            if (account.getRole().equals("admin")) {
+                catService.deleteCat(info.getCatID());
+            } else {
+                ctx.result("The user does not have permission to delete cats!");
+                ctx.status(401);
+            }
         });
+
         app.post("/cat", (ctx) -> {
             CatInformation info = ctx.bodyAsClass(CatInformation.class);
             Account account = accountService.getAccountByUID(info.getUserID());
