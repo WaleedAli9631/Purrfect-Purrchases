@@ -56,14 +56,14 @@ public class CatController {
             } else if (!obj.has("gender")) {
                 ctx.result("The cat's gender was not included!");
                 ctx.status(400);
-            } else if (!catValidation.catAgeInBoundaries(obj.getString("age"))) {
-                ctx.result("The Cat Age was not an integer!");
-                ctx.status(400);
-            } else if (!catValidation.catAgePositive(obj.getString("age"))) {
-                ctx.result("The Cat Age is less than zero OR more than 20");
-                ctx.status(400);
             } else if (!catValidation.catBreedExists(obj.getString("breed"))) {
                 ctx.result("The Cat Breed does not exist");
+                ctx.status(400);
+            } else if (!catValidation.catAgeInBoundaries(obj.get("age").toString())) {
+                ctx.result("The Cat Age was not an integer!");
+                ctx.status(400);
+            } else if (!catValidation.catAgePositive(obj.get("age").toString())) {
+                ctx.result("The Cat Age is less than zero OR more than 20");
                 ctx.status(400);
             } else if (!catValidation.catGenderExists(obj.getString("gender"))){
                 ctx.result("The Cat Gender does not exist");
