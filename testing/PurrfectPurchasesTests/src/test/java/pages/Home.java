@@ -25,8 +25,6 @@ public class Home {
     @FindBy(id="loginLink")
     public WebElement loginLink;
 
-    @FindBy(id = "logoutLi")
-    public WebElement logoutLink;
 
     @FindBy(id = "modal-login")
     public WebElement modalLogin;
@@ -48,8 +46,7 @@ public class Home {
     public WebElement accountLink;
     @FindBy(id="signUpLink")
     public WebElement signUpLink;
-    @FindBy(id="loginLink")
-    public WebElement loginLink;
+
     //Account Fields
     @FindBy(id="login-email")
     public WebElement loginEmail;
