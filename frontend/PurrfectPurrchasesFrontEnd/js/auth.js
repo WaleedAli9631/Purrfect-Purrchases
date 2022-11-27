@@ -39,8 +39,8 @@ signUpForm.addEventListener('submit', async (e) => {
     }).catch(function (error) {
       // Handle error
     }).then(async () => {
-      const token = await getIdToken(getAuth().currentUser, true);
-      const infoArray = [getAuth().currentUser.uid, fname, lname, address, city, state, token];
+      const token = await getIdToken(await getAuth().currentUser, true);
+      const infoArray = [getAuth().currentUser.uid, fname, lname, address, city, state, token,null];
       fetch('http://127.0.0.1:9090/accounts/' + encodeURIComponent(JSON.stringify(infoArray)), {
         method: 'POST',
         credentials: 'include'
