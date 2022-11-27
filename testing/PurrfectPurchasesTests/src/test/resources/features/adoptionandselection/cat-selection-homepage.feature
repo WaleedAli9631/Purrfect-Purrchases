@@ -3,9 +3,9 @@ Feature: Cat selection on Home page
   Background: Customer is on Home page
     Given customer is on Home page
 
-    Scenario: Navigation
-      Then customer can navigate to the Adoption page
-      Then customer navigates back to the Home page
+  Scenario: Navigation
+    Then customer navigates to the Adoption page
+    Then customer navigates back to the Home page
 
   Scenario: Cat selected confirmation
     When customer selects a cat

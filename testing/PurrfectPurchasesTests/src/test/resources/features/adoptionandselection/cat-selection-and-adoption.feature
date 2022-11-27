@@ -6,16 +6,16 @@ Feature: Cat Selection
 
   Scenario: Customer deletes selected cat
     Given customer selects cat and navigates to the Adoption page
-    Then customer sees REMOVE button
-    When customer clicks the REMOVE button
+    Then customer sees REMOVE button and clicks it
     Then the cat should disappear from the Adoption page and cart total should update
 
   Scenario: Unidentified user tries to adopt cat
     Given customer is not logged in
     Given customer selects cat and navigates to the Adoption page
-    When user sees PURCHASE NOW button and clicks it
+    When customer sees PURCHASE NOW button and clicks it
     Then an alert should appear letting the user know they must log in or register first
 
+  @Test4
   Scenario: Cat selection followed by sign up
     Given customer is not logged in
     Given customer selects cat and navigates to the Adoption page
@@ -25,14 +25,17 @@ Feature: Cat Selection
     Then shipping information appears
     Then cat they selected is visible in the cart
 
+  @Test5
   Scenario: Customer adopts cat
     Given customer selects cat and navigates to the Adoption page
+    When customer logs in
     When customer sees PURCHASE NOW button and clicks it
     When customer gets confirmation alert and confirms they want to buy the cat(s)
-    Then customer gets order complete confirmation and the cat(s) disappears from the cart area
-    Then cart total is updated to 0
+    Then customer gets order complete confirmation
+    Then the cat should disappear from the Adoption page and cart total should update
     Then adopted cat is not viewable on Home page
 
+  @Test6
   Scenario: Adopted cat disappears from cart
     Given customer1 adds cat to cart
     When customer2 adopts cat that customer1 added

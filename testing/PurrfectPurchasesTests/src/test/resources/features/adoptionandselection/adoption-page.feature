@@ -5,14 +5,14 @@ Feature: Adoption page
 
   Scenario: Customer logs in
     Given customer was not logged in
-    When customer logs in or registers
+    When customer logs in
     Then login and register buttons disappear from page
     Then logout button becomes visible
     Then shipping information appears
 
   Scenario: Customer logs out
-    Given user is logged in
-    When user clicks log out
+    Given customer is logged in
+    When customer clicks log out
     Then log in and register buttons become visible
     Then cart area should be empty
     Then shipping information disappears

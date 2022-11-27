@@ -1,17 +1,15 @@
-package com.revature.stepimplementations.adoptionandselection;
+package stepimplementations.adoptionandselection;
 
-import com.revature.runners.Runner;
+import runners.Runner;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SelectionHomePage {
     private String homeURL = Runner.webURL + "/PurrfectPurrchasesFrontEnd/index.html";
