@@ -20,6 +20,21 @@ public class CatDAO {
             throw new RuntimeException(e);
         }
     }
+
+    public void purCat(int id, String purchaseBy) {
+        System.out.println(id);
+        System.out.println(purchaseBy);
+        try (Connection connection = ConnectionUtility.getConnection()){
+            String sql = "update cats set cat_purchased=? where cat_id = ?";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1,purchaseBy);
+            pstmt.setInt(2,id);
+            pstmt.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public Cat findCatByID(int id) {
         try (Connection connection = ConnectionUtility.getConnection()){
             String sql = "select * from cats where cat_id = ?";
