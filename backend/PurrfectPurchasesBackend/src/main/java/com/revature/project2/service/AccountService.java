@@ -24,10 +24,11 @@ public class AccountService {
                               String lname,
                               String streetAddress,
                               String city,
-                              String state) throws SQLException {
+                              String state,
+                                 String role) throws SQLException {
         // could do some invalid arg checking here
 
-        return accountDAO.updateAccount(uid, fname, lname, streetAddress, city, state);
+        return accountDAO.updateAccount(uid, fname, lname, streetAddress, city, state, role);
     }
     public Account getAccountByUID(String uid) throws SQLException {
         return accountDAO.findAccountByUID(uid);

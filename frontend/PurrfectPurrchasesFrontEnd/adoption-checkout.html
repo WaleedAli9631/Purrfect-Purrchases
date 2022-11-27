@@ -10,17 +10,26 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
+    <div id="background-shape"></div>
     <div>
         <a class="navbar-left" href="#"><img src="assets/img/logo2.png" id="logo" /></a>
-        <h1>Adoption Checkout</h1>  
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item px-3">
-                <a href="index.html" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item px-3">
-                <a id="logout" href="#" class="nav-link">Log out</a>
-            </li>
-        </ul> 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="collapse navbar-collapse px-3" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item px-3">
+                        <a id="home-link" href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item px-3">
+                        <a id="logout-link" href="#" class="nav-link">Log out</a>
+                    </li>
+                </ul> 
+            </div>
+        </nav>
+        
+        
         <div id="loginOrSignup">
             <h2>Log in or Sign up to Continue With Checkout</h2>
             <button type="button" id="log in" class="collapsible">Log in</button>
