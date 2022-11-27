@@ -1,7 +1,9 @@
 package com.revature.runners;
 
+import com.beust.ah.A;
 import com.revature.pages.Admin;
 import com.revature.pages.Home;
+import com.revature.pages.Adoption;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -13,12 +15,14 @@ import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
 
-@CucumberOptions(features="classpath:features/viewcats/CatScratchFever", glue="com.revature.stepimplementations")
+@CucumberOptions(features="src/test/resources/features/adoptionandselection/cat-selection-and-adoption.feature",
+        glue="com.revature.stepimplementations.adoptionandselection")
 public class Runner extends AbstractTestNGCucumberTests {
     public static WebDriver driver;
     public static Home homePage;
     public static WebDriverWait wait;
     public static Admin adminPage;
+    public static Adoption adoptionPage;
     public static String webURL = "http://127.0.0.1:5501";
 
     @BeforeMethod
@@ -26,8 +30,10 @@ public class Runner extends AbstractTestNGCucumberTests {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         wait = new WebDriverWait(Runner.driver,Duration.ofSeconds(2));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
         homePage = new Home(driver);
         adminPage = new Admin(driver);
+        adoptionPage = new Adoption(driver);
         driver.manage().window().maximize();
 
     }

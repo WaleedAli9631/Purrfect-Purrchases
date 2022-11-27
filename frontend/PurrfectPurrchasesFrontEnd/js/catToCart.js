@@ -85,7 +85,7 @@ document.addEventListener("click", (e) =>{
   let addCatButton = e.target.getAttribute("class"); 
   if(addCatButton === "cart-button") {
     let topParent = e.target.parentElement.parentElement;
-    let catName = topParent.getElementsByClassName("cat-name")[0].textContent.split(" ")[0];
+    let catName = topParent.getElementsByClassName("cat-name")[0].textContent.split(" -")[0];
     let currentCatId = topParent.getAttribute("id");
     addCatToCart(currentUserId, currentCatId, catName);
   }

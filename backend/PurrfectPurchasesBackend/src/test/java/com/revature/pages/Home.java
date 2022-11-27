@@ -20,6 +20,29 @@ public class Home {
     @FindBy(id="adminPageLink")
     public WebElement AdminLink;
 
+    @FindBy(id="cart")
+    public WebElement cartLink;
+
+    @FindBy(id="loginLink")
+    public WebElement loginLink;
+
+    @FindBy(id = "logoutLi")
+    public WebElement logoutLink;
+
+    @FindBy(id = "modal-login")
+    public WebElement modalLogin;
+    @FindBy(id="login-email")
+    public WebElement loginModalEmail;
+
+    @FindBy(id = "login-password")
+    public WebElement loginModalPassword;
+
+    @FindBy(xpath = "//div[4]/div/div/div[2]/form/button")
+    public WebElement loginModalLoginButton;
+
+    @FindBy(xpath = "//div[4]/div/div/div[1]/button")
+    public WebElement closeOutLoginModalButton;
+
     //Content Information
     @FindBy(className="BreedDeclaration")
     public List<WebElement> BreedList;

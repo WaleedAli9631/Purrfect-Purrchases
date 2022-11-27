@@ -80,8 +80,8 @@ signInForm.addEventListener('submit', (e) => {
     // Signed in 
     const user = userCredential.user;
     const modal = document.querySelector("#modal-login");
-    $('#modal-login').modal('hide');
     signInForm.reset();
+    $('#modal-login').modal('hide');
   })
     .catch((error) => {
       const errorCode = error.code;
