@@ -25,7 +25,6 @@ public class CatDAO {
             String sql = "select * from cats where cat_id = ?";
             PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setInt(1,id);
-
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
@@ -61,6 +60,31 @@ public class CatDAO {
             pstmt.setString(2,gender);
             if (age != 0) { pstmt.setInt(3,age); }
             //
+            ResultSet rs = pstmt.executeQuery();
+            List<Cat> catList = new ArrayList<Cat>();
+            while (rs.next()) {
+                Cat cat = new Cat();
+                cat.setId(rs.getInt("cat_id"));
+                cat.setName(rs.getString("cat_name"));
+                cat.setAge(rs.getInt("cat_age"));
+                cat.setBreed(rs.getString("cat_breed"));
+                cat.setColor(rs.getString("cat_color"));
+                cat.setImageFile(rs.getString("cat_imageFile"));
+                cat.setGender(rs.getString("cat_gender"));
+                cat.setCosts(rs.getInt("cat_costs"));
+                catList.add(cat);
+            }
+            return catList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public List<Cat> findUserAdoptedCats(String uid) {
+        try (Connection connection = ConnectionUtility.getConnection()){
+            String sql = "select * from cats where cat_purchased=? order by cat_id";
+
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1,uid);
             ResultSet rs = pstmt.executeQuery();
             List<Cat> catList = new ArrayList<Cat>();
             while (rs.next()) {

@@ -1,7 +1,9 @@
     //Function adds div of cat information to page. Iterated from array 
 function killCat(id) {
-    fetch(`http://127.0.0.1:9090/cat/${id}`, {
+    cUser = window.sessionStorage.getItem("user_id");
+    fetch(`http://127.0.0.1:9090/cat/`, {
         method:'DELETE',
+        body: `{"userID":"${cUser}", "catID":"${id}"}`,
         credentials: 'include'  
     }).then(() => {
         getCatTable();        
@@ -19,9 +21,10 @@ const eCosts = document.getElementById('editcat-costs');
 
 editCatButton.addEventListener('click', (e) => {
     e.preventDefault();  
+    cUser = window.sessionStorage.getItem("user_id");
     fetch('http://127.0.0.1:9090/cat', {
       method:'PUT',
-      body: `{"catID":"${eID.value}","catName":"${eName.value}","catBreed":"${eBreed.value}","catGender":"${eGender.value}","catColor":"${eColor.value}","catAge":"${eAge.value}","catImgName":"${eImg.value}","catCosts":"${eCosts.value}"}`,
+      body: `{"userID":"${cUser}","catID":"${eID.value}","catName":"${eName.value}","catBreed":"${eBreed.value}","catGender":"${eGender.value}","catColor":"${eColor.value}","catAge":"${eAge.value}","catImgName":"${eImg.value}","catCosts":"${eCosts.value}"}`,
       credentials: 'include'  
     }).then((res) => {
       return res.json();
@@ -30,7 +33,6 @@ editCatButton.addEventListener('click', (e) => {
         $('#modal-editcats').modal('hide');
         alert ("Cat has been edited!");
     });
-
 });
 
 function getCat(id) {

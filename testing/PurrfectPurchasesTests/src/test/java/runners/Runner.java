@@ -1,4 +1,5 @@
-package com.revature.runners;
+package runners;
+
 
 import com.beust.ah.A;
 import com.revature.pages.Admin;
@@ -12,8 +13,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pages.Admin;
+import pages.Home;
 
 import java.time.Duration;
+
 
 @CucumberOptions(features="src/test/resources/features/adoptionandselection/cat-selection-and-adoption.feature",
         glue="com.revature.stepimplementations.adoptionandselection")
@@ -24,7 +28,7 @@ public class Runner extends AbstractTestNGCucumberTests {
     public static Admin adminPage;
     public static Adoption adoptionPage;
     public static String webURL = "http://127.0.0.1:5501";
-
+//admin id: 55xPney8EhbEMAfhAVTRhhY4XCo1
     @BeforeMethod
     public void setup() throws InterruptedException {
         WebDriverManager.chromedriver().setup();

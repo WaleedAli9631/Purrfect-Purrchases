@@ -1,6 +1,5 @@
 package com.revature.project2;
 
-
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -33,7 +32,7 @@ public class Main {
             config.plugins.enableCors((cors)->{
                 cors.add(it -> {
                     it.defaultScheme = "http";
-                    it.allowHost("127.0.0.1:5501");
+                    it.allowHost("127.0.0.1:5500");
                     it.allowCredentials = true;
                 });
             });
