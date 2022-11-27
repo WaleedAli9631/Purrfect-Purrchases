@@ -74,7 +74,7 @@ $('#btnReadOnly').click(async function () {
   const state = document.getElementById('state');
   const user = await getAuth().currentUser;
   getIdToken(user, true).then((token) => {
-    const infoArray = [user.uid, fname.value, lname.value, address.value, city.value, state.value, token];
+    const infoArray = [user.uid, fname.value, lname.value, address.value, city.value, state.value, token,null];
     console.log(infoArray);
     fetch("http://127.0.0.1:9090/accounts/" + encodeURI(JSON.stringify(infoArray)), {
       method: 'PUT',
