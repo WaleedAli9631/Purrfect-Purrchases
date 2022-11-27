@@ -23,9 +23,15 @@ signUpForm.addEventListener('submit', async (e) => {
   const address = signUpForm['signup-address'].value;
   const city = signUpForm['signup-city'].value;
   const state = signUpForm['signup-state'].value;
-
+  const regex = new RegExp("^[ A-Za-z0-9_@.#!&+-]*$");
   if (password.length < 6) {
     alert("Password length is below 6");
+  }
+  else if(password.length > 24){
+    alert("Password length is over 24");
+  }
+  else if(!regex.test(password)){
+    alert("Password has invalid characters");
   }
   else if (password != passwordConfirm) {
     alert("Password mismatch");
@@ -39,7 +45,7 @@ signUpForm.addEventListener('submit', async (e) => {
     }).catch(function (error) {
       // Handle error
     }).then(async () => {
-      const token = await getIdToken(getAuth().currentUser, true);
+      const token = await getIdToken(await getAuth().currentUser, true);
       const infoArray = [getAuth().currentUser.uid, fname, lname, address, city, state, token];
       fetch('http://127.0.0.1:9090/accounts/' + encodeURIComponent(JSON.stringify(infoArray)), {
         method: 'POST',
@@ -60,6 +66,7 @@ const signOutEle = document.querySelector('#logout')
 signOutEle.addEventListener('click', () => {
 
   signOut(auth).then(() => {
+    window.location.replace("index.html");
   }).catch((error) => {
     console.log(error.message)
   })
@@ -85,7 +92,7 @@ signInForm.addEventListener('submit', async (e) => {
       signInForm.reset();
     })
       .catch((error) => {
-        alert(error.message);
+        alert("Wrong login email or password");
       });
   }catch(error){
     alert(error.message);

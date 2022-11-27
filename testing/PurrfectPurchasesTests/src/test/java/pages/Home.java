@@ -20,6 +20,39 @@ public class Home {
     @FindBy(id="adminPageLink")
     public WebElement AdminLink;
 
+    @FindBy(id="logout")
+    public WebElement logoutLink;
+    @FindBy(id="accountLink")
+    public WebElement accountLink;
+    @FindBy(id="signUpLink")
+    public WebElement signUpLink;
+    @FindBy(id="loginLink")
+    public WebElement loginLink;
+    //Account Fields
+    @FindBy(id="login-email")
+    public WebElement loginEmail;
+    @FindBy(id="login-password")
+    public WebElement loginPassword;
+    @FindBy(id="login-button")
+    public WebElement loginButton;
+    @FindBy(id="signup-email")
+    public WebElement signupEmail;
+    @FindBy(id="signup-password")
+    public WebElement signupPassword;
+    @FindBy(id="signup-password-confirm")
+    public WebElement signupPasswordConfirm;
+    @FindBy(id="signup-fname")
+    public WebElement signupFname;
+    @FindBy(id="signup-lname")
+    public WebElement signupLname;
+    @FindBy(id="signup-address")
+    public WebElement signupAddress;
+    @FindBy(id="signup-city")
+    public WebElement signupCity;
+    @FindBy(id="signup-state")
+    public WebElement signupState;
+    @FindBy(id="signup-submit")
+    public WebElement signupSubmit;
     //Content Information
     @FindBy(className="BreedDeclaration")
     public List<WebElement> BreedList;

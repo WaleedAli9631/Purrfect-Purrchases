@@ -14,13 +14,13 @@ import pages.Home;
 
 import java.time.Duration;
 
-@CucumberOptions(features="classpath:features", glue="com.revature.stepimplementations")
+@CucumberOptions(features="classpath:features", glue="com.revature.stepimplementations", tags = "@register11")
 public class Runner extends AbstractTestNGCucumberTests {
     public static WebDriver driver;
     public static Home homePage;
     public static WebDriverWait wait;
     public static Admin adminPage;
-    public static String webURL = "http://127.0.0.1:5501";
+    public static String webURL = "http://127.0.0.1:5500/frontend/PurrfectPurrchasesFrontEnd/index.html";
 
     @BeforeMethod
     public void setup() throws InterruptedException {
