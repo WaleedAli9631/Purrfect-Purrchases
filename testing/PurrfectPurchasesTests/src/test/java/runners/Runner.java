@@ -18,14 +18,14 @@ import java.time.Duration;
 
 
 @CucumberOptions(features="src/test/resources/features/adoptionandselection/cat-selection-and-adoption.feature",
-        glue="com.revature.stepimplementations.adoptionandselection")
+        glue="stepimplementations.adoptionandselection")
 public class Runner extends AbstractTestNGCucumberTests {
     public static WebDriver driver;
     public static Home homePage;
     public static WebDriverWait wait;
     public static Admin adminPage;
     public static Adoption adoptionPage;
-    public static String webURL = "http://127.0.0.1:5501";
+    public static String webURL = "http://127.0.0.1:5500";
 //admin id: 55xPney8EhbEMAfhAVTRhhY4XCo1
     @BeforeMethod
     public void setup() throws InterruptedException {

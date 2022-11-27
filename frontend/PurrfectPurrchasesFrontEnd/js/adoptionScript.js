@@ -189,7 +189,7 @@ signInForm.addEventListener('submit', (e)=>{
         updateSessionAndLocalCartAfterLogin();
         getCatsFromDatabase();
         //checkIfCatsHaveBeenPurchased();
-        getAndDisplayShippingInfo();
+        //getAndDisplayShippingInfo();
     })
     .catch((error) => {
         const errorCode = error.code;
@@ -271,7 +271,6 @@ function getAndDisplayShippingInfo(){
                 }).then((res) => {
                     return res.json();
                 }).then((userInfo) => {
-                    console.log(userInfo);
                     let checkoutDiv = document.getElementById("Checkout");
                     let shippingInfoDiv = document.createElement("div");
                     shippingInfoDiv.setAttribute("id", "shipping-info");

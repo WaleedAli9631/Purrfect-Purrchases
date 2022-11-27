@@ -27,7 +27,7 @@ public class SelectionHomePage {
         Runner.homePage.cartLink.click();
         Runner.wait.until(ExpectedConditions.urlContains("adoption-checkout.html"));
         String URL = Runner.driver.getCurrentUrl();
-        Assert.assertEquals(URL, "http://127.0.0.1:5501/PurrfectPurrchasesFrontEnd/adoption-checkout.html" );
+        Assert.assertEquals(URL, "http://127.0.0.1:5500/PurrfectPurrchasesFrontEnd/adoption-checkout.html" );
     }
     @Then("customer navigates back to the Home page")
     public void customer_navigates_back_to_the_home_page() {
@@ -35,7 +35,7 @@ public class SelectionHomePage {
         Runner.adoptionPage.homeLink.click();
         Runner.wait.until(ExpectedConditions.urlContains("index.html"));
         String URL = Runner.driver.getCurrentUrl();
-        Assert.assertEquals(URL, "http://127.0.0.1:5501/PurrfectPurrchasesFrontEnd/index.html" );
+        Assert.assertEquals(URL, "http://127.0.0.1:5500/PurrfectPurrchasesFrontEnd/index.html" );
     }
     @When("customer selects a cat")
     public void customer_selects_a_cat() throws InterruptedException {

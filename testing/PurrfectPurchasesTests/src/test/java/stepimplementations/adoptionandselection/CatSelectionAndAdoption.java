@@ -153,6 +153,7 @@ public class CatSelectionAndAdoption {
     public void adopted_cat_is_not_viewable_on_home_page() {
         Runner.adoptionPage.homeLink.click();
         cats = (ArrayList<WebElement>)Runner.driver.findElements(By.xpath("//div[@id='catsquares']//div[@class = 'col']"));
+        System.out.println(cats);
         boolean flag = true;
         int i = 0;
         while(flag && i < cats.size()) {
