@@ -9,6 +9,7 @@ import com.revature.project2.service.AccountService;
 import io.javalin.Javalin;
 import org.json.JSONObject;
 
+import java.sql.SQLOutput;
 import java.util.List;
 
 public class CatController {
@@ -53,6 +54,13 @@ public class CatController {
                 ctx.result("The user does not have permission to add cats!");
                 ctx.status(401);
             }
+        });
+
+        app.put("/purchase", (ctx) -> {
+            CatInformation info = ctx.bodyAsClass(CatInformation.class);
+            int catID = info.getCatID();
+            String purchaseBy = info.getPurchasedBy();
+            catService.purchaseCat(catID,purchaseBy);
         });
 
         app.put("/cat/", (ctx)-> {

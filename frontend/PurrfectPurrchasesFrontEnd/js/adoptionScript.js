@@ -320,12 +320,25 @@ function getCatNames() {
     }  
 }
 
+/* 
 function updateCatPurchasedBy(cat){
+    console.log("THE CAT ID SHOULD BE " + cat.id);
     fetch(`${baseUrl}/cat`, {
         method: "PUT",
         body: `{"catID":"${Number(cat.id)}","catName":"${cat.name}","catBreed":"${cat.breed}","catGender":"${cat.gender}",
         "catColor":"${cat.color}","catAge":"${Number(cat.age)}","catImgName":"${cat.imageFile}","catCosts":"${Number(cat.costs)}",
         "purchasedBy":"${currentUser}"}`,
+        credentials: "include"
+    });
+}
+*/
+
+function updateCatPurchasedBy(cat){
+    console.log("THE CAT ID SHOULD BE " + cat.id);
+    console.log("THE PURCHASEBY SHOULD BE " + currentUser);
+    fetch(`${baseUrl}/purchase`, {
+        method: "PUT",
+        body: `{"catID":"${Number(cat.id)}","purchasedBy":"${currentUser}"}`,
         credentials: "include"
     });
 }

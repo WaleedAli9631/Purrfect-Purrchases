@@ -20,6 +20,18 @@ public class Home {
     @FindBy(id="adminPageLink")
     public WebElement AdminLink;
 
+    @FindBy(id="loginLink")
+    public WebElement LoginLink;
+
+    @FindBy(id="login-email")
+    public WebElement LoginEmail;
+
+    @FindBy(id="login-password")
+    public WebElement LoginPassword;
+
+    @FindBy(id="loginButton")
+    public WebElement LoginButton;
+
     //Content Information
     @FindBy(className="BreedDeclaration")
     public List<WebElement> BreedList;

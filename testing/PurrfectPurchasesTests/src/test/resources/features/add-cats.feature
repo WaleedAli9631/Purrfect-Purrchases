@@ -2,6 +2,8 @@ Feature: Add Cats
 
   Background: User is on Admin Page
     Given User is on home page
+    Given User clicks Login Link
+    Given User signs in as Admin
     Given User clicks on Admin link
 
   Scenario Outline: Add Cats
@@ -13,12 +15,14 @@ Feature: Add Cats
     When User inputs <color> into Color field
     When User inputs <cost> into Cost field
     When User inputs <imageUrl> into ImageURL field
+    When User takes a photo and calls it "addcat-before.png"
     When User clicks Add Cat submit button
     Then User should see alert confirmation
     Then User should see cat with <catname>,<breed>,<age>,<gender>,<color>,<cost>,and <imageUrl> in table
     When User logs out
     When User is on home page
     Then User should see cat with <catname>,<breed>,<age>,<gender>,<color>,<cost>,and <imageUrl> in homepage
+    When User takes a photo and calls it "addcat-after.png"
 
     Examples:
       | catname | breed | age | gender | color | cost | imageUrl |
