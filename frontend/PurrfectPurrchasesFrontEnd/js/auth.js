@@ -68,7 +68,7 @@ signOutEle.addEventListener('click', () => {
 
 // Signing in
 const signInForm = document.querySelector('#login-form')
-signInForm.addEventListener('submit', (e) => {
+signInForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   //get user info
@@ -76,24 +76,25 @@ signInForm.addEventListener('submit', (e) => {
   const password = signInForm['login-password'].value;
 
   //sign in the user
-  signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    const modal = document.querySelector("#modal-login");
-    $('#modal-login').modal('hide');
-    if (window.sessionStorage.getItem("user_id") == "55xPney8EhbEMAfhAVTRhhY4XCo1") {
-      $('#adminMenu').show();
-    }
-    signInForm.reset();
 
-
-      
-  })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // make an alert
-    });
+  try{
+    await signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      const modal = document.querySelector("#modal-login");
+      $('#modal-login').modal('hide');
+      if (window.sessionStorage.getItem("user_id") == "55xPney8EhbEMAfhAVTRhhY4XCo1") {
+        $('#adminMenu').show();
+      }
+      signInForm.reset();
+    })
+      .catch((error) => {
+        alert(error.message);
+      });
+  }catch(error){
+    alert(error.message);
+  };
+  
 })
 
 // on auth changes

@@ -35,5 +35,8 @@ public class CatService {
     public List<Cat> getCatList(String breed, int age, String gender) {
         return catDAO.findAllCats(breed, age, gender);
     }
+    public List<Cat> getUserAdoptedCats(String uid) {
+        return catDAO.findUserAdoptedCats(uid);
+    }
 
 }

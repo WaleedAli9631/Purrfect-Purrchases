@@ -32,7 +32,7 @@ public class Main {
             config.plugins.enableCors((cors)->{
                 cors.add(it -> {
                     it.defaultScheme = "http";
-                    it.allowHost("127.0.0.1:5501");
+                    it.allowHost("127.0.0.1:5500");
                     it.allowCredentials = true;
                 });
             });
