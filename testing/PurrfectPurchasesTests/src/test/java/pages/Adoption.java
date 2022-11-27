@@ -1,6 +1,5 @@
-package pages;
+package com.revature.pages;
 
-import org.bouncycastle.jcajce.provider.asymmetric.X509;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,15 +7,15 @@ import org.openqa.selenium.support.PageFactory;
 
 public class Adoption {
 
-    @FindBy(xpath = "//div/ul/li[1]/a")
+    @FindBy(xpath = "//div/nav/div/ul/li[1]/a")
     public WebElement homeLink;
-    @FindBy(xpath = "//div/ul/li[2]/a")
+    @FindBy(xpath = "//div/nav/div/ul/li[2]/a")
     public WebElement logoutLink;
     @FindBy(xpath = "//div[@id=\"loginOrSignup\"]")
     public WebElement loginOrSignupDiv;
     @FindBy(xpath = "//div/div[1]/button[@id='log in']")
     public WebElement outerLoginButton;
-    @FindBy(xpath = "////div/div[1]/div[1]")
+    @FindBy(xpath = "//div/div[1]/div[1]")
     public WebElement loginCollapsible;
     @FindBy(xpath = "//div/div[1]/div[1]/form/div/input[1]")
     public WebElement loginEmail;
@@ -25,7 +24,7 @@ public class Adoption {
     @FindBy(xpath = "//div/div[1]/div[1]/form/button")
     public WebElement innerLoginButton;
     @FindBy(xpath = "//button[@id=\"signup\"]")
-    public WebElement OuterSignup;
+    public WebElement outerSignup;
     @FindBy(xpath = "//div/div[1]/div[2]")
     public WebElement signupCollapsible;
     @FindBy(xpath = "//*[@id=\"signup-fname\"]")
@@ -54,7 +53,8 @@ public class Adoption {
     public WebElement checkoutDiv;
     @FindBy(xpath = "//*[@id=\"Complete\"]")
     public WebElement completePurchaseButton;
-
+    @FindBy(xpath = "//div/div[3]/div[@id='shipping-info']")
+    public WebElement shippingInfo;
 
     public Adoption(WebDriver driver) {PageFactory.initElements(driver,this);}
 }

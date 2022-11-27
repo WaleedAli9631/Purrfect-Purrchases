@@ -21,7 +21,7 @@ public class AccountDAO {
                 account.setStreetAddress(resultSet.getString("street_address"));
                 account.setCity(resultSet.getString("city"));
                 account.setState(resultSet.getString("state"));
-
+                account.setRole(resultSet.getString("role"));
                 return account;
             }
             return null;
@@ -33,9 +33,10 @@ public class AccountDAO {
                                  String lname,
                                  String streetAddress,
                                  String city,
-                                 String state) throws SQLException {
+                                 String state,
+                                 String role) throws SQLException {
         try(Connection connection = ConnectionUtility.getConnection()){
-            String sql = "insert into accounts (uid, f_name, l_name, street_address, city, state) values (?,?,?,?,?,?)";
+            String sql = "insert into accounts (uid, f_name, l_name, street_address, city, state,role) values (?,?,?,?,?,?,?)";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -45,10 +46,11 @@ public class AccountDAO {
             preparedStatement.setString(4,streetAddress);
             preparedStatement.setString(5,city);
             preparedStatement.setString(6,state);
+            preparedStatement.setString(7,role);
 
             preparedStatement.execute();
 
-            return new Account(uid,fname,lname,streetAddress,city,state);
+            return new Account(uid,fname,lname,streetAddress,city,state,role);
         }
 
     }
@@ -58,10 +60,11 @@ public class AccountDAO {
                                  String lname,
                                  String streetAddress,
                                  String city,
-                                 String state) throws SQLException {
+                                 String state,
+                                 String role) throws SQLException {
         try(Connection connection = ConnectionUtility.getConnection()){
 
-            String sql = "update accounts set f_name=?, l_name=?, street_address=?, city=?, state=? where uid=?";
+            String sql = "update accounts set f_name=?, l_name=?, street_address=?, city=?, state=?, role=? where uid=?";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 
@@ -71,10 +74,10 @@ public class AccountDAO {
             preparedStatement.setString(4,city);
             preparedStatement.setString(5,state);
             preparedStatement.setString(6,uid);
-
+            preparedStatement.setString(7,role);
             preparedStatement.execute();
 
-            return new Account(uid,fname,lname,streetAddress,city,state);
+            return new Account(uid,fname,lname,streetAddress,city,state, null);
         }
 
     }

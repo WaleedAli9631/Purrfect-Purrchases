@@ -1,6 +1,7 @@
 package com.revature.project2.dto;
 
 public class CatInformation {
+    private String userID;
     private int catID;
     private String catName;
     private String catBreed;
@@ -14,7 +15,16 @@ public class CatInformation {
     public CatInformation() {
     }
 
-    public CatInformation(int catID, String catName, String catBreed, String catGender, int catAge, int catCosts, String catImgName, String catColor, String purchasedBy) {
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public CatInformation(String userID, int catID, String catName, String catBreed, String catGender, int catAge, int catCosts, String catImgName, String catColor, String purchasedBy) {
+        this.userID = userID;
         this.catID = catID;
         this.catName = catName;
         this.catBreed = catBreed;
@@ -24,17 +34,6 @@ public class CatInformation {
         this.catImgName = catImgName;
         this.catColor = catColor;
         this.purchasedBy = purchasedBy;
-    }
-
-    public CatInformation(int catID, String catName, String catBreed, String catGender, int catAge, int catCosts, String catImgName, String catColor) {
-        this.catID = catID;
-        this.catName = catName;
-        this.catBreed = catBreed;
-        this.catGender = catGender;
-        this.catAge = catAge;
-        this.catCosts = catCosts;
-        this.catImgName = catImgName;
-        this.catColor = catColor;
     }
 
     public int getCatID() {

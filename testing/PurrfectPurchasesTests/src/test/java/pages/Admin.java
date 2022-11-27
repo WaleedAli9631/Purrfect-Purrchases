@@ -13,6 +13,16 @@ public class Admin {
         PageFactory.initElements(driver, this);
     }
 
+    private String deleteID;
+
+    public String getDeleteID() {
+        return deleteID;
+    }
+
+    public void setDeleteID(String deleteID) {
+        this.deleteID = deleteID;
+    }
+
     //Edit Cat Form Modal
     @FindBy(id="editcat-id")
     public WebElement EditCatIDInput;

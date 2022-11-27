@@ -46,7 +46,7 @@ signUpForm.addEventListener('submit', async (e) => {
       // Handle error
     }).then(async () => {
       const token = await getIdToken(await getAuth().currentUser, true);
-      const infoArray = [getAuth().currentUser.uid, fname, lname, address, city, state, token];
+      const infoArray = [getAuth().currentUser.uid, fname, lname, address, city, state, token,null];
       fetch('http://127.0.0.1:9090/accounts/' + encodeURIComponent(JSON.stringify(infoArray)), {
         method: 'POST',
         credentials: 'include'
@@ -89,6 +89,9 @@ signInForm.addEventListener('submit', async (e) => {
       const user = userCredential.user;
       const modal = document.querySelector("#modal-login");
       $('#modal-login').modal('hide');
+      if (window.sessionStorage.getItem("user_id") == "55xPney8EhbEMAfhAVTRhhY4XCo1") {
+        $('#adminMenu').show();
+      }
       signInForm.reset();
     })
       .catch((error) => {
@@ -97,7 +100,6 @@ signInForm.addEventListener('submit', async (e) => {
   }catch(error){
     alert(error.message);
   };
-  
 })
 
 // on auth changes
@@ -108,11 +110,14 @@ onAuthStateChanged(auth, (user) => {
     $('#loginLi').show();
     $('#logoutLi').hide();
     $('#accountLi').hide();
+    $('#adminMenu').hide();
   } else {
     $('#signUpLi').hide();
     $('#loginLi').hide();
     $('#logoutLi').show();
     $('#accountLi').show();
-
+    if (window.sessionStorage.getItem("user_id") == "55xPney8EhbEMAfhAVTRhhY4XCo1") {
+      $('#adminMenu').show();
+    }
   }
 })

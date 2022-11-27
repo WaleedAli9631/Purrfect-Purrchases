@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.revature.project2.model.Account;
 import com.revature.project2.service.AccountService;
 import io.javalin.Javalin;
+import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -19,13 +20,12 @@ public class AccountController {
             String[] accountInfo = new Gson().fromJson(context.pathParam("accountString"), String[].class);
             try {
                 FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(accountInfo[6]);
-                Account createdAccount = accountService.addAccount(accountInfo[0], accountInfo[1], accountInfo[2], accountInfo[3], accountInfo[4], accountInfo[5]);
+                Account createdAccount = accountService.addAccount(accountInfo[0], accountInfo[1], accountInfo[2], accountInfo[3], accountInfo[4], accountInfo[5],accountInfo[7]);
                 context.status(201);
                 context.json(createdAccount);
             } catch (FirebaseAuthException e) {
                 context.status(400);
             }
-
         }));
 
         app.get("/accounts/{uidtoken}", context -> {
@@ -43,7 +43,7 @@ public class AccountController {
             String[] accountInfo = new Gson().fromJson(context.pathParam("accountString"), String[].class);
             try {
                 FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(accountInfo[6]);
-                Account updatedAccount = accountService.updateAccount(accountInfo[0], accountInfo[1], accountInfo[2], accountInfo[3], accountInfo[4], accountInfo[5]);
+                Account updatedAccount = accountService.updateAccount(accountInfo[0], accountInfo[1], accountInfo[2], accountInfo[3], accountInfo[4], accountInfo[5], accountInfo[7]);
                 context.status(201);
                 context.json(updatedAccount);
             } catch (FirebaseAuthException e) {

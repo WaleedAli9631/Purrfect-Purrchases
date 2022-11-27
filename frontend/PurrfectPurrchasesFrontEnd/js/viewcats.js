@@ -5,7 +5,9 @@
     function getCatList(breeds, age, gender, start) {
       fetch('http://127.0.0.1:9090/allcats/'+ JSON.stringify({"breed":breeds,"age":age,"gender":gender}), {
         method:'GET',
-        credentials: 'include'  
+        headers: {"Content-Type":"application/json"},
+        credentials: 'include',
+        mode: 'cors'
       }).then((res) => res.json())
       .then((responseBody) => {
         pushCats(responseBody, start);
@@ -18,7 +20,6 @@
 
     function addCode(catID, imgName, catName, catBreed, catGender, catAge, catCost) {
       document.getElementById("catsquares").innerHTML +=
-      "<div class=\"col\">" +
       "<div id=\"" + catID + "\" class=\"col\">" +
       "<div class=\"p-3 bg-light rounded-lg shadow\">" +
       "<img src=\"" + imgName + "\" class=\"w-100 catElement\" onerror=\"this.onerror=null; this.src='assets/img/404.jpg'\">" +

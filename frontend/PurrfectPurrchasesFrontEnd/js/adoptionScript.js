@@ -1,9 +1,12 @@
-import { getAuth,
+import {
+    getAuth,
     createUserWithEmailAndPassword,
     signOut,
     signInWithEmailAndPassword,
-    onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
-
+    onAuthStateChanged,
+    getIdToken
+  } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+  
 
 let cart = [];
 let sessionCart = [];
@@ -45,21 +48,18 @@ function getCatsFromDatabase(){
                 }
             }).catch((error) => { 
                 deleteOldCatInfoFromStorage(sessionCart[i].cat_id);
-                alert(`Sorry, one ofyour cats has been deleted and is no longer available. Navigate back to Home to select more cats`);
+                alert(`Sorry, one of your cats has been deleted and is no longer available. Navigate back to Home to select more cats`);
             });   
     }
 }
 getCatsFromDatabase();
 
-
-
 /* this pulls cats from wherever and adds them to users cart */
 //let cats = window.sessionStorage.getItem("cats");
 function showImages(cat) {
     adoptionCart.innerHTML +=  `<div id="${cat.id}" class="cat-in-cart"> 
-      <img id=\"${JSON.stringify(cat)}\" src="${cat.imageFile}" alt = "${cat.name}" 
-       width="200" height="200" style="border: 2px solid black"> 
-       <p><b>Name: </b>${cat.name}</p>
+      <img src="${cat.imageFile}" alt = "${cat.name}"  onerror=\"this.onerror=null; this.src='assets/img/404.jpg'\"> 
+       <p id="${cat.name}"><b>Name: </b>${cat.name}</p>
        <p><b>Price: </b>$${cat.costs}</p>
        <button id=\"rb${cat.id}\"class="remove-cat-from-cart">Remove Cat</button>  
        </div>`;
@@ -91,7 +91,6 @@ function deleteOldCatInfoFromStorage(idOfCatToBeRemoved){
     window.sessionStorage.setItem("cart", JSON.stringify(sessionCart));
 }
 
-
 /* This is used for making the buttons collapsible and adding the input elements within the collapsed space */
 function collapsibleContent() {
     const loginOrRegister = document.getElementsByClassName("collapsible");
@@ -115,16 +114,16 @@ collapsibleContent();
 /** THIS SECTION CONTAINS CODE FOR LOGIN/LOGOUT/SIGNUP  */
 /*********************************************************************************************************************************** */
 
-
 //create authentication object
 const auth = getAuth();
 
 /** This is for signing up */
 const signUpForm = document.querySelector('#signup-form');
+var firstSignUp = false;
 signUpForm.addEventListener('submit', (e)=>{
-    // e.preventDefault();
+  e.preventDefault();
 
-   //get user info
+  //get user info
   const email = signUpForm['signup-email'].value;
   const password = signUpForm['signup-password'].value;
   const passwordConfirm = signUpForm['signup-password-confirm'].value;
@@ -144,27 +143,29 @@ signUpForm.addEventListener('submit', (e)=>{
     createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        const infoArray = [user.uid, fname, lname, address, city, state];
+        firstSignUp = true;
         currentUser = user["uid"];
         window.sessionStorage.setItem("user_id",currentUser);
+        deleteAllCatsFromCart();
         updateSessionAndLocalCartAfterLogin();
         getCatsFromDatabase();
 
+    }).catch(function (error) {
+        // Handle error
+      }).then(async () => {
+        const token = await getIdToken(await getAuth().currentUser, true);
+        const infoArray = [getAuth().currentUser.uid, fname, lname, address, city, state, token,null];
         fetch('http://127.0.0.1:9090/accounts/' + encodeURIComponent(JSON.stringify(infoArray)), {
-        method: 'POST',
-        credentials: 'include'
+          method: 'POST',
+          credentials: 'include'
         })
-        signUpForm.reset();
-        })
-        .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // make an alert
-        });
-
+        alert("You have signed up and are now signed in!");
         getAndDisplayShippingInfo();
+        signUpForm.reset();
+      }).catch((error) => {
+        console.log(error.message)
+      });
   }
-
 })   
 
 /** This is for signing in */
@@ -217,7 +218,7 @@ function updateSessionAndLocalCartAfterLogin(){
 }
 
 /** This is for signing out */
-const signOutEle = document.querySelector('#logout')
+const signOutEle = document.querySelector('#logout-link')
 signOutEle.addEventListener('click', ()=>{
     if( ! confirm("You are about to log out. Is this OK?") ){      
     } else {       
@@ -243,16 +244,14 @@ function deleteAllCatsFromCart() {
     }
 }
 
-
 onAuthStateChanged(auth, (user)=>{
     //console.log('user status changed: ', user)
     if(user == null){
         $('#loginOrSignup').show();
-        $('#logout').hide();
-  
+        $('#logout-link').hide();
     }else{
         $('#loginOrSignup').hide();
-        $('#logout').show();
+        $('#logout-link').show();
     }
   });
 
@@ -268,9 +267,11 @@ function getAndDisplayShippingInfo(){
                 fetch("http://127.0.0.1:9090/accounts/" + encodeURI(JSON.stringify(infoArray)),{
                     method: "GET",
                     credentials: "include"
+            
                 }).then((res) => {
                     return res.json();
                 }).then((userInfo) => {
+                    console.log(userInfo);
                     let checkoutDiv = document.getElementById("Checkout");
                     let shippingInfoDiv = document.createElement("div");
                     shippingInfoDiv.setAttribute("id", "shipping-info");
@@ -297,11 +298,9 @@ function getAndDisplayShippingInfo(){
     })
     
 }
-if (currentUser != "null") {
+if (currentUser != "null" && currentUser != null) {
     getAndDisplayShippingInfo();
 }
-
-
 
 function getCurrentDate(){
     let today = new Date();
@@ -339,11 +338,10 @@ function updateCatPurchasedBy(cat){
     });
 }
 
-
 /* This is used for sending alert to user when they try to purchase cats on their cart */
 const completeButton = document.getElementById("Complete");
 completeButton.addEventListener("click", function( e ){ //e => event
-        if (currentUser !== null) { //don't want user to checkout if they aren't logged in
+        if (currentUser != "null") { //don't want user to checkout if they aren't logged in
             if (cats.length !== 0){
                 if( ! confirm(`Are you sure you want to adopt ${getCatNames()}?`) ){
                 } else {
