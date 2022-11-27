@@ -153,8 +153,8 @@ signUpForm.addEventListener('submit', (e)=>{
     }).catch(function (error) {
         // Handle error
       }).then(async () => {
-        const token = await getIdToken(getAuth().currentUser, true);
-        const infoArray = [getAuth().currentUser.uid, fname, lname, address, city, state, token];
+        const token = await getIdToken(await getAuth().currentUser, true);
+        const infoArray = [getAuth().currentUser.uid, fname, lname, address, city, state, token,null];
         fetch('http://127.0.0.1:9090/accounts/' + encodeURIComponent(JSON.stringify(infoArray)), {
           method: 'POST',
           credentials: 'include'
@@ -267,9 +267,11 @@ function getAndDisplayShippingInfo(){
                 fetch("http://127.0.0.1:9090/accounts/" + encodeURI(JSON.stringify(infoArray)),{
                     method: "GET",
                     credentials: "include"
+            
                 }).then((res) => {
                     return res.json();
                 }).then((userInfo) => {
+                    console.log(userInfo);
                     let checkoutDiv = document.getElementById("Checkout");
                     let shippingInfoDiv = document.createElement("div");
                     shippingInfoDiv.setAttribute("id", "shipping-info");

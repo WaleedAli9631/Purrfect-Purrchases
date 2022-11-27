@@ -81,17 +81,19 @@ public class Account {
         this.state = state;
     }
 
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return uid.equals(account.uid) && fname.equals(account.fname) && lname.equals(account.lname) && streetAddress.equals(account.streetAddress) && city.equals(account.city) && state.equals(account.state);
+        return Objects.equals(uid, account.uid) && Objects.equals(fname, account.fname) && Objects.equals(lname, account.lname) && Objects.equals(streetAddress, account.streetAddress) && Objects.equals(city, account.city) && Objects.equals(state, account.state) && Objects.equals(role, account.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uid, fname, lname, streetAddress, city, state);
+        return Objects.hash(uid, fname, lname, streetAddress, city, state, role);
     }
 
     @Override
@@ -103,6 +105,7 @@ public class Account {
                 ", streetAddress='" + streetAddress + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

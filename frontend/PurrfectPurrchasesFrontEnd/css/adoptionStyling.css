@@ -104,3 +104,16 @@ body > div > div {
     border-style: groove;
     box-shadow: 5px 5px 5px 2px rgba(0,0,0,.8);
   }
+
+  #background-shape {
+    position: absolute;
+    width: 1585.02px;
+    height: 1407.12px;
+    max-height:100%;
+    left: -592.79px;
+    top: -10px;
+    background: #E6DAC6;
+    border-radius: 313px;
+    transform: rotate(11.53deg);
+    z-index:-1;
+}
