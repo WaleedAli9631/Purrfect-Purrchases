@@ -132,9 +132,41 @@ signUpForm.addEventListener('submit', (e)=>{
   const address = signUpForm['signup-address'].value;
   const city = signUpForm['signup-city'].value;
   const state = signUpForm['signup-state'].value;
+  const regex = new RegExp("^[ A-Za-z0-9_@.#!&+-]*$");
+  const sizeCheck = [email,password,passwordConfirm,fname,lname,address,city,state];
+  let sizeZeroChecker = false;
+  let sizeMinChecker = false;
+  let sizeMaxChecker = false;
+  sizeCheck.forEach(element => {
+    if(element.length == 0){
+      sizeZeroChecker = true;
+    }
+    if(element.length <6){
+      if(element != fname || element != lname){
+        sizeMinChecker = true;
+      }
+    }
+    if(element.length > 24){
+      sizeMaxChecker = true;
+    }
+  });
+  if(sizeMinChecker){
+    alert("All inputs must be of a length greater than six");
 
-  if (password.length < 6) {
+  } else if(sizeMaxChecker){
+    alert("All inputs must be of a length lesser than six");
+  }
+  else if(sizeZeroChecker){
+    alert("All inputs must be filled");
+  }
+  else if (password.length < 6) {
     alert("Password length is below 6");
+  }
+  else if(password.length > 24){
+    alert("Password length is over 24");
+  }
+  else if(!regex.test(password)){
+    alert("Password has invalid characters");
   }
   else if (password != passwordConfirm) {
     alert("Password mismatch");

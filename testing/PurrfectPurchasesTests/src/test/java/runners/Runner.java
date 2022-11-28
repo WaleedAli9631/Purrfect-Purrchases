@@ -2,9 +2,6 @@ package runners;
 
 
 //import com.beust.ah.A;
-import pages.Admin;
-import pages.Home;
-import pages.Adoption;
 import com.revature.pages.AccountPage;
 import com.revature.pages.Admin;
 import com.revature.pages.Home;
@@ -21,8 +18,8 @@ import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
 
-@CucumberOptions(features="src/test/resources/features/adoptionandselection/cat-selection-and-adoption.feature",
-        glue="stepimplementations.adoptionandselection", tags = "@Test6")
+@CucumberOptions(features="src/test/resources/features",
+        glue="com.revature.stepimplementations.adoptionandselection", tags = "@CatSelectAdopt or @AdoptionPage or @CatSelectionHomepage")
 public class Runner extends AbstractTestNGCucumberTests {
     public static WebDriver driver;
     public static Home homePage;

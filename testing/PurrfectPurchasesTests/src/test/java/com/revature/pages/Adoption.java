@@ -1,4 +1,4 @@
-package pages;
+package com.revature.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +11,8 @@ public class Adoption {
     public WebElement homeLink;
     @FindBy(xpath = "//div[2]/nav/div/ul/li/a[@id='logout-link']")
     public WebElement logoutLink;
+    @FindBy(xpath = "//div[2]/nav/div/ul/li/a[@id='accountLi']")
+    public WebElement accountLink;
     @FindBy(xpath = "//div[@id=\"loginOrSignup\"]")
     public WebElement loginOrSignupDiv;
     @FindBy(xpath = "//div/div[1]/button[@id='log in']")

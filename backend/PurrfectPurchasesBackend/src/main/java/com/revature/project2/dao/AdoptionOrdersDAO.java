@@ -23,7 +23,7 @@ public class AdoptionOrdersDAO {
             return new AdoptionOrder(adoptionID,userId,catId,adoptionDate);
         }
         catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new SQLException(e);
         }
     }
 }

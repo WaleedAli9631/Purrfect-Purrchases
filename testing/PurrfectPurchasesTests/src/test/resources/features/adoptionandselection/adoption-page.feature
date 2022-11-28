@@ -3,6 +3,11 @@ Feature: Adoption page
 
   Background: On Adoption page
     Given customer is on Adoption page
+  @Test1
+  Scenario: Adoption-Account page navigation
+    When customer logs in
+    Then customer navigates to account page
+    Then customer navigates back to Adoption page
 
   Scenario: Customer logs in
     Given customer was not logged in

@@ -1,3 +1,4 @@
+@CatSelectAdopt
 Feature: Cat Selection
 
   Scenario: Selected cat on Adoption page

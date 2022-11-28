@@ -1,33 +1,35 @@
 package com.revature.stepimplementations.adoptionandselection;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import runners.Runner;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.html5.SessionStorage;
 import org.openqa.selenium.html5.WebStorage;
 import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class CatSelectionAndAdoption {
-    private String homeURL = Runner.webURL + "/PurrfectPurrchasesFrontEnd/index.html";
+    private String homeURL = Runner.webURL + "/index.html";
     private ArrayList<WebElement> cats;
     private WebElement clickedCat;
     private String clickedCatName;
     private String clickedCatId;
     private ArrayList<WebElement> catsInCart;
+    private int rand;
     WebStorage webStorage = (WebStorage) new Augmenter().augment(Runner.driver);
     SessionStorage sessionStorage = webStorage.getSessionStorage();
 
     @Given("customer selects cat and navigates to the Adoption page")
-    public void customer_selects_cat_and_navigates_to_the_adoption_page() {
+    public void customer_selects_cat_and_navigates_to_the_adoption_page() throws IOException {
         Runner.driver.get(homeURL);
         cats = (ArrayList<WebElement>)Runner.driver.findElements(By.xpath("//div[@id='catsquares']//div[@class = 'col']"));
         int rand = (int)((Math.random()*cats.size()));
@@ -99,7 +101,7 @@ public class CatSelectionAndAdoption {
         Assert.assertEquals(alertText,expectedAlertText);
     }
     @When("customer signs up as a new user")
-    public void customer_signs_up_as_a_new_user() {
+    public void customer_signs_up_as_a_new_user() throws IOException {
         String[] signupInfo = new String[7];
         for(int i = 0; i < signupInfo.length; i++) {
             String possibleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
@@ -121,11 +123,13 @@ public class CatSelectionAndAdoption {
         Runner.adoptionPage.signupCity.sendKeys(signupInfo[5]);
         Runner.adoptionPage.signupState.sendKeys(signupInfo[6]);
         Runner.adoptionPage.innerSignupButton.click();
+        File scrFile = ((TakesScreenshot)Runner.driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile, new File("src/test/java/screenshots/cat-select-signup.png"));
         Runner.wait.until(ExpectedConditions.alertIsPresent());
         Runner.driver.switchTo().alert().accept();
     }
     @Then("cat they selected is visible in the cart")
-    public void cat_they_selected_is_visible_in_the_cart() {
+    public void cat_they_selected_is_visible_in_the_cart() throws IOException {
         Runner.wait.until(ExpectedConditions.visibilityOf(Runner.driver.findElement(By.className("cat-in-cart"))));
         boolean flag = true;
         try{
@@ -134,15 +138,17 @@ public class CatSelectionAndAdoption {
         catch (NoSuchElementException e){
             flag = false;
         }
+        File scrFile = ((TakesScreenshot)Runner.driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile, new File("src/test/java/screenshots/cat-in-cart.png"));
         Assert.assertTrue(flag);
     }
     @When("customer gets confirmation alert and confirms they want to buy the cat\\(s)")
-    public void customer_gets_confirmation_alert_and_confirms_they_want_to_buy_the_cat_s() throws InterruptedException {
+    public void customer_gets_confirmation_alert_and_confirms_they_want_to_buy_the_cat_s() {
         Runner.wait.until(ExpectedConditions.alertIsPresent());
         Runner.driver.switchTo().alert().accept();
     }
     @Then("customer gets order complete confirmation")
-    public void customer_gets_order_complete_confirmation() throws InterruptedException {
+    public void customer_gets_order_complete_confirmation() {
         Runner.wait.until(ExpectedConditions.alertIsPresent());
         String alertText = Runner.driver.switchTo().alert().getText();
         Runner.driver.switchTo().alert().accept();
@@ -153,7 +159,6 @@ public class CatSelectionAndAdoption {
     public void adopted_cat_is_not_viewable_on_home_page() {
         Runner.adoptionPage.homeLink.click();
         cats = (ArrayList<WebElement>)Runner.driver.findElements(By.xpath("//div[@id='catsquares']//div[@class = 'col']"));
-        System.out.println(cats);
         boolean flag = true;
         int i = 0;
         while(flag && i < cats.size()) {
@@ -166,7 +171,7 @@ public class CatSelectionAndAdoption {
         Assert.assertTrue(flag);
     }
     @Given("customer1 adds cat to cart")
-    public void customer1_adds_cat_to_cart() throws InterruptedException {
+    public void customer1_adds_cat_to_cart(){
         Runner.driver.get(homeURL);
         Runner.wait.until(ExpectedConditions.visibilityOf(Runner.homePage.loginLink));
         Runner.homePage.loginLink.click();
@@ -177,7 +182,7 @@ public class CatSelectionAndAdoption {
         Runner.homePage.closeOutLoginModalButton.click();
         //Runner.wait.until(ExpectedConditions.invisibilityOf(Runner.homePage.modalLogin));
         cats = (ArrayList<WebElement>)Runner.driver.findElements(By.xpath("//div[@id='catsquares']//div[@class = 'col']"));
-        int rand = (int)((Math.random()*cats.size()));
+        rand = (int)((Math.random()*cats.size()));
         clickedCat = cats.get(rand);
         Runner.wait.until(ExpectedConditions.visibilityOf(clickedCat.findElement(By.tagName("h2"))));
         clickedCatName = clickedCat.findElement(By.tagName("h2")).getText().split(" -")[0];
@@ -190,7 +195,7 @@ public class CatSelectionAndAdoption {
         Runner.homePage.logoutLink.click();
     }
     @When("customer2 adopts cat that customer1 added")
-    public void customer2_adopts_cat_that_customer1_added() throws InterruptedException {
+    public void customer2_adopts_cat_that_customer1_added() {
         Runner.wait.until(ExpectedConditions.visibilityOf(Runner.homePage.loginLink));
         Runner.homePage.loginLink.click();
         Runner.homePage.loginModalEmail.sendKeys("fake2@revature.com");
@@ -198,6 +203,8 @@ public class CatSelectionAndAdoption {
         Runner.homePage.loginModalLoginButton.click();
         //Runner.wait.until(ExpectedConditions.elementToBeClickable(Runner.homePage.closeOutLoginModalButton));
         Runner.homePage.closeOutLoginModalButton.click();
+        cats = (ArrayList<WebElement>)Runner.driver.findElements(By.xpath("//div[@id='catsquares']//div[@class = 'col']"));
+        clickedCat = cats.get(rand);
         WebElement cartButton = clickedCat.findElement(By.className("cart-button"));
         cartButton.click();
         Runner.wait.until(ExpectedConditions.alertIsPresent());
