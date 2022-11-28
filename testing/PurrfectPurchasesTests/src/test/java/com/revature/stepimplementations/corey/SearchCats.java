@@ -10,6 +10,17 @@ import runners.Runner;
 import static runners.Runner.driver;
 
 public class SearchCats {
+    @Given("User clicks Login Link")
+    public void user_clicks_login_link() {
+        Runner.homePage.LoginLink.click();
+    }
+
+    @Given("User signs in as Admin")
+    public void user_signs_in_as_admin() {
+        Runner.homePage.LoginEmail.sendKeys("admin@admin.com");
+        Runner.homePage.LoginPassword.sendKeys("admin123");
+        Runner.homePage.LoginButton.click();
+    }
 
     @Given("User clicks on Admin link")
     public void user_clicks_on_admin_link() throws InterruptedException {
