@@ -15,8 +15,8 @@ public class CatService {
         return catDAO.findCatByID(id);
     }
 
-    public void deleteCat(int id) throws SQLException {
-        catDAO.deleteCatById(id);
+    public boolean deleteCat(int id) throws SQLException {
+        return catDAO.deleteCatById(id);
     }
 
     public void purchaseCat(int id, String purchaseBy) throws SQLException {
@@ -29,9 +29,7 @@ public class CatService {
     public Cat editCat(CatInformation catinfo) {
         return catDAO.changeCat(catinfo);
     }
-    //public Cat catPurchasedBy(CatInformation catinfo) {
-    //    return catDAO.changeCatPurchasedBy(catinfo);
-    //}
+
     public List<Cat> getCatList(String breed, int age, String gender) {
         return catDAO.findAllCats(breed, age, gender);
     }

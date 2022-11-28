@@ -18,7 +18,7 @@ import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
 
-@CucumberOptions(features = "classpath:features", glue = "com.revature.stepimplementations", tags = "@acount-page")
+@CucumberOptions(features = "classpath:features/catmanage", glue = "com.revature.stepimplementations")
 public class Runner extends AbstractTestNGCucumberTests {
     public static WebDriver driver;
     public static Home homePage;
@@ -26,7 +26,7 @@ public class Runner extends AbstractTestNGCucumberTests {
     public static Admin adminPage;
     public static Adoption adoptionPage;
     public static AccountPage accountPage;
-    public static String webURL = "http://127.0.0.1:5500/frontend/PurrfectPurrchasesFrontEnd/index.html";
+    public static String webURL = "http://127.0.0.1:5501/index.html";
 
     @BeforeMethod
     public void setup() throws InterruptedException {
