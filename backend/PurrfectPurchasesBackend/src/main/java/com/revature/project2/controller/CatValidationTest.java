@@ -1,12 +1,30 @@
 package com.revature.project2.controller;
 
+import com.revature.project2.model.Cat;
+import com.revature.project2.service.CatService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.sql.SQLException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CatValidationTest {
+
+    @ParameterizedTest
+    @CsvSource({
+            "0,false",
+            "1,false",
+            "2,true",
+            "3,true",
+            "500,false"
+    })
+    public void catGetID(String id, boolean works) throws SQLException {
+        CatService cat = new CatService();
+        Cat returnCat = cat.getCat(Integer.parseInt(id));
+        assertEquals((returnCat != null),works);
+    }
 
     @ParameterizedTest
     @CsvSource({

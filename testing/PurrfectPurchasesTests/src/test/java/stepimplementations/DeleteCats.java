@@ -26,10 +26,10 @@ public class DeleteCats {
         if (isPresent) driver.switchTo().alert().accept();
         System.out.println(Runner.adminPage.getDeleteID());
         Thread.sleep(1000);
-        Assert.assertEquals(isPresent, true, "Error: Cat not confirmed to be added!");
     }
-    @Then("User should NOT see cat with <catID> in table")
-    public void user_should_not_see_cat_with_cat_id_in_table() {
+    @Then("User should NOT see deleted cat in table")
+    public void user_should_not_see_deleted_cat_in_table() {
         boolean isPresent = driver.findElements(By.xpath("//tr/td[text()='" + Runner.adminPage.getDeleteID() + "']")).size() > 0;
+        Assert.assertEquals(isPresent, true, "Error: Cat not confirmed to be added!");
     }
 }
