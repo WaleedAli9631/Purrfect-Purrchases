@@ -2,7 +2,6 @@ package com.revature.project2.controller;
 
 import com.revature.project2.model.Cat;
 import com.revature.project2.service.CatService;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -23,7 +22,7 @@ class CatValidationTest {
     public void catGetID(String id, boolean works) throws SQLException {
         CatService cat = new CatService();
         Cat returnCat = cat.getCat(Integer.parseInt(id));
-        assertEquals((returnCat != null),works);
+        Assertions.assertEquals((returnCat != null),works);
     }
 
     @ParameterizedTest
@@ -34,7 +33,7 @@ class CatValidationTest {
     })
     public void catIDpush(String id,boolean works) {
         CatValidation cat = new CatValidation();
-        assertEquals(works, cat.catIDMoreThanZero(id));
+        Assertions.assertEquals(works, cat.catIDMoreThanZero(id));
     }
 
     @ParameterizedTest
@@ -45,7 +44,7 @@ class CatValidationTest {
     })
     public void catIntOrNot(String string,boolean works) {
         CatValidation cat = new CatValidation();
-        assertEquals(works, cat.catIDNotInt(string));
+        Assertions.assertEquals(works, cat.catIDNotInt(string));
     }
 
     @ParameterizedTest
@@ -56,7 +55,7 @@ class CatValidationTest {
     })
     public void catAgePush(String age,boolean works) {
         CatValidation cat = new CatValidation();
-        assertEquals(works, cat.catAgeInBoundaries(age));
+        Assertions.assertEquals(works, cat.catAgeInBoundaries(age));
     }
 
     @ParameterizedTest
@@ -74,7 +73,7 @@ class CatValidationTest {
     })
     public void catAgeInWindow(String age,boolean works) {
         CatValidation cat = new CatValidation();
-        assertEquals(works, cat.catAgePositive(age));
+        Assertions.assertEquals(works, cat.catAgePositive(age));
     }
 
     @ParameterizedTest
@@ -92,7 +91,7 @@ class CatValidationTest {
     })
     public void doesBreedExist(String breed,boolean works) {
         CatValidation cat = new CatValidation();
-        assertEquals(works, cat.catBreedExists(breed));
+        Assertions.assertEquals(works, cat.catBreedExists(breed));
     }
 
     @ParameterizedTest
@@ -110,6 +109,6 @@ class CatValidationTest {
     })
     public void doesGenderExist(String gender,boolean works) {
         CatValidation cat = new CatValidation();
-        assertEquals(works, cat.catGenderExists(gender));
+        Assertions.assertEquals(works, cat.catGenderExists(gender));
     }
 }
