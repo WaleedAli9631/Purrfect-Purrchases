@@ -70,13 +70,13 @@ public class CatController {
         app.put("/cat/", (ctx)-> {
             CatInformation info = ctx.bodyAsClass(CatInformation.class);
             Account account = accountService.getAccountByUID(info.getUserID());
-            //if (account.getRole().equals("admin")) {
+            if (account.getRole().equals("admin")) {
                 Cat cat = catService.editCat(info);
                 ctx.json(cat);
-            /*} else {
+            } else {
                 ctx.result("The user does not have permission to edit cats!");
                 ctx.status(401);
-            }*/
+            }
         });
 
         app.get("/allcats/{catinfo}", (ctx) -> {

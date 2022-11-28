@@ -249,9 +249,11 @@ onAuthStateChanged(auth, (user)=>{
     if(user == null){
         $('#loginOrSignup').show();
         $('#logout-link').hide();
+        $('#accountLi').hide();
     }else{
         $('#loginOrSignup').hide();
         $('#logout-link').show();
+        $('#accountLi').show();
     }
   });
 
@@ -297,7 +299,7 @@ function getAndDisplayShippingInfo(){
     })
     
 }
-if (currentUser != "null" && currentUser != null) {
+if (currentUser != "null" ) {
     getAndDisplayShippingInfo();
 }
 
@@ -327,22 +329,7 @@ function getCatNames() {
     }  
 }
 
-/* 
 function updateCatPurchasedBy(cat){
-    console.log("THE CAT ID SHOULD BE " + cat.id);
-    fetch(`${baseUrl}/cat`, {
-        method: "PUT",
-        body: `{"catID":"${Number(cat.id)}","catName":"${cat.name}","catBreed":"${cat.breed}","catGender":"${cat.gender}",
-        "catColor":"${cat.color}","catAge":"${Number(cat.age)}","catImgName":"${cat.imageFile}","catCosts":"${Number(cat.costs)}",
-        "purchasedBy":"${currentUser}"}`,
-        credentials: "include"
-    });
-}
-*/
-
-function updateCatPurchasedBy(cat){
-    console.log("THE CAT ID SHOULD BE " + cat.id);
-    console.log("THE PURCHASEBY SHOULD BE " + currentUser);
     fetch(`${baseUrl}/purchase`, {
         method: "PUT",
         body: `{"catID":"${Number(cat.id)}","purchasedBy":"${currentUser}"}`,
@@ -353,7 +340,7 @@ function updateCatPurchasedBy(cat){
 /* This is used for sending alert to user when they try to purchase cats on their cart */
 const completeButton = document.getElementById("Complete");
 completeButton.addEventListener("click", function( e ){ //e => event
-        if (currentUser != "null") { //don't want user to checkout if they aren't logged in
+        if (currentUser != "null" ) { //don't want user to checkout if they aren't logged in
             if (cats.length !== 0){
                 if( ! confirm(`Are you sure you want to adopt ${getCatNames()}?`) ){
                 } else {

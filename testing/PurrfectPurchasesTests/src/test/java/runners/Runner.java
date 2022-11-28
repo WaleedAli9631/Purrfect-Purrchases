@@ -4,7 +4,7 @@ package runners;
 //import com.beust.ah.A;
 import pages.Admin;
 import pages.Home;
-import com.revature.pages.Adoption;
+import pages.Adoption;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -18,7 +18,7 @@ import java.time.Duration;
 
 
 @CucumberOptions(features="src/test/resources/features/adoptionandselection/cat-selection-and-adoption.feature",
-        glue="stepimplementations.adoptionandselection")
+        glue="stepimplementations.adoptionandselection", tags = "@Test6")
 public class Runner extends AbstractTestNGCucumberTests {
     public static WebDriver driver;
     public static Home homePage;

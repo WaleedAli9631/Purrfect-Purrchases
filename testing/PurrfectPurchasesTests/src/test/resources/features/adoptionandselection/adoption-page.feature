@@ -1,3 +1,4 @@
+@AdoptionPage
 Feature: Adoption page
 
   Background: On Adoption page

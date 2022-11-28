@@ -51,6 +51,7 @@ public class AdoptionPageSteps {
     }
     @Then("shipping information appears")
     public void shipping_information_appears() throws InterruptedException {
+
         boolean flag = true;
         try {
             Runner.wait.until(ExpectedConditions.visibilityOf(Runner.driver.findElement(By
@@ -102,7 +103,7 @@ public class AdoptionPageSteps {
         Assert.assertFalse(flag);
     }
     @Then("shipping information disappears")
-    public void shipping_information_disappears() {
+    public void shipping_information_disappears() throws InterruptedException {
         boolean flag = false;
         try{
             Runner.wait.until(ExpectedConditions.invisibilityOf(Runner.driver.findElement(By

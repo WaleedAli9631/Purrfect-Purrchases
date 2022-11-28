@@ -1,3 +1,4 @@
+@CatSelectionHomepage
 Feature: Cat selection on Home page
 
   Background: Customer is on Home page

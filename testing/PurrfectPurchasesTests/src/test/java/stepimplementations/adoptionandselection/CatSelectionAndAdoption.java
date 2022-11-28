@@ -173,10 +173,10 @@ public class CatSelectionAndAdoption {
         Runner.homePage.loginModalEmail.sendKeys("fake1@revature.com");
         Runner.homePage.loginModalPassword.sendKeys("revature");
         Runner.homePage.loginModalLoginButton.click();
-        Runner.wait.until(ExpectedConditions.elementToBeClickable(Runner.homePage.closeOutLoginModalButton));
+        //Runner.wait.until(ExpectedConditions.elementToBeClickable(Runner.homePage.closeOutLoginModalButton));
         Runner.homePage.closeOutLoginModalButton.click();
         //Runner.wait.until(ExpectedConditions.invisibilityOf(Runner.homePage.modalLogin));
-        cats = (ArrayList<WebElement>)Runner.driver.findElements(By.xpath("//div[1]/div/div/div[2]/div/div[1]/div"));
+        cats = (ArrayList<WebElement>)Runner.driver.findElements(By.xpath("//div[@id='catsquares']//div[@class = 'col']"));
         int rand = (int)((Math.random()*cats.size()));
         clickedCat = cats.get(rand);
         Runner.wait.until(ExpectedConditions.visibilityOf(clickedCat.findElement(By.tagName("h2"))));
@@ -196,12 +196,7 @@ public class CatSelectionAndAdoption {
         Runner.homePage.loginModalEmail.sendKeys("fake2@revature.com");
         Runner.homePage.loginModalPassword.sendKeys("revature");
         Runner.homePage.loginModalLoginButton.click();
-        //Runner.wait.until(ExpectedConditions.invisibilityOf(Runner.homePage.modalLogin));
-        //Runner.wait.until((ExpectedConditions.not(ExpectedConditions.visibilityOf(Runner.homePage.modalLogin))));
-        //Runner.wait.until(ExpectedConditions.visibilityOf(clickedCat.findElement(By.className("cart-button"))));
-        //Runner.wait.until(ExpectedConditions.tex(Runner.homePage.modalLogin,"style", "display: none;"));
-        //Runner.wait.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(Runner.homePage.loginModalLoginButton)));
-        Runner.wait.until(ExpectedConditions.elementToBeClickable(Runner.homePage.closeOutLoginModalButton));
+        //Runner.wait.until(ExpectedConditions.elementToBeClickable(Runner.homePage.closeOutLoginModalButton));
         Runner.homePage.closeOutLoginModalButton.click();
         WebElement cartButton = clickedCat.findElement(By.className("cart-button"));
         cartButton.click();
