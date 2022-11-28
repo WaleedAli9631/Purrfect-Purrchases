@@ -1,7 +1,10 @@
 package com.revature.project2.controller;
 
+import com.revature.project2.dto.CatInformation;
 import com.revature.project2.model.Cat;
 import com.revature.project2.service.CatService;
+import dev.failsafe.internal.util.Assert;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -10,6 +13,75 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CatValidationTest {
+
+    @ParameterizedTest
+    @CsvSource({
+            "ALL,ALL,0,true",
+            "Fart,ALL,0,false",
+            "ALL,ALL,1,true"
+    })
+    public void catCheckAll(String breed, String gender, int age, boolean works) throws SQLException {
+        CatService cat = new CatService();
+        boolean isFound = true;
+        if (cat.getCatList(breed,age,gender).isEmpty()) isFound = false;
+        assertEquals(works, isFound);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "true,Daisy,Abyssian,Female,Red,5,assets/img/cat10.jpg,50,",
+    })
+    public void pushCat(boolean works, String name, String breed, String gender, String color, int age,String imageFile, int costs, String purchasedBy) throws SQLException {
+        CatService catService = new CatService();
+        boolean isFound = true;
+        CatInformation cat = new CatInformation("1",1,name,breed,gender,age,costs,imageFile,color,purchasedBy);
+        if (catService.addCat(cat) == null) {
+            isFound = false;
+        } else {
+            //Let's delete the cat to ensure my testing doesn't get obnoxious
+            catService.deleteCat(cat.getCatID());
+        }
+        assertEquals(works, isFound);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "true,82,Daisy,Abyssian,Female,Red,5,assets/img/cat10.jpg,50,",
+    })
+    public void editTheCat(boolean works, int id, String name, String breed, String gender, String color, int age,String imageFile, int costs, String purchasedBy) throws SQLException {
+        CatService catService = new CatService();
+        boolean isFound = true;
+        CatInformation cat = new CatInformation("1",id,name,breed,gender,age,costs,imageFile,color,purchasedBy);
+        if (catService.editCat(cat) == null) {
+            isFound = false;
+        }
+        assertEquals(works, isFound);
+    }
+
+
+    @ParameterizedTest
+    @CsvSource({
+            "0,false",
+            "9999,false",
+            "3,true"
+    })
+    public void catCheckID(String id, boolean works) throws SQLException {
+        CatService cat = new CatService();
+        boolean isFound = true;
+        if (cat.getCat(Integer.parseInt(id)) == null) isFound = false;
+        assertEquals(works, isFound);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "0,false",
+            "9999,false"
+    })
+    public void catKillID(String id, boolean works) throws SQLException {
+        CatService cat = new CatService();
+        boolean itWorks = true;
+        assertEquals(works, cat.deleteCat(Integer.parseInt(id)));
+    }
 
     @ParameterizedTest
     @CsvSource({

@@ -56,7 +56,13 @@ public class CatController {
             CatInformation info = ctx.bodyAsClass(CatInformation.class);
             Account account = accountService.getAccountByUID(info.getUserID());
             if (account.getRole().equals("admin")) {
-                catService.deleteCat(info.getCatID());
+                boolean isDeleted = catService.deleteCat(info.getCatID());
+                if (isDeleted == true) {
+                    ctx.status(200);
+                } else {
+                    ctx.status(400);
+                    ctx.result("User ID does not exist to delete!");
+                }
             } else {
                 ctx.result("The user does not have permission to delete cats!");
                 ctx.status(401);
@@ -66,12 +72,27 @@ public class CatController {
         app.post("/cat", (ctx) -> {
             CatInformation info = ctx.bodyAsClass(CatInformation.class);
             Account account = accountService.getAccountByUID(info.getUserID());
-            if (account.getRole().equals("admin")) {
-                Cat cat = catService.addCat(info);
-                ctx.json(cat);
-            } else {
+            if (info.getUserID() == null) {
+                ctx.result("No user information included.");
+                ctx.status(400);
+            } else if (account.getRole() == null) {
                 ctx.result("The user does not have permission to add cats!");
                 ctx.status(401);
+            } else if (info.getCatName().length() > 50) {
+                ctx.result("The cat name is too long (3 - 50 chars)");
+                ctx.status(400);
+            } else if (info.getCatName().length() < 3) {
+                ctx.result("The cat name is too short (3 - 50 chars)");
+                ctx.status(400);
+            } else if (!catValidation.catBreedExists(info.getCatBreed())) {
+                ctx.result("The Cat Breed does not exist");
+                ctx.status(400);
+            } else if (!catValidation.catAgePositive(Integer.toString(info.getCatAge()))) {
+                ctx.result("The Cat Age is less than zero OR more than 20");
+                ctx.status(400);
+            } else if (account.getRole().equals("admin")) {
+                Cat cat = catService.addCat(info);
+                ctx.json(cat);
             }
         });
 
