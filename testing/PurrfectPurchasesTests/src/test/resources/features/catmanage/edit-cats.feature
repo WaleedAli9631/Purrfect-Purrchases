@@ -2,6 +2,8 @@ Feature: Edit Cats
 
   Background: User is on Admin Page
     Given User is on home page
+    Given User clicks Login Link
+    Given User signs in as Admin
     Given User clicks on Admin link
 
   Scenario Outline: Edit Cats
