@@ -4,7 +4,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
 import com.google.gson.Gson;
+import com.revature.project2.Main;
 import com.revature.project2.dto.CatInformation;
+import com.revature.project2.dto.Message;
 import com.revature.project2.model.Account;
 import com.revature.project2.model.Cat;
 import com.revature.project2.service.CatService;
@@ -12,7 +14,9 @@ import com.revature.project2.service.AccountService;
 import io.javalin.Javalin;
 import org.json.JSONObject;
 
+import java.io.InputStream;
 import java.util.List;
+import java.util.Properties;
 
 public class CatController {
     private CatService catService = new CatService();
@@ -21,6 +25,16 @@ public class CatController {
     private AccountService accountService = new AccountService();
 
     public void mapEndpoints(Javalin app) {
+        InputStream props = Main.class.getClassLoader().getResourceAsStream("database_config.properties");
+        Properties properties = new Properties();
+        try {
+            properties.load(props);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        boolean useH2 = Boolean.parseBoolean(properties.getProperty("use-h2"));
+
         app.get("/cat/{catid}", (ctx) -> {
             if (!catValidation.catIDNotInt(ctx.pathParam("catid"))) {
                 ctx.result("The Cat ID was not an integer!");
@@ -138,11 +152,17 @@ public class CatController {
         app.get("/usercats/{userinfo}", (ctx) -> {
             String[] accountInfo = new Gson().fromJson(ctx.pathParam("userinfo"), String[].class);
             try {
-                FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(accountInfo[1]);
+                if(!useH2)
+                {
+                    FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(accountInfo[1]);
+                }
                 List<Cat> cat = catService.getUserAdoptedCats(accountInfo[0]);
                 ctx.json(cat);
-            } catch (FirebaseAuthException e) {
+                ctx.status(200);
+            } catch (Exception e) {
                 ctx.status(400);
+                ctx.json(new Message("Invalid account uid or auth token"));
+
             }
 
         });
