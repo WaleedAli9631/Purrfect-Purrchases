@@ -53,11 +53,11 @@ public class LoginPositive {
 
     @Then("If user is an admin they should see the admin link {string} {string}")
     public void ifUserIsAnAdminTheyShouldSeeTheAdminLink(String email, String password) {
-        int eleSize = Runner.driver.findElements(By.id("adminPageLink")).size();
         if (email.equals("admin@admin.com")) {
-            Assert.assertTrue(eleSize > 0);
+            Assert.assertTrue(Runner.homePage.AdminLink.isDisplayed());
+
         }else {
-            Assert.assertEquals(eleSize, 0);
+            Assert.assertFalse(Runner.homePage.AdminLink.isDisplayed());
         }
     }
 }

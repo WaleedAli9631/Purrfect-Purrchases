@@ -16,6 +16,5 @@ Feature: Login Positive
     Examples:
       | email | password |
       | "example1000@example.com"  |"123456" |
-#      | "example1001@example.com"  |"1234567" |
-#      | "admin@admin.com"  |"admin123 " |
+      | "admin@admin.com"  |"admin123" |
 

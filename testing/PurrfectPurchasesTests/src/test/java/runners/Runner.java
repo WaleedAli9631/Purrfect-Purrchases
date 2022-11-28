@@ -2,8 +2,10 @@ package runners;
 
 
 //import com.beust.ah.A;
-import pages.Admin;
-import pages.Home;
+
+import com.revature.pages.AccountPage;
+import com.revature.pages.Admin;
+import com.revature.pages.Home;
 import com.revature.pages.Adoption;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
@@ -16,29 +18,32 @@ import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
 
-@CucumberOptions(features="classpath:features", glue="com.revature.stepimplementations", tags = "@register")
+@CucumberOptions(features = "classpath:features", glue = "com.revature.stepimplementations", tags = "@login")
 public class Runner extends AbstractTestNGCucumberTests {
     public static WebDriver driver;
     public static Home homePage;
     public static WebDriverWait wait;
     public static Admin adminPage;
     public static Adoption adoptionPage;
-
+    public static AccountPage accountPage;
     public static String webURL = "http://127.0.0.1:5500/frontend/PurrfectPurrchasesFrontEnd/index.html";
 
     @BeforeMethod
     public void setup() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        wait = new WebDriverWait(Runner.driver,Duration.ofSeconds(2));
+        wait = new WebDriverWait(Runner.driver, Duration.ofSeconds(2));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
         homePage = new Home(driver);
         adminPage = new Admin(driver);
         adoptionPage = new Adoption(driver);
+        accountPage = new AccountPage(driver);
         driver.manage().window().maximize();
 
     }
 
     @AfterMethod
-    public void cleanup() {driver.quit();}
+    public void cleanup() {
+        driver.quit();
+    }
 }

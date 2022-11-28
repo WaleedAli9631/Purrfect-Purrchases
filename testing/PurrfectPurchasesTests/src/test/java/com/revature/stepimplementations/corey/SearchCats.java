@@ -1,4 +1,4 @@
-package stepimplementations;
+package com.revature.stepimplementations.corey;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
