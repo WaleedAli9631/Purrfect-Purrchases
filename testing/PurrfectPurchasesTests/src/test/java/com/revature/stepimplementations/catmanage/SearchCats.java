@@ -1,4 +1,4 @@
-package stepimplementations;
+package com.revature.stepimplementations.catmanage;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -12,14 +12,14 @@ import static runners.Runner.driver;
 public class SearchCats {
     @Given("User clicks Login Link")
     public void user_clicks_login_link() {
-        Runner.homePage.LoginLink.click();
+        Runner.homePage.loginLink.click();
     }
 
     @Given("User signs in as Admin")
     public void user_signs_in_as_admin() {
-        Runner.homePage.LoginEmail.sendKeys("admin@admin.com");
-        Runner.homePage.LoginPassword.sendKeys("admin123");
-        Runner.homePage.LoginButton.click();
+        Runner.homePage.loginEmail.sendKeys("admin@admin.com");
+        Runner.homePage.loginPassword.sendKeys("admin123");
+        Runner.homePage.loginButton.click();
     }
 
     @Given("User clicks on Admin link")

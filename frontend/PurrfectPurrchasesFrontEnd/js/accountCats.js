@@ -28,8 +28,8 @@ onAuthStateChanged(auth, (user) => {
     });
   } else {
     // User is signed out
-    // ...
-  }
+    window.location.replace("index.html");
+    }
 });
 
 function pushCatCells(catinfo) {

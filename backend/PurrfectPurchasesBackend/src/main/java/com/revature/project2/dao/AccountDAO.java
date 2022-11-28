@@ -73,10 +73,9 @@ public class AccountDAO {
             preparedStatement.setString(3,streetAddress);
             preparedStatement.setString(4,city);
             preparedStatement.setString(5,state);
-            preparedStatement.setString(6,uid);
-            preparedStatement.setString(7,role);
+            preparedStatement.setString(6,role);
+            preparedStatement.setString(7,uid);
             preparedStatement.execute();
-
             return new Account(uid,fname,lname,streetAddress,city,state, null);
         }
 

@@ -50,7 +50,40 @@ $('#btnReadOnly').attr("disabled", true);
 // Bind function to Read Only button
 $('#btnReadOnly').click(async function () {
   // Get all input fields used for Domino
-  var inputs = $('[data-dominofield]');
+  
+
+  const fname = document.getElementById('fname');
+  const lname = document.getElementById('lname');
+  const address = document.getElementById('street-address');
+  const city = document.getElementById('city');
+  const state = document.getElementById('state');
+  const sizeCheck = [fname.value, lname.value, address.value, city.value, state.value];
+  let sizeZeroChecker = false;
+  let sizeMinChecker = false;
+  let sizeMaxChecker = false;
+  sizeCheck.forEach(element => {
+    if (element.length == 0) {
+      sizeZeroChecker = true;
+    }
+    if (element.length < 6) {
+      if (element != fname || element != lname) {
+        sizeMinChecker = true;
+      }
+    }
+    if (element.length > 24) {
+      sizeMaxChecker = true;
+    }
+  });
+  if (sizeMinChecker) {
+    alert("All inputs must be of a length greater than six");
+
+  } else if (sizeMaxChecker) {
+    alert("All inputs must be of a length lesser than six");
+  }
+  else if (sizeZeroChecker) {
+    alert("All inputs must be filled");
+  } else {
+    var inputs = $('[data-dominofield]');
   // Process each field
   inputs.each(function () {
     // Build new DIV element
@@ -65,31 +98,29 @@ $('#btnReadOnly').click(async function () {
     // Remove input field
     input.remove();
   });
-  $(".btn").attr('disabled', false);
-  $(this).attr('disabled', true);
-  const fname = document.getElementById('fname');
-  const lname = document.getElementById('lname');
-  const address = document.getElementById('street-address');
-  const city = document.getElementById('city');
-  const state = document.getElementById('state');
-  const user = await getAuth().currentUser;
-  getIdToken(user, true).then((token) => {
-    const infoArray = [user.uid, fname.value, lname.value, address.value, city.value, state.value, token,null];
-    console.log(infoArray);
-    fetch("http://127.0.0.1:9090/accounts/" + encodeURI(JSON.stringify(infoArray)), {
-      method: 'PUT',
-      credentials: 'include'
-    }).then((res) => {
-      return res.json();
-    }).then((responseBody) => {
-      console.log(responseBody);
-      fname.value = responseBody.fname;
-      lname.value = responseBody.lname;
-      address.value = responseBody.streetAddress;
-      city.value = responseBody.city;
-      state.value = responseBody.state;
+    $(".btn").attr('disabled', false);
+    $(this).attr('disabled', true);
+    const user = await getAuth().currentUser;
+    getIdToken(user, true).then((token) => {
+      const infoArray = [user.uid, fname.value, lname.value, address.value, city.value, state.value, token, null];
+      console.log("infoarray");
+      console.log(infoArray);
+      fetch("http://127.0.0.1:9090/accounts/" + encodeURI(JSON.stringify(infoArray)), {
+        method: 'PUT',
+        credentials: 'include'
+      }).then((res) => {
+        return res.json();
+      }).then((responseBody) => {
+        console.log(responseBody);
+        fname.value = responseBody.fname;
+        lname.value = responseBody.lname;
+        address.value = responseBody.streetAddress;
+        city.value = responseBody.city;
+        state.value = responseBody.state;
+      });
     });
-  });
+  }
+
 });
 
 // Bind function to Read Only button
@@ -112,6 +143,6 @@ $('#btnEdit').click(function () {
   $(".btn").attr('disabled', false);
   $(this).attr('disabled', true);
 
- 
+
 });
 

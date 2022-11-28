@@ -1,4 +1,4 @@
-package pages;
+package com.revature.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,8 +25,6 @@ public class Home {
     @FindBy(id="loginLink")
     public WebElement loginLink;
 
-    @FindBy(id = "logoutLi")
-    public WebElement logoutLink;
 
     @FindBy(id = "modal-login")
     public WebElement modalLogin;
@@ -41,19 +39,40 @@ public class Home {
 
     @FindBy(xpath = "//div[4]/div/div/div[1]/button")
     public WebElement closeOutLoginModalButton;
+    @FindBy(xpath = "//*[@id=\"modal-signup\"]/div/div/div[1]/button")
+    public WebElement closeOutSignupModalButton;
+    @FindBy(id="logout")
+    public WebElement logoutLink;
+    @FindBy(id="accountLink")
+    public WebElement accountLink;
+    @FindBy(id="signUpLink")
+    public WebElement signUpLink;
 
-    @FindBy(id="loginLink")
-    public WebElement LoginLink;
-
+    //Account Fields
     @FindBy(id="login-email")
-    public WebElement LoginEmail;
-
+    public WebElement loginEmail;
     @FindBy(id="login-password")
-    public WebElement LoginPassword;
-
-    @FindBy(id="loginButton")
-    public WebElement LoginButton;
-
+    public WebElement loginPassword;
+    @FindBy(id="login-button")
+    public WebElement loginButton;
+    @FindBy(id="signup-email")
+    public WebElement signupEmail;
+    @FindBy(id="signup-password")
+    public WebElement signupPassword;
+    @FindBy(id="signup-password-confirm")
+    public WebElement signupPasswordConfirm;
+    @FindBy(id="signup-fname")
+    public WebElement signupFname;
+    @FindBy(id="signup-lname")
+    public WebElement signupLname;
+    @FindBy(id="signup-address")
+    public WebElement signupAddress;
+    @FindBy(id="signup-city")
+    public WebElement signupCity;
+    @FindBy(id="signup-state")
+    public WebElement signupState;
+    @FindBy(id="signup-submit")
+    public WebElement signupSubmit;
     //Content Information
     @FindBy(className="BreedDeclaration")
     public List<WebElement> BreedList;

@@ -1,4 +1,4 @@
-package stepimplementations.adoptionandselection;
+package com.revature.stepimplementations.adoptionandselection;
 
 import runners.Runner;
 import io.cucumber.java.en.Given;
