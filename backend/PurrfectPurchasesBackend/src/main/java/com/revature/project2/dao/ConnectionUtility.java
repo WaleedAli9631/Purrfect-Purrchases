@@ -45,6 +45,23 @@ public class ConnectionUtility {
                 "('O0tTRkhTJLN3Ne0rbOZOureOSD83', 'fakeFname3', 'fakeLname3', 'fake street3', 'fake city3', 'fake state3', NULL ),\n" +
                 "('46CCSw43M5ZxzKRs2MHsbtl9ybw2', 'fakeFname2', 'fakeLname2', 'fake street2', 'fake city2', 'fake state2', NULL )";
 
+        String createCatsTableSql = "create table cats (\n" +
+                "\tcat_id int primary key,\n" +
+                "\tcat_name VARCHAR(200) not null,\n" +
+                "\tcat_breed varchar(200) not null,\n" +
+                "\tcat_age int not null,\n" +
+                "\tcat_color varchar(200) not null,\n" +
+                "\tcat_gender varchar(200) not null,\n" +
+                "\tcat_imagefile varchar(200) not null,\n" +
+                "\tcat_costs int not null,\n" +
+                "\tcat_purchased varchar(200)\n" +
+                ")";
+
+        String insertCatsSql = "insert into cats (cat_id, cat_name, cat_breed, cat_age, cat_color, cat_gender, cat_imagefile, cat_costs, cat_purchased)\n" +
+                "values \n" +
+                "(1, 'Kitty Kitty Bang Bang', 'Ragdoll', 4, 'yellow', 'Male', 'assets/img/cat13.jpg', 60, 'PJuTs9hFfvfMNVlWmR17t3LYEVN2'),\n" +
+                "(2, 'Kitty Kitty Bang Bang', 'Abyssian', 5, 'yellow', 'Male', 'assets/img/cat13.jpg', 70, NULL),\n" +
+                "(3, 'Kitty Kitty Bang Bang', 'Himalayan', 6, 'yellow', 'Male', 'assets/img/cat13.jpg', 80, NULL)";
 
 
         PreparedStatement ps1 = con.prepareStatement(createAccountsTableSql);
@@ -52,6 +69,12 @@ public class ConnectionUtility {
 
         PreparedStatement ps2 = con.prepareStatement(insertAccountsSql);
         ps2.execute();
+
+        PreparedStatement ps3 = con.prepareStatement(createCatsTableSql);
+        ps3.execute();
+
+        PreparedStatement ps4 = con.prepareStatement(insertCatsSql);
+        ps4.execute();
 
 
     }
