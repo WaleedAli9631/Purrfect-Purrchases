@@ -1,4 +1,4 @@
-package stepimplementations;
+package com.revature.stepimplementations.admin;
 
 
 import io.cucumber.java.en.Then;
