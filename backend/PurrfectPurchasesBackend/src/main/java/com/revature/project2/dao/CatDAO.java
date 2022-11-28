@@ -10,13 +10,20 @@ import java.util.List;
 
 public class CatDAO {
 
-    public void deleteCatById(int id) {
+    public boolean deleteCatById(int id) {
         try (Connection connection = ConnectionUtility.getConnection()){
             String sql = "delete from cats where cat_id = ?";
+            System.out.println("The id being deleted is " + id);
             PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setInt(1,id);
-            pstmt.execute();
+            int rows = pstmt.executeUpdate();
+            if (rows == 0) {
+                return false;
+            } else {
+                return true;
+            }
         } catch (SQLException e) {
+            System.out.println("The cat wasn't deleted?");
             throw new RuntimeException(e);
         }
     }
