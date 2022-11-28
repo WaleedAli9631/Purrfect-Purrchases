@@ -1,4 +1,4 @@
-@acountpage
+@acount-page
 Feature: Account Page Positive
 
   Background: User is on home page
@@ -7,7 +7,7 @@ Feature: Account Page Positive
     When User inputs "example1000@example.com" into the email field
     When User inputs "123456" into the password field
     When User clicks the login button
-  Scenario Outline: User Logins
+  Scenario Outline: User Edits their account info with correct information
     When User clicks the account link
     When User clicks the edit button
     When User types in <fname> into fname field
@@ -20,6 +20,7 @@ Feature: Account Page Positive
 
 
     Examples:
-      | fname | password |
-      | "example1000@example.com"  |"123456" |
+      | fname | lname | streetAddress | city | state|
+      | "tester"  |"McTest" |   "tester lane"      |"test city"|"test state"|
+
 

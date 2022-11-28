@@ -18,7 +18,7 @@ import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
 
-@CucumberOptions(features = "classpath:features", glue = "com.revature.stepimplementations", tags = "@cat-manage")
+@CucumberOptions(features = "classpath:features", glue = "com.revature.stepimplementations", tags = "@acount-page")
 public class Runner extends AbstractTestNGCucumberTests {
     public static WebDriver driver;
     public static Home homePage;

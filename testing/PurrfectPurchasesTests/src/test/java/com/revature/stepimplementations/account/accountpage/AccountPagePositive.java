@@ -81,11 +81,11 @@ public class AccountPagePositive {
 
     @Then("User should see the changes reflected")
     public void userShouldSeeTheChangesReflected() {
-        Assert.assertEquals(Runner.accountPage.fname.getText(),localFname);
-        Assert.assertEquals(Runner.accountPage.lname.getText(),localLname);
-        Assert.assertEquals(Runner.accountPage.streetAddress.getText(),localStreetAddress);
-        Assert.assertEquals(Runner.accountPage.city.getText(),localCity);
-        Assert.assertEquals(Runner.accountPage.state.getText(),localState);
+        Assert.assertEquals(Runner.accountPage.fname.getAttribute("value"),localFname);
+        Assert.assertEquals(Runner.accountPage.lname.getAttribute("value"),localLname);
+        Assert.assertEquals(Runner.accountPage.streetAddress.getAttribute("value"),localStreetAddress);
+        Assert.assertEquals(Runner.accountPage.city.getAttribute("value"),localCity);
+        Assert.assertEquals(Runner.accountPage.state.getAttribute("value"),localState);
 
     }
 }

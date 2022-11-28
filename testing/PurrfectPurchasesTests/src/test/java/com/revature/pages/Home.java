@@ -39,7 +39,8 @@ public class Home {
 
     @FindBy(xpath = "//div[4]/div/div/div[1]/button")
     public WebElement closeOutLoginModalButton;
-
+    @FindBy(xpath = "//*[@id=\"modal-signup\"]/div/div/div[1]/button")
+    public WebElement closeOutSignupModalButton;
     @FindBy(id="logout")
     public WebElement logoutLink;
     @FindBy(id="accountLink")
