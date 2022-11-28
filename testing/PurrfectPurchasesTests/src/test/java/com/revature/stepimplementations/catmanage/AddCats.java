@@ -1,4 +1,4 @@
-package com.revature.stepimplementations.corey;
+package com.revature.stepimplementations.catmanage;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
