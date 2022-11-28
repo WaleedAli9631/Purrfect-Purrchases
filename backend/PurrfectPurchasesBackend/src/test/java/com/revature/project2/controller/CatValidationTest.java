@@ -2,6 +2,8 @@ package com.revature.project2.controller;
 
 import com.revature.project2.model.Cat;
 import com.revature.project2.service.CatService;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 

@@ -201,8 +201,8 @@ public class CatSelectionAndAdoption {
         Runner.homePage.loginModalEmail.sendKeys("fake2@revature.com");
         Runner.homePage.loginModalPassword.sendKeys("revature");
         Runner.homePage.loginModalLoginButton.click();
-        //Runner.wait.until(ExpectedConditions.elementToBeClickable(Runner.homePage.closeOutLoginModalButton));
         Runner.homePage.closeOutLoginModalButton.click();
+        Runner.wait.until(ExpectedConditions.not(ExpectedConditions.visibilityOf(Runner.homePage.modalLogin)));
         cats = (ArrayList<WebElement>)Runner.driver.findElements(By.xpath("//div[@id='catsquares']//div[@class = 'col']"));
         clickedCat = cats.get(rand);
         WebElement cartButton = clickedCat.findElement(By.className("cart-button"));

@@ -3,6 +3,7 @@ package com.revature.project2.controller;
 import com.revature.project2.dto.AdoptionInformation;
 import com.revature.project2.model.AdoptionOrder;
 import com.revature.project2.service.AdoptionOrdersService;
+import com.revature.project2.service.WrongDateException;
 import io.javalin.Javalin;
 import org.postgresql.util.PSQLException;
 
@@ -33,6 +34,10 @@ public class AdoptionOrderController {
                     context.status(400);
                     context.result("This cat does not exist");
                 }
+            }
+            catch(WrongDateException wde) {
+                context.status(400);
+                context.result(wde.getMessage());
             }
 
         });

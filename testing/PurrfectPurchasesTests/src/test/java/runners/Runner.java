@@ -20,6 +20,7 @@ import java.time.Duration;
 
 @CucumberOptions(features="src/test/resources/features",
         glue="com.revature.stepimplementations.adoptionandselection", tags = "@CatSelectAdopt or @AdoptionPage or @CatSelectionHomepage")
+//tags = "@CatSelectAdopt or @AdoptionPage or @CatSelectionHomepage"
 public class Runner extends AbstractTestNGCucumberTests {
     public static WebDriver driver;
     public static Home homePage;
