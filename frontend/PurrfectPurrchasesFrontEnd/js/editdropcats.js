@@ -20,19 +20,21 @@ const eImg = document.getElementById('editcat-image');
 const eCosts = document.getElementById('editcat-costs');
 
 editCatButton.addEventListener('click', (e) => {
-    e.preventDefault();  
-    cUser = window.sessionStorage.getItem("user_id");
-    fetch('http://127.0.0.1:9090/cat', {
-      method:'PUT',
-      body: `{"userID":"${cUser}","catID":"${eID.value}","catName":"${eName.value}","catBreed":"${eBreed.value}","catGender":"${eGender.value}","catColor":"${eColor.value}","catAge":"${eAge.value}","catImgName":"${eImg.value}","catCosts":"${eCosts.value}"}`,
-      credentials: 'include'  
-    }).then((res) => {
-      return res.json();
-    }).then((responseBody) => {
-        getCatTable();
-        $('#modal-editcats').modal('hide');
-        alert ("Cat has been edited!");
-    });
+    if (eName.checkValidity() && eAge.checkValidity() && eCosts.checkValidity() && eImg.checkValidity() && eColor.checkValidity()) {
+        e.preventDefault();  
+        cUser = window.sessionStorage.getItem("user_id");
+        fetch('http://127.0.0.1:9090/cat', {
+            method:'PUT',
+            body: `{"userID":"${cUser}","catID":"${eID.value}","catName":"${eName.value}","catBreed":"${eBreed.value}","catGender":"${eGender.value}","catColor":"${eColor.value}","catAge":"${eAge.value}","catImgName":"${eImg.value}","catCosts":"${eCosts.value}"}`,
+            credentials: 'include'  
+        }).then((res) => {
+            return res.json();
+        }).then((responseBody) => {
+            getCatTable();
+            $('#modal-editcats').modal('hide');
+            alert ("Cat has been edited!");
+        });
+    }
 });
 
 function getCat(id) {

@@ -32,7 +32,10 @@ public class CatController {
                 ctx.status(400);
             } else {
                 Cat cat = catService.getCat(Integer.parseInt(ctx.pathParam("catid")));
-                if (cat == null) ctx.result("Cat ID does not exist!");
+                if (cat == null) {
+                    ctx.result("Cat ID does not exist!");
+                    ctx.status(400);
+                }
                 else ctx.json(cat);
             }
         });
