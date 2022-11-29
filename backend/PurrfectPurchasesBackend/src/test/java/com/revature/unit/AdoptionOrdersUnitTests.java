@@ -42,7 +42,7 @@ public class AdoptionOrdersUnitTests {
         Assert.assertEquals(actual,expected);
     }
     @Test
-    public void addAdoptionOrderWrongDate() throws SQLException, WrongDateException {
+    public void addAdoptionOrderWrongDate() throws SQLException {
         Boolean flag = false;
         try{
             when(mockAdoptionOrderDAD.createAdoptionOrder("1", 2, "11/28/2000")).thenReturn(new AdoptionOrder(1,"1",2,"11/28/2000"));

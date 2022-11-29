@@ -39,7 +39,6 @@ public class AdoptionOrderController {
                 context.status(400);
                 context.result(wde.getMessage());
             }
-
         });
     }
 }

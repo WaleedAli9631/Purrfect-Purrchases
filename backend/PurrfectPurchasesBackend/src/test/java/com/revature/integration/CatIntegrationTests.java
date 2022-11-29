@@ -32,7 +32,7 @@ public class CatIntegrationTests {
     @BeforeEach
     public void setup() throws SQLException, IOException {
         FileInputStream serviceAccount =
-                new FileInputStream("C:/Users/PcName/Downloads/purrfect-purrchases-firebase-adminsdk-sryyb-780fda786b.json");
+                new FileInputStream("C:/Users/wutan/Downloads/purrfect-purrchases-firebase-adminsdk-sryyb-780fda786b.json");
 
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
