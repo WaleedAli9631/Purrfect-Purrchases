@@ -45,6 +45,7 @@ public class CatController {
             Account account = accountService.getAccountByUID(info.getUserID());
             if (account.getRole().equals("admin")) {
                 boolean isDeleted = catService.deleteCat(info.getCatID());
+                catService.deleteCat(info.getCatID());
                 if (isDeleted == true) {
                     ctx.status(200);
                 } else {
@@ -59,9 +60,16 @@ public class CatController {
 
         app.post("/cat", (ctx) -> {
             CatInformation info = ctx.bodyAsClass(CatInformation.class);
+            JSONObject obj = new JSONObject(ctx.body());
             Account account = accountService.getAccountByUID(info.getUserID());
-            if (info.getUserID() == null) {
-                ctx.result("No user information included.");
+            if (!obj.has("catColor")) {
+                ctx.result("No color information included");
+                ctx.status(400);
+            } else if (!obj.has("catBreed")) {
+                ctx.result("No breed information included");
+                ctx.status(400);
+            } else if (!obj.has("catAge")) {
+                ctx.result("No age information included.");
                 ctx.status(400);
             } else if (account.getRole() == null) {
                 ctx.result("The user does not have permission to add cats!");

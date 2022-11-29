@@ -5,6 +5,7 @@ import io.cucumber.java.en.When;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import runners.Runner;
 
@@ -52,21 +53,23 @@ public class AddCats {
     @When("User clicks Add Cat submit button")
     public void user_clicks_add_cat_submit_button() throws InterruptedException, IOException {
         Runner.adminPage.AddCatSubmitButton.click();
-        //Thread.sleep(500);
     }
     @Then("User should see alert confirmation")
     public void user_should_see_alert_confirmation() throws InterruptedException {
-        String conf = "Cat has been added!";
-        Thread.sleep(2000);
-        boolean isPresent = driver.switchTo().alert().getText().equals(conf);
-        if (isPresent) driver.switchTo().alert().accept();
-        Thread.sleep(1000);
-        Assert.assertEquals(isPresent, true, "Error: Cat not confirmed to be added!");
+        boolean isPresent = false;
+        try {
+            Runner.wait.until(ExpectedConditions.alertIsPresent());
+            String conf = "Cat has been added!";
+            isPresent = driver.switchTo().alert().getText().equals(conf);
+            if (isPresent) driver.switchTo().alert().accept();
+        } catch (Exception e) {
+            Assert.assertEquals(isPresent, true, "Error: No alert given due to cat submission error!");
+        }
     }
+
     @Then("User should see cat with {string},{string},{int},{string},{string},{int},and {string} in table")
-    public void user_should_see_cat_with_and_in_table(String string, String string2, Integer int1, String string3, String string4, Integer int2, String string5) {
-        System.out.println("The website is " + Runner.adminPage.lastRowTd.get(1).getText());
-        System.out.println("The feature input is " + string);
+    public void user_should_see_cat_with_and_in_table(String string, String string2, Integer int1, String string3, String string4, Integer int2, String string5) throws InterruptedException {
+        Thread.sleep(500);
         Assert.assertEquals(Runner.adminPage.lastRowTd.get(1).getText().equals(string), true, "Error: Cat name not added to table!");
         Assert.assertEquals(Runner.adminPage.lastRowTd.get(2).getText().equals(string2), true, "Error: Cat breed not added to table!");
         Assert.assertEquals(Runner.adminPage.lastRowTd.get(3).getText().equals(string3), true, "Error: Cat gender not added to table!");
@@ -92,7 +95,7 @@ public class AddCats {
             if (Runner.homePage.NextButton.size() > 0) Runner.homePage.NextButton.get(0).click();
             Thread.sleep(500);
         }
-        Thread.sleep(5000);
+        Thread.sleep(1000);
         Assert.assertEquals(Runner.homePage.lastCatName.getText().contains(string),true, "Name isn't in last cat square");
         Assert.assertEquals(Runner.homePage.lastCatBreed.getText().equals(string2), true, "Breed isn't in the last cat square");
         Assert.assertEquals(Runner.homePage.lastCatAge.getText().equals(String.valueOf(int1)), true, "Age isn't in the last cat square");

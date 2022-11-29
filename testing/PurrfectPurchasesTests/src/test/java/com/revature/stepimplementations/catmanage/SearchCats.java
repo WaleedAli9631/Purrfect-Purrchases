@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import runners.Runner;
 
@@ -27,6 +28,7 @@ public class SearchCats {
         Runner.homePage.AdminLink.click();
         //Thread.sleep(2000);
     }
+
     @When("User clicks Search Cat button")
     public void user_clicks_search_cat_button() throws InterruptedException {
         Runner.adminPage.searchCatButton.click();
@@ -41,12 +43,20 @@ public class SearchCats {
     @When("User clicks Search button")
     public void user_clicks_search_button() throws InterruptedException {
         Runner.adminPage.searchCatButtonSubmit.click();
-        //Thread.sleep(300);
+        Thread.sleep(300); //needed
     }
 
     @Then("User should see {int} information in table or be alerted")
     public void user_should_see_information_in_table_or_be_alerted(Integer int1) {
-        Boolean isPresent = driver.findElements(By.xpath("//td[1][text()='"+int1 + "']")).size()>0;
-        Assert.assertEquals(isPresent, true, "Error: Cat search yielded no results!");
+        boolean isPresent = true;
+        try {
+            Runner.wait.until(ExpectedConditions.alertIsPresent());
+            String conf = "We could not find a cat with that ID";
+            isPresent = driver.switchTo().alert().getText().equals(conf);
+            Assert.assertEquals(isPresent, false, "Error: That ID could not be found!");
+        } catch (Exception e) {
+            isPresent = driver.findElements(By.xpath("//tr/td[position() = 1 and text()='" + int1 + "']")).size() > 0;
+            Assert.assertEquals(isPresent, true, "Error: Cat search yielded no results!");
+        }
     }
 }

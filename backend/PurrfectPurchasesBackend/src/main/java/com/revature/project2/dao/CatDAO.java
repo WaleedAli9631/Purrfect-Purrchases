@@ -23,7 +23,6 @@ public class CatDAO {
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("The cat wasn't deleted?");
             throw new RuntimeException(e);
         }
     }
