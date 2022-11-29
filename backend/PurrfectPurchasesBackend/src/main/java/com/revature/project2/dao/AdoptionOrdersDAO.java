@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class AdoptionOrdersDAO {
 
-    public AdoptionOrder createAdoptionOrder(String userId, int catId, String adoptionDate) throws SQLException {
+    public AdoptionOrder createAdoptionOrder(String userId, int catId, String adoptionDate) throws SQLException{
         try (Connection connection = ConnectionUtility.getConnection()) {
             String sql = "insert into adoption_orders(user_id,cat_id,adoption_date)\n"+
                     "values \n" +

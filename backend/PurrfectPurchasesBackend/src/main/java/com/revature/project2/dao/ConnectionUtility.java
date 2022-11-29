@@ -5,6 +5,8 @@ import com.revature.project2.Main;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 
 public class ConnectionUtility {
@@ -89,12 +91,13 @@ public class ConnectionUtility {
         String createAdoptionOrdersTable = "create table adoption_orders(\n" +
                 "adoption_id SERIAL primary key,\n" +
                 "user_id varchar(50) not null,\n" +
-                "cat_id integer unique not null,\n" +
+                "cat_id int unique not null,\n" +
                 "adoption_date varchar(50) not null\n" +
                 ");";
-
-
+        PreparedStatement ps1 = con.prepareStatement(createAdoptionOrdersTable);
+        ps1.execute();
     }
+
 
 
 }
