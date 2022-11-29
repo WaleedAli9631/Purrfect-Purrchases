@@ -1,10 +1,11 @@
-package com.revature.stepimplementations.admin;
+package com.revature.stepimplementations.catmanage;
 
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import runners.Runner;
 
@@ -15,8 +16,13 @@ public class EditCats {
 
     @When("User edits cat with {int}")
     public void userEditsCatWithCatID(Integer int1) throws InterruptedException {
-        WebElement catID = driver.findElement(By.xpath("//tr/td[text()='" + int1 + "']/following-sibling::td[7]//img"));
-        catID.click();
+        try {
+            WebElement catID = driver.findElement(By.xpath("//tr/td[position() = 1 and text()='" + int1 + "']/following-sibling::td[7]//img"));
+            Runner.wait.until(ExpectedConditions.visibilityOf(catID));
+            catID.click();
+        } catch (Exception e) {
+            Assert.assertEquals(false, true, "Error: No cat with that ID on the table!");
+        }
         Thread.sleep(500);
     }
 
@@ -67,22 +73,25 @@ public class EditCats {
 
     @Then("User should see alert edit confirmation")
     public void user_should_see_alert_edit_confirmation() throws InterruptedException {
-        String conf = "Cat has been edited!";
-        Thread.sleep(500);
-        boolean isPresent = driver.switchTo().alert().getText().equals(conf);
-        if (isPresent) driver.switchTo().alert().accept();
-        Thread.sleep(1000);
-        Assert.assertEquals(isPresent, true, "Error: Cat not confirmed to be added!");
+        boolean isPresent = false;
+        try {
+            Runner.wait.until(ExpectedConditions.alertIsPresent());
+            String conf = "Cat has been edited!";
+            isPresent = driver.switchTo().alert().getText().equals(conf);
+            if (isPresent) driver.switchTo().alert().accept();
+        } catch (Exception e) {
+            Assert.assertEquals(isPresent, true, "Error: No alert given due to cat submission error!");
+        }
     }
 
     @Then("User should see cat {int} with {string},{string},{int},{string},{string},{int},and {string} in table")
     public void user_should_see_cat_with_and_in_table(Integer int1, String string, String string2, Integer int2, String string3, String string4, Integer int3, String string5) throws InterruptedException {
-        String catName = driver.findElement(By.xpath("//tr/td[text()='" + int1 + "']/following-sibling::td[1]")).getText();
-        String catBreed = driver.findElement(By.xpath("//tr/td[text()='" + int1 + "']/following-sibling::td[2]")).getText();
-        String catGender = driver.findElement(By.xpath("//tr/td[text()='" + int1 + "']/following-sibling::td[3]")).getText();
-        String catAge = driver.findElement(By.xpath("//tr/td[text()='" + int1 + "']/following-sibling::td[4]")).getText();
-        String catCosts = driver.findElement(By.xpath("//tr/td[text()='" + int1 + "']/following-sibling::td[5]")).getText();
-        String catURL = driver.findElement(By.xpath("//tr/td[text()='" + int1 + "']/following-sibling::td[6]")).getText();
+        String catName = driver.findElement(By.xpath("//tr/td[position() = 1 and text()='" + int1 + "']/following-sibling::td[1]")).getText();
+        String catBreed = driver.findElement(By.xpath("//tr/td[position() = 1 and text()='" + int1 + "']/following-sibling::td[2]")).getText();
+        String catGender = driver.findElement(By.xpath("//tr/td[position() = 1 and text()='" + int1 + "']/following-sibling::td[3]")).getText();
+        String catAge = driver.findElement(By.xpath("//tr/td[position() = 1 and text()='" + int1 + "']/following-sibling::td[4]")).getText();
+        String catCosts = driver.findElement(By.xpath("//tr/td[position() = 1 and text()='" + int1 + "']/following-sibling::td[5]")).getText();
+        String catURL = driver.findElement(By.xpath("//tr/td[position() = 1 and text()='" + int1 + "']/following-sibling::td[6]")).getText();
         Assert.assertEquals(catName.equals(string), true, "Error: Cat name not added to table!");
         Assert.assertEquals(catBreed.equals(string2), true, "Error: Cat breed not added to table!");
         Assert.assertEquals(catGender.equals(string3), true, "Error: Cat gender not added to table!");

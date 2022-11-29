@@ -1,4 +1,3 @@
-
 #logo {
     height:150px;
 }
@@ -49,6 +48,10 @@ h4 {
     width:40%;
 }
 
+.catBig {
+    max-width:400px;
+}
+
 .catElement {
     min-width:250px;
     width:100%;
@@ -78,4 +81,3 @@ h4 {
 #prev-button, #next-button, #filterCatButton, #addCatButton #searchCatButton {
     background-color:#272458
 }
-
