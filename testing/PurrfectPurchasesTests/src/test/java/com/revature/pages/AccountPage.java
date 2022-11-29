@@ -24,5 +24,7 @@ public class AccountPage {
     public WebElement editButton;
     @FindBy(id="btnReadOnly")
     public WebElement saveButton;
+    @FindBy(xpath = "//nav/div/ul/li[@id='cartLink']/a")
+    public WebElement cartLink;
 
 }

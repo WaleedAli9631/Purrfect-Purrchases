@@ -84,4 +84,17 @@ public class ConnectionUtility {
         Statement statement = con.createStatement();
         statement.execute(sql);
     }
+
+    public static void createAdoptionOrderH2DB(Connection con) throws SQLException, IOException{
+        String createAdoptionOrdersTable = "create table adoption_orders(\n" +
+                "adoption_id SERIAL primary key,\n" +
+                "user_id varchar(50) not null,\n" +
+                "cat_id integer unique not null,\n" +
+                "adoption_date varchar(50) not null\n" +
+                ");";
+
+
+    }
+
+
 }

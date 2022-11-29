@@ -2,11 +2,11 @@ package runners;
 
 
 //import com.beust.ah.A;
-
 import com.revature.pages.AccountPage;
 import com.revature.pages.Admin;
 import com.revature.pages.Home;
 import com.revature.pages.Adoption;
+
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -18,16 +18,18 @@ import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
 
-@CucumberOptions(features = "classpath:features", glue = "com.revature.stepimplementations", tags = "@acount-page or @navigation or @login or @register")
+@CucumberOptions(features="src/test/resources/features",
+        glue="com.revature.stepimplementations.adoptionandselection", tags = "@CatSelectAdopt or @AdoptionPage or @CatSelectionHomepage")
+//tags = "@CatSelectAdopt or @AdoptionPage or @CatSelectionHomepage"
 public class Runner extends AbstractTestNGCucumberTests {
     public static WebDriver driver;
     public static Home homePage;
     public static WebDriverWait wait;
     public static Admin adminPage;
     public static Adoption adoptionPage;
+    public static String webURL = "http://127.0.0.1:5500";
+    //admin id: 55xPney8EhbEMAfhAVTRhhY4XCo1
     public static AccountPage accountPage;
-    public static String webURL = "http://127.0.0.1:5500/frontend/PurrfectPurrchasesFrontEnd/index.html";
-
     @BeforeMethod
     public void setup() throws InterruptedException {
         WebDriverManager.chromedriver().setup();

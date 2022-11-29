@@ -1,5 +1,8 @@
 package com.revature.stepimplementations.adoptionandselection;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import runners.Runner;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,10 +12,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SelectionHomePage {
-    private String homeURL = Runner.webURL + "/PurrfectPurrchasesFrontEnd/index.html";
+    private String homeURL = Runner.webURL + "/index.html";
     private ArrayList<WebElement> cats;
     private WebElement clickedCat;
     int[] catsSelected = new int[2];
@@ -27,7 +32,7 @@ public class SelectionHomePage {
         Runner.homePage.cartLink.click();
         Runner.wait.until(ExpectedConditions.urlContains("adoption-checkout.html"));
         String URL = Runner.driver.getCurrentUrl();
-        Assert.assertEquals(URL, "http://127.0.0.1:5501/PurrfectPurrchasesFrontEnd/adoption-checkout.html" );
+        Assert.assertEquals(URL, "http://127.0.0.1:5500/adoption-checkout.html" );
     }
     @Then("customer navigates back to the Home page")
     public void customer_navigates_back_to_the_home_page() {
@@ -35,7 +40,7 @@ public class SelectionHomePage {
         Runner.adoptionPage.homeLink.click();
         Runner.wait.until(ExpectedConditions.urlContains("index.html"));
         String URL = Runner.driver.getCurrentUrl();
-        Assert.assertEquals(URL, "http://127.0.0.1:5501/PurrfectPurrchasesFrontEnd/index.html" );
+        Assert.assertEquals(URL, "http://127.0.0.1:5500/index.html" );
     }
     @When("customer selects a cat")
     public void customer_selects_a_cat() throws InterruptedException {
@@ -49,7 +54,7 @@ public class SelectionHomePage {
 
     }
     @Then("customer will get a confirmation that the cat has been added to their cart")
-    public void customer_will_get_a_confirmation_that_the_cat_has_been_added_to_their_cart() {
+    public void customer_will_get_a_confirmation_that_the_cat_has_been_added_to_their_cart() throws IOException {
         Runner.wait.until(ExpectedConditions.alertIsPresent());
         String first = "You have added";
         String second = "to your cart";
@@ -64,7 +69,7 @@ public class SelectionHomePage {
         clickedCat.findElement(By.className("cart-button")).click();
     }
     @Then("customer should see an alert saying they cannot add it to their cart again")
-    public void customer_should_see_an_alert_saying_they_cannot_add_it_to_their_cart_again() {
+    public void customer_should_see_an_alert_saying_they_cannot_add_it_to_their_cart_again() throws IOException {
         Runner.wait.until(ExpectedConditions.alertIsPresent());
         String alertText = Runner.driver.switchTo().alert().getText();
         Runner.driver.switchTo().alert().accept();
@@ -111,7 +116,7 @@ public class SelectionHomePage {
         cartButton.click();
     }
     @Then("customer gets an alert that they cannot add another cat")
-    public void customer_gets_an_alert_that_they_cannot_add_another_cat() {
+    public void customer_gets_an_alert_that_they_cannot_add_another_cat() throws IOException {
         Runner.wait.until(ExpectedConditions.alertIsPresent());
         String alertText = Runner.driver.switchTo().alert().getText();
         Runner.driver.switchTo().alert().accept();
