@@ -125,3 +125,68 @@ Status Codes
 | :---------- | :---------- |
 | 200 Okay | Cat was added |
 | 400 | Cat was not added |
+
+---
+`PUT /cat`
+
+Allows admin to update cat. When the user submits id, name, breed, gender, color, imageName, costs, and age info successfully, a cat will be updated.
+
+### Request
+Headers
+| Key | Value | Description |
+| :-- | :---- | :---------- |
+| userid | string | User ID of admin posting cat data |
+| catID | integer | Cat ID for updating |
+| catName | string | Name of cat |
+| catBreed | string | Breed of cat |
+| catGender | string | Gender of cat |
+| catColor | string | Color of cat |
+| catAge | integer | Age of cat |
+| catImgName | string | Image file of cat |
+| catCosts | integer | Cost of cat |
+
+### Response
+Response Body
+```json
+{
+    "userid":id,
+    "id":id,
+    "name": name,
+    "breed": breed,
+    "gender": gender,
+    "color": color,
+    "age": age,
+    "imageFile": imageFile,
+    "costs": cost,
+    "purchasedBy", purchasedBy
+}
+```
+Status Codes
+| Status Code | Description |
+| :---------- | :---------- |
+| 200 Okay | Cat was updated |
+| 400 | Cat was not updated |
+---
+`DELETE /cat`
+
+Allows user to delete cat. When the admin submits a cat id successfully, the server will delete cat.
+
+### Request
+Headers
+| Key | Value | Description |
+| :-- | :---- | :---------- |
+| id | integer | The database id of the respective cat |
+| userid | string | The string of the user id |
+
+### Response
+Response Body
+```json
+{number of rows deleted}
+```
+Status Codes
+| Status Code | Description |
+| :---------- | :---------- |
+| 200 Okay | Cat information was deleted |
+| 400 | Cat was not deleted |
+
+---
