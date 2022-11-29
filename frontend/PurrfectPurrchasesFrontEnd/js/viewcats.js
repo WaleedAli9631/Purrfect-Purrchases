@@ -20,7 +20,7 @@
 
     function addCode(catID, imgName, catName, catBreed, catGender, catAge, catCost) {
       document.getElementById("catsquares").innerHTML +=
-      "<div id=\"" + catID + "\" class=\"col\">" +
+      "<div id=\"" + catID + "\" class=\"col catBig\">" +
       "<div class=\"p-3 bg-light rounded-lg shadow\">" +
       "<img src=\"" + imgName + "\" class=\"w-100 catElement\" onerror=\"this.onerror=null; this.src='assets/img/404.jpg'\">" +
       "<h2 class=\"cat-name\">" + catName + " - <span class=\"BreedDeclaration\">" + catBreed + "</span></h2>" +
