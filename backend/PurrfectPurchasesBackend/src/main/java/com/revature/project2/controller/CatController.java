@@ -4,7 +4,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
 import com.google.gson.Gson;
-import com.revature.project2.dto.AllCatInformation;
 import com.revature.project2.dto.CatInformation;
 import com.revature.project2.model.Account;
 import com.revature.project2.model.Cat;
@@ -13,7 +12,6 @@ import com.revature.project2.service.AccountService;
 import io.javalin.Javalin;
 import org.json.JSONObject;
 
-import java.sql.SQLOutput;
 import java.util.List;
 
 public class CatController {
